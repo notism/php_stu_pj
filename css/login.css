@@ -46,13 +46,13 @@ body,html{
 
 .login_btn{
 	width: 100%;
-	background: #61357F !important;
+	background: #56187F !important;
 	color: white !important;
 }
 
 .login_btn:hover{
 	width: 100%;
-	background: #56187F !important;
+	background: #61357F !important;
 	color: white !important;
 }
 
@@ -64,7 +64,7 @@ body,html{
 	padding: 0 2rem;
 }
 .input-group-text{
-	background: #61357F !important;
+	background: #56187F !important;
 	color: white !important;
 	border: 0 !important;
 	border-radius: 0.25rem 0 0 0.25rem !important;
