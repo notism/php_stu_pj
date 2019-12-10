@@ -13,6 +13,12 @@ if ($result->num_rows > 0) {
         <td align='left'>".$row["Email"]."</td>
         <td align='left'>".date("d-m-Y", strtotime($row["CreatedDate"]))."</td>
         <td align='left'>".$row["Role"]."</td>
+        <td>
+        <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#editUserModel' data-id=".$row["Id"]." data-username=".$row["Username"]." data-email=".$row["Email"]."><i class='fas fa-pen'></i></button>
+        </td>
+        <td>
+        <button type='button' class='btn btn-danger'data-toggle='modal' data-target='#deleteUserModel' data-del_id=".$row["Id"]." data-username=".$row["Username"]."><i class='fas fa-trash-alt'></i></button>
+        </td>
         </tr>";
     }
 } else {
