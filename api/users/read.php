@@ -46,7 +46,7 @@
     }
 
     // Turn to JSON & output
-    echo json_encode($posts_arr);
+    echo json_encode($users_arr);
 
   } else {
     // No Posts

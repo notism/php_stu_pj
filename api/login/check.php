@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+// connect DB
 $db_user = "root";
 $db_pass = '';
 $db_name = "student_project";
