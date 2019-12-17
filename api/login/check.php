@@ -9,9 +9,10 @@ $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 $username = $_POST['username'];
 $password = $_POST['password'];
+$passwordX = md5($password);
 $sql = "SELECT * FROM users WHERE Username = ? AND Password = ? LIMIT 1";
 $stmtselect  = $db->prepare($sql);
-$result = $stmtselect->execute([$username, $password]);
+$result = $stmtselect->execute([$username, $passwordX]);
 if($result){
 	$user = $stmtselect->fetch(PDO::FETCH_ASSOC);
 	if($stmtselect->rowCount() > 0){

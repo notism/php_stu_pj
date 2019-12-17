@@ -80,8 +80,10 @@ $(function(){
 						setTimeout(' window.location.href =  "webStudent/index.php"', 1000);
 					}else if($.trim(data) === "advisor"){
 						setTimeout(' window.location.href =  "webAdvisor/index.php"', 1000);
-					}else{
+					}else if($.trim(data) === "personal"){
 						setTimeout(' window.location.href =  "webOther/index.php"', 1000);
+					}else {
+						setTimeout(' window.location.href =  "index.php"', 1000);
 					}
 				},
 				error: function(data){

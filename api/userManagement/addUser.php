@@ -30,6 +30,11 @@
 		if (count($errors) == 0) {
       $createdBy = $_SESSION['userlogin']["Username"];
 			$passwordX = md5($password);//encrypt the password before saving in the database
+			// user Info
+			$queryInfo = "INSERT INTO `profile`(CreatedBy)  VALUES
+       ('$username')";
+			mysqli_query($db, $queryInfo);
+			// users
       $query = "INSERT INTO `users`(Username,Email,Password,Role,CreatedBy)  VALUES
        ('$username','$email','$passwordX','$role','$createdBy')";
 			mysqli_query($db, $query);
