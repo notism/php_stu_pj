@@ -81,7 +81,7 @@
 
 <!-- Modal Edit -->
 <div class="modal fade" id="editUserModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
-<form enctype="multipart/form-data" action="../api/userManagement/edit.php" method="post">
+<form enctype="multipart/form-data" action="../api/studentInfomation/edit.php" method="post">
 <div class="modal-dialog modal-dialog-scrollable" role="document">
 	<div class="modal-content">
 		<div class="modal-header">
@@ -96,6 +96,12 @@
 			</div>
 			<div class="input-group mb-3">
 					<input type="text" class="form-control" placeholder="userId" name="userId" id="userId" readonly>
+			</div>
+			<div class="input-group mb-1">
+				<label class="form-check-label">ชื่อผู้ใช้:&nbsp;</label>
+			</div>
+			<div class="input-group mb-3">
+					<input type="text" class="form-control" placeholder="username" name="username" id="username" readonly>
 			</div>
       <div class="row">
         <div class="col">
@@ -120,36 +126,27 @@
       <div class="form-group">
         <label for="exampleFormControlSelect1">สาขาวิชา:</label>
         <div class="input-group mb-3">
-        <select class="form-control" id="exampleFormControlSelect1">
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
+        <select class="form-control" name="school" id="exampleFormControlSelect1">
+					<option id="school">-สาขาวิชา-</option>
+          <option id="school" value="เทคโนโลยีสารสนเทศ">เทคโนโลยีสารสนเทศ</option>
         </select>
         </div>
       </div>
       <div class="form-group">
         <label for="exampleFormControlSelect1">สำนักวิชา:</label>
         <div class="input-group mb-3">
-        <select class="form-control" id="exampleFormControlSelect1">
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
+        <select class="form-control" name="faculty" id="exampleFormControlSelect1">
+					<option id="faculty">-สำนักวิชา-</option>
+          <option id="faculty" value="เทคโนโลยีสังคม">เทคโนโลยีสังคม</option>
         </select>
         </div>
       </div>
       <div class="form-group">
         <label for="exampleFormControlSelect1">ชื่อปริญญา:</label>
         <div class="input-group mb-3">
-        <select class="form-control" id="exampleFormControlSelect1">
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
+        <select class="form-control" name="degree" id="exampleFormControlSelect1">
+					<option id="degree">-ชื่อปริญญา-</option>
+          <option id="degree" value="วิทยาการสารสนเทศบัณฑิต">วิทยาการสารสนเทศบัณฑิต</option>
         </select>
         </div>
       </div>
@@ -166,27 +163,35 @@
       <div class="input-group mb-3">
         <input type="date" class="form-control" placeholder="วันเกิด" name="birthday" id="birthday">
       </div>
-      <div class="form-group">
-        <label for="exampleFormControlSelect1">สัญชาติ/เชื้อชาติ:</label>
-        <div class="input-group mb-3">
-        <select class="form-control" id="exampleFormControlSelect1">
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
-        </select>
-        </div>
-      </div>
+			<div class="row">
+				<div class="col">
+					<label class="form-check-label">สัญชาติ:&nbsp;</label>
+				</div>
+				<div class="col">
+					<label class="form-check-label">เชื้อชาติ:&nbsp;</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<div class="input-group mb-3">
+						<input type="text" class="form-control" placeholder="สัญชาติ" name="religion" id="religion">
+					</div>
+				</div>
+				<div class="col">
+					<div class="input-group mb-3">
+						<input type="text" class="form-control" placeholder="เชื้อชาติ" name="nation" id="nation">
+					</div>
+				</div>
+			</div>
       <div class="form-group">
         <label for="exampleFormControlSelect1">การเกณฑ์ทหาร:</label>
         <div class="input-group mb-3">
-        <select class="form-control" id="exampleFormControlSelect1">
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
+        <select class="form-control" name="military" id="exampleFormControlSelect1">
+					<option id="military">-การเกณฑ์ทหาร-</option>
+					<option id="military" value="ยังไม่ผ่านการเกณฑทหาร์">ยังไม่ผ่านการเกณฑทหาร์</option>
+					<option id="military" value="ได้รับการยกเว้น">ได้รับการยกเว้น</option>
+					<option id="military" value="ผ่อนผัน">ผ่อนผัน</option>
+					<option id="military" value="ผ่านการเกณฑทหาร์">ผ่านการเกณฑทหาร์</option>
         </select>
         </div>
       </div>
@@ -202,27 +207,6 @@
 			<div class="input-group mb-3">
 				<input type="text" class="form-control" placeholder="โทรศัพท์" name="tel" id="tel">
 			</div>
-			<div class="input-group mb-3">
-				<label class="form-check-label" for="defaultCheck1">เลือกสถานะ:&nbsp;</label>
-			</div>
-			<div align="center">
-			<div class="form-check form-check-inline">
-				<input class="form-check-input" type="radio" name="role" id="role2" value="admin">
-				<label class="form-check-label" for="role">แอดมิน</label>
-			</div>
-			<div class="form-check form-check-inline">
-				<input class="form-check-input" type="radio" name="role" id="role2" value="student">
-				<label class="form-check-label" for="role">นักศึกษา</label>
-			</div>
-			<div class="form-check form-check-inline">
-				<input class="form-check-input" type="radio" name="role" id="role2" value="advisor">
-				<label class="form-check-label" for="role">คณะอาจาย์</label>
-			</div>
-			<div class="form-check form-check-inline">
-				<input class="form-check-input" type="radio" name="role" id="role2" value="personal">
-				<label class="form-check-label" for="role">บุคคลทั่วไป</label>
-			</div>
-		</div>
 		</div>
 		<div class="modal-footer">
 			<button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
@@ -240,8 +224,23 @@ $('#editUserModel').on('show.bs.modal', function (event) {
   var username = button.data('username')
 	var email = button.data('email')
 	var id = button.data('id')
+	var firstname = button.data('fn')
+	var lastname = button.data('ln')
+	var gpax = button.data('gpax')
+	var birthday = button.data('bd')
+	var religion = button.data('religion')
+	var nation = button.data('nation')
+	var tel = button.data('tel')
 	document.getElementById("email2").value = email;
 	document.getElementById("userId").value = id;
+	document.getElementById("username").value = username;
+	document.getElementById("firstname").value = firstname;
+	document.getElementById("lastname").value = lastname;
+	document.getElementById("gpax").value = gpax;
+	document.getElementById("birthday").value = birthday;
+	document.getElementById("religion").value = religion;
+	document.getElementById("nation").value = nation;
+	document.getElementById("tel").value = tel;
 })
 </script>
 </body>
