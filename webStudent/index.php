@@ -21,7 +21,7 @@
 <html>
 <head>
 <title>Student Project</title>
-	
+
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="../css/bootstrapA.css">
 	<link rel="stylesheet" type="text/css" href="../css/Colum.css"/>
@@ -30,7 +30,7 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 	<link rel="stylesheet" type="text/css" href="../css/datatables.css"/>
 	<link rel="stylesheet" href="../nice/css/mdb.min.css">
-	
+
 	<style>
 
 
@@ -80,11 +80,11 @@
         </li>
       <!-- Dropdown -->
       </li>
-           
+
     </ul>
     <!-- Links -->
 
-            <span class="navbar-text" style="font-size: 14px;color:white"><img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg" class="rounded-circle z-depth-0" alt="avatar image" height="24"> 
+            <span class="navbar-text" style="font-size: 14px;color:white"><img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg" class="rounded-circle z-depth-0" alt="avatar image" height="24">
 		 		สวัสดี,คุณ <?php echo $_SESSION['userlogin']["Username"] ?>&nbsp;
 	 		</span>
 			<span class="navbar-text" style="font-size: 14px">
@@ -115,8 +115,8 @@
 										<th style="visibility: hidden;"></th>
 										<th scope="col" align="left">โครงงาน</th>
 										<th style="visibility: hidden;"></th>
-										
-										
+
+
 										<!-- <th scope="col">Update</th> -->
 									</tr>
 								</thead>
@@ -125,10 +125,10 @@
 								</tbody>
 							</table>
 						</div>
-                         
-						
-				
-              
+
+
+
+
 <script type="text/javascript" src="../js/datatables.min.js"></script>
 <script>
 $(document).ready(function() {
