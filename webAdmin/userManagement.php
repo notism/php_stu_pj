@@ -4,6 +4,9 @@
 	if(!isset($_SESSION['userlogin'])){
 		header("Location: ../login.php");
 	}
+	if($_SESSION['userlogin']["Role"]!='admin'){
+		header("Location: ../login.php");
+	}
 ?>
 <!DOCTYPE html>
 <html>
@@ -107,6 +110,15 @@
   				<input type="email" class="form-control" placeholder="อีเมล" name="email" id="email" required>
 				</div>
 				<div class="input-group mb-3">
+					<input type="text" class="form-control" placeholder="คำนำหน้าชื่อ" name="prefix" id="prefix" value="">
+				</div>
+				<div class="input-group mb-3">
+					<input type="text" class="form-control" placeholder="ชื่อ" name="firstname" id="firstname" value="" required>
+				</div>
+				<div class="input-group mb-3">
+					<input type="text" class="form-control" placeholder="นามสกุล" name="lastname" id="lastname" value="" required>
+				</div>
+				<div class="input-group mb-3">
   				<input type="password" class="form-control" placeholder="รหัสผ่าน" name="password" id="password" required>
 				</div>
 				<div class="input-group mb-3">
@@ -153,7 +165,7 @@
 		</div>
 		<div class="modal-body">
 			<div class="input-group mb-1">
-				<label class="form-check-label">รหัสผู้ใช้:&nbsp;</label>
+				<label class="form-check-label">หมายเลขผู้ใช้งาน:&nbsp;</label>
 			</div>
 			<div class="input-group mb-3">
 					<input type="text" class="form-control" placeholder="userId" name="userId" id="userId" readonly>
@@ -220,7 +232,7 @@
 		</div>
 		<div class="modal-body">
 			<div class="input-group mb-1">
-				<label class="form-check-label">รหัสผู้ใช้:&nbsp;</label>
+				<label class="form-check-label">หมายเลขผู้ใช้งาน:&nbsp;</label>
 			</div>
 			<div class="input-group mb-3">
 					<input type="text" class="form-control" placeholder="userId" name="userId" id="userId2" readonly>

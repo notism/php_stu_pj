@@ -4,6 +4,9 @@
 	if(!isset($_SESSION['userlogin'])){
 		header("Location: ../login.php");
 	}
+	if($_SESSION['userlogin']["Role"]!='admin'){
+		header("Location: ../login.php");
+	}
 ?>
 <!DOCTYPE html>
 <html>

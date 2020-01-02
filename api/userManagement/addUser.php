@@ -17,6 +17,9 @@
 		$username = mysqli_real_escape_string($db, $_POST['username']);
 		$email = mysqli_real_escape_string($db, $_POST['email']);
 		$password = mysqli_real_escape_string($db, $_POST['password']);
+		$prefix = mysqli_real_escape_string($db, $_POST['prefix']);
+		$firstname = mysqli_real_escape_string($db, $_POST['firstname']);
+		$lastname = mysqli_real_escape_string($db, $_POST['lastname']);
     $role = mysqli_real_escape_string($db, $_POST['role']);
 
 		// form validation: ensure that the form is correctly filled
@@ -35,8 +38,8 @@
        ('$username')";
 			mysqli_query($db, $queryInfo);
 			// users
-      $query = "INSERT INTO `users`(Username,Email,Password,Role,CreatedBy)  VALUES
-       ('$username','$email','$passwordX','$role','$createdBy')";
+      $query = "INSERT INTO `users`(Username,Email,Password,Role,CreatedBy,Prefix,Firstname,Lastname)  VALUES
+       ('$username','$email','$passwordX','$role','$createdBy','$prefix','$firstname','$lastname')";
 			mysqli_query($db, $query);
 			$_SESSION['success'] = "success";
 			header('location: ../../webAdmin/userManagement.php');
