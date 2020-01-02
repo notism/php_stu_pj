@@ -33,6 +33,9 @@
 	        <a class="nav-link" href="userManagement.php">หน้าจัดการผู้ใช้ระบบ</a>
 	      </li>
 				<li class="nav-item">
+				 <a class="nav-link" href="projectManagement.php">หน้าจัดการโครงงาน</a>
+			 </li>
+				<li class="nav-item">
 				 	<a class="nav-link" href="feedbackManagement.php">หน้าจัดการข้อเสนอแนะและปัญหา</a>
 			 </li>
 	    </ul>

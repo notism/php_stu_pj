@@ -32,16 +32,18 @@
 	        <a class="nav-link" href="userManagement.php">หน้าจัดการผู้ใช้ระบบ</a>
 	      </li>
 				<li class="nav-item">
+				 <a class="nav-link" href="projectManagement.php">หน้าจัดการโครงงาน</a>
+			 </li>
+				<li class="nav-item">
 				 	<a class="nav-link" href="feedbackManagement.php">หน้าจัดการข้อเสนอแนะและปัญหา</a>
 			 </li>
 	    </ul>
 			<span class="navbar-text" style="font-size: 14px">
 		 		สวัสดี,คุณ <?php echo $_SESSION['userlogin']["Username"] ?>&nbsp;
 	 		</span>
-			<li class="nav-item">
+			<span class="navbar-text" style="font-size: 14px">
 				<a href="../logout.php" ><i class="fas fa-sign-out-alt" style="color:white"></i></a>
-			</li>
-	  </div>
+			</span>
 	</nav>
 	<br/>
 <main>
@@ -56,38 +58,68 @@
       				<div class="card-body">
         			<h6 class="card-title">จำนวนผู้ใช้ระบบทั้งหมด</h6>
 							<div class="dropdown-divider"></div>
-        			<h1 class="card-text">100</h1>
+        			<h1 class="card-text"><?php include('../api/dashboard/count_users.php'); ?></h1>
       				</div>
     				</div>
   				</div>
 					<div class="col-sm">
-    				<div class="card text-center text-white bg-success mb-3">
+    				<div class="card text-center text-white bg-primary mb-3">
       				<div class="card-body">
         			<h6 class="card-title">จำนวนโครงงานทั้งหมด</h6>
 							<div class="dropdown-divider"></div>
-        			<h1 class="card-text">50</h1>
+        			<h1 class="card-text"><?php include('../api/dashboard/count_project.php'); ?></h1>
       				</div>
     				</div>
   				</div>
 					<div class="col-sm">
-    				<div class="card text-center text-white bg-danger mb-3">
+    				<div class="card text-center text-white bg-primary mb-3">
       				<div class="card-body">
-        			<h6 class="card-title">จำนวนคำร้องขอแสดงโครงงาน</h6>
+        			<h6 class="card-title">โครงงานใหม่ในวันนี้</h6>
 							<div class="dropdown-divider"></div>
-        			<h1 class="card-text">30</h1>
+        			<h1 class="card-text"><?php include('../api/dashboard/count_pending_pj.php'); ?></h1>
       				</div>
     				</div>
   				</div>
   				<div class="col-sm">
-    				<div class="card text-center text-white bg-info mb-3">
+    				<div class="card text-center text-white bg-primary mb-3">
       				<div class="card-body">
         			<h6 class="card-title">จำนวนผู้เข้าดูโครงงาน</h6>
 							<div class="dropdown-divider"></div>
-        			<h1 class="card-text">20</h1>
+        			<h1 class="card-text"><?php include('../api/dashboard/sum_view.php'); ?></h1>
       				</div>
     			</div>
   			</div>
 			</div>
+			<div class="row">
+				<div class="col-sm">
+					<div class="card text-center text-white  bg-info   mb-3">
+						<div class="card-body">
+						<h6 class="card-title">โครงงานล่าสุด</h6>
+						<div class="dropdown-divider"></div>
+						<h5 class="card-text"><?php include('../api/dashboard/last_pj.php'); ?></h5>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm">
+					<div class="card text-center text-white bg-success mb-3">
+						<div class="card-body">
+						<h6 class="card-title"><i class="fas fa-star"></i> โครงงานยอดนิยมประจำเดือน <i class="fas fa-star"></i></h6>
+						<div class="dropdown-divider"></div>
+						<h5 class="card-text"><?php include('../api/dashboard/most_pj_thismonth.php'); ?></h5>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm">
+					<div class="card text-center text-white bg-danger mb-3">
+						<div class="card-body">
+						<h6 class="card-title"><i class="fas fa-medal"></i> โครงงานยอดนิยมประจำปี <i class="fas fa-medal"></i></h6>
+						<div class="dropdown-divider"></div>
+						<h5 class="card-text"><?php include('../api/dashboard/most_pj_thisyear.php'); ?></h5>
+						</div>
+					</div>
+				</div>
+
+		</div>
 			<div class="dropdown-divider"></div>
 			<div class="row">
     		<div class="col">
@@ -120,6 +152,17 @@
 					</div>
 				</div>
 			</div>
+			<div class="row">
+				<div class="col">
+					<div class="card text-center mb-3">
+						<div class="card-body">
+						<h6 class="card-title">ยอดการอัพโหลดโครงงานประจำปี <script>document.write(new Date().getFullYear())</script></h6>
+						<div class="dropdown-divider"></div>
+							<div id="uploadChart" style="height: 350px; width: 100%;"></div>
+						</div>
+					</div>
+				</div>
+			</div>
 
 
 
@@ -129,18 +172,12 @@
   		</div>
 		</div>
 	</div>
-</main>
+</main><br/>
 </body>
 
 <script>
 window.onload = function () {
-<?php
-		$dataUsers = array(
-			array("label"=> "ผู้ดูแลระบบ", "y"=> 10),
-			array("label"=> "นักศึกษา", "y"=> 50),
-			array("label"=> "อาจารย์", "y"=> 10),
-	);
-?>
+<?php include('../api/dashboard/count_user_chart.php'); ?>
 // Pie chart
 var UsersChart = new CanvasJS.Chart("UsersChart", {
 	animationEnabled: true,
@@ -164,13 +201,7 @@ var UsersChart = new CanvasJS.Chart("UsersChart", {
 });
 UsersChart.render();
 // Bar chart
-<?php
-		$dataProject = array(
-			array("label"=> "รอการดำเนินการ", "y"=> 12),
-			array("label"=> "ยังไม่ได้อนุมัติ", "y"=> 25),
-			array("label"=> "อนุมัติแล้ว", "y"=> 10),
-	);
-?>
+<?php include('../api/dashboard/count_project_chart.php'); ?>
 var ProjectChart = new CanvasJS.Chart("ProjectChart", {
 	animationEnabled: true,
 	legend:{
@@ -200,16 +231,7 @@ var ProjectChart = new CanvasJS.Chart("ProjectChart", {
 });
 ProjectChart.render();
 
-<?php
-
-$dataPoints = array(
-	array("label"=> "การศึกษา", "y"=> 12),
-	array("label"=> "โครงงานประยกต์", "y"=> 25),
-	array("label"=> "ธุรกิจ", "y"=> 10),
-	array("label"=> "อื่นๆ", "y"=> 25)
-);
-
-?>
+<?php include('../api/dashboard/count_type_pj_chart.php'); ?>
 var AmountWatch = new CanvasJS.Chart("AmountWatch", {
 	animationEnabled: true,
 	theme: "light1", // "light1", "light2", "dark1", "dark2"
@@ -225,6 +247,29 @@ var AmountWatch = new CanvasJS.Chart("AmountWatch", {
 	}]
 });
 AmountWatch.render();
+
+<?php include('../api/dashboard/sum_upload_pj_thisyear.php'); ?>
+var uploadChart = new CanvasJS.Chart("uploadChart", {
+	legend:{
+		fontFamily: "Prompt",
+	},
+	axisY:{
+      labelFontFamily: "Prompt",
+			labelFontSize: 14,
+			title: "จำนวนโครงงาน"
+    },
+	axisX:{
+			labelFontFamily: "Prompt",
+			labelFontSize: 14,
+		},
+	data: [{
+		indexLabelFontFamily: "Prompt",
+		type: "line",
+		dataPoints: <?php echo json_encode($dataUpload, JSON_NUMERIC_CHECK); ?>
+	}]
+});
+uploadChart.render();
+
 
 }
 </script>
