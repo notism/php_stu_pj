@@ -4,6 +4,9 @@
 	if(!isset($_SESSION['userlogin'])){
 		header("Location: ../login.php");
 	}
+	if($_SESSION['userlogin']["Role"]!='advisor'){
+		header("Location: ../login.php");
+	}
 ?>
 <!DOCTYPE html>
 <html>
@@ -18,22 +21,25 @@
 <body>
 
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-	  <a class="navbar-brand" href="index.php">WEB-ADMIN</a>
+	  <a class="navbar-brand" href="index.php">WEB-ADVISOR</a>
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 	    <span class="navbar-toggler-icon"></span>
 	  </button>
 
 	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 	    <ul class="navbar-nav mr-auto">
-	      <li class="nav-item">
+	      <li class="nav-item active">
 	        <a class="nav-link" href="index.php">แดชบอร์ด<span class="sr-only">(current)</span></a>
 	      </li>
-	      <li class="nav-item active">
-	        <a class="nav-link" href="userManagement.php">หน้าจัดการผู้ใช้ระบบ</a>
+	      <li class="nav-item">
+	        <a class="nav-link" href="all_project.php">โครงงานทั้งหมด</a>
 	      </li>
 				<li class="nav-item">
-				 	<a class="nav-link" href="feedbackManagement.php">หน้าจัดการข้อเสนอแนะและปัญหา</a>
+				 <a class="nav-link" href="my_project.php">หน้าจัดการคำขอแสดงโครงงาน</a>
 			 </li>
+			 <li class="nav-item">
+				<a class="nav-link" href="profileManagement.php">หน้าจัดการข้อมูลส่วนตัว</a>
+			</li>
 	    </ul>
 			<span class="navbar-text" style="font-size: 14px">
 		 		สวัสดี,คุณ <?php echo $_SESSION['userlogin']["Username"] ?>&nbsp;
@@ -52,22 +58,7 @@
 					<div class="card-body">
 
 
-						<div class="table-responsive">
-							<table class="table table-hover" id="example">
-								<thead>
-									<tr>
 
-										<th>A</th>
-										<th scope="col" align="left">โครงงาน</th>
-										<th>B</th>
-										<!-- <th scope="col">Update</th> -->
-									</tr>
-								</thead>
-								<tbody>
-								<?php include('../api/projectManagement/ProjectTable.php'); ?>
-								</tbody>
-							</table>
-						</div>
 
 					</div>
 				</div>

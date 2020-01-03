@@ -39,9 +39,9 @@ if ($result4->num_rows > 0) {
 }
 
 $dataPoints = array(
-	array("label"=> "การศึกษา", "y"=> $row_kl),
-	array("label"=> "สังคม", "y"=> $row_social),
 	array("label"=> "ธุรกิจ", "y"=> $row_business),
+	array("label"=> "สังคม", "y"=> $row_social),
+	array("label"=> "การศึกษา", "y"=> $row_kl),
 	array("label"=> "อื่นๆ", "y"=> $row_other)
 );
 $db->close();

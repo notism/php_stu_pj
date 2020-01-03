@@ -74,8 +74,8 @@
 										<th scope="col" align="left">อีเมล</th>
 										<th scope="col" align="left">วันที่ลงทะเบียน</th>
 										<th scope="col" align="left">สถานะ</th>
-										<th scope="col">แก้ไข</th>
-										<th scope="col">ลบ</th>
+										<th scope="col" width="5%">แก้ไข</th>
+										<th scope="col" width="5%">ลบ</th>
 									</tr>
 								</thead>
 								<tbody>

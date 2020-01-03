@@ -7,11 +7,20 @@ $result = $db->query($sql);
 
 if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
+      if($row["Type"]=='สังคม'){
+        $classType = 'danger';
+      }else if($row["Type"]=='การศึกษา'){
+        $classType = 'success';
+      }else if($row["Type"]=='ธุรกิจ'){
+        $classType = 'primary';
+      }else{
+        $classType = 'info';
+      }
       if($row["Status"]==='รออนุมัติ'){
         echo "<tr data-toggle='tooltip' title=".$row["Description"].">
         <td align='left'>".$row["Id"]."</td>
         <td align='left'>".$row["ProjectName"]."</td>
-        <td align='left'>".$row["Type"]."</td>
+        <td align='left'><span class='badge badge-pill  badge-".$classType."'>".$row["Type"]."</span></td>
         <td align='left'>".$row["Prefix"]." ".$row["Firstname"]." ".$row["Lastname"]."</td>
         <td align='left'>".$row["File"]."</td>
         <td align='left'>".date("d-m-Y", strtotime($row["CreatedDate"]))."</td>
@@ -24,7 +33,7 @@ if ($result->num_rows > 0) {
         echo "<tr data-toggle='tooltip' title=".$row["Description"].">
         <td align='left'>".$row["Id"]."</td>
         <td align='left'>".$row["ProjectName"]."</td>
-        <td align='left'>".$row["Type"]."</td>
+        <td align='left'><span class='badge badge-pill badge-".$classType."'>".$row["Type"]."</span></td>
         <td align='left'>".$row["Prefix"]." ".$row["Firstname"]." ".$row["Lastname"]."</td>
         <td align='left'>".$row["File"]."</td>
         <td align='left'>".date("d-m-Y", strtotime($row["CreatedDate"]))."</td>
@@ -37,7 +46,7 @@ if ($result->num_rows > 0) {
         echo "<tr data-toggle='tooltip' title=".$row["Description"].">
         <td align='left'>".$row["Id"]."</td>
         <td align='left'>".$row["ProjectName"]."</td>
-        <td align='left'>".$row["Type"]."</td>
+        <td align='left'><span class='badge  badge-pill badge-".$classType."'>".$row["Type"]."</span></td>
         <td align='left'>".$row["Prefix"]." ".$row["Firstname"]." ".$row["Lastname"]."</td>
         <td align='left'>".$row["File"]."</td>
         <td align='left'>".date("d-m-Y", strtotime($row["CreatedDate"]))."</td>
