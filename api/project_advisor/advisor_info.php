@@ -7,6 +7,11 @@ $result = $db->query($sql);
 
 if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
+        if($row["ImgUrl"]!=null){
+          $imgUrl_fix = $row["ImgUrl"];
+        }else{
+          $imgUrl_fix = 'fix_user_img.png';
+        }
         echo "
         <div class='text-right'>
         <button type='button' class='btn btn-primary'
@@ -19,7 +24,7 @@ if ($result->num_rows > 0) {
 
         <center>
         <div class='card' style='width: 20%;'>
-          <img class='card-img-top' src='../img_user/".$row["ImgUrl"]."' alt='Card image cap'>
+          <img class='card-img-top' src='../img_user/".$imgUrl_fix."' alt='Card image cap'>
           <h5 class='card-header'>คุณ ".$row["Username"]."</h5>
         </div>
 

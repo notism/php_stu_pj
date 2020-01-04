@@ -142,6 +142,12 @@
   			<div class="input-group mb-3">
   				<input type="password" class="form-control" placeholder="รหัสผ่าน" name="password" id="password2" required>
   			</div>
+        <div class="input-group mb-1">
+  				<label class="form-check-label">รูปโปรไฟล์:&nbsp;</label>
+  			</div>
+  			<div class="input-group mb-3">
+  				<input type="file" class="form-control-file" name="fileToUpload" id="fileToUpload">
+  			</div>
   		</div>
   		<div class="modal-footer">
   			<button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
@@ -157,7 +163,7 @@
   $('#editUserModel').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget) // Button that triggered the modal
     var username = button.data('username')
-  	var email = button.data('email')  
+  	var email = button.data('email')
     var fn = button.data('fn')
     var ln = button.data('ln')
     var prefix = button.data('prefix')
