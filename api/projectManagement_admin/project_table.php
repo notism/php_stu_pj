@@ -16,13 +16,18 @@ if ($result->num_rows > 0) {
       }else{
         $classType = 'info';
       }
+      if($row["File"]!=null){
+        $rowfile = "<a href='../api/projectManagement_admin/pdf_download.php?file=".$row["File"]."'>Download</a>";
+      }else{
+        $rowfile = 'ไม่พบไฟล์';
+      }
       if($row["Status"]==='รออนุมัติ'){
         echo "<tr data-toggle='tooltip' title=".$row["Description"].">
         <td align='left'>".$row["Id"]."</td>
         <td align='left'>".$row["ProjectName"]."</td>
         <td align='left'><span class='badge badge-pill  badge-".$classType."'>".$row["Type"]."</span></td>
         <td align='left'>".$row["Prefix"]." ".$row["Firstname"]." ".$row["Lastname"]."</td>
-        <td align='left'>".$row["File"]."</td>
+        <td align='left'>".$rowfile."</td>
         <td align='left'>".date("d-m-Y", strtotime($row["CreatedDate"]))."</td>
         <td align='left'>".$row["View"]."</td>
         <td>
@@ -35,7 +40,7 @@ if ($result->num_rows > 0) {
         <td align='left'>".$row["ProjectName"]."</td>
         <td align='left'><span class='badge badge-pill badge-".$classType."'>".$row["Type"]."</span></td>
         <td align='left'>".$row["Prefix"]." ".$row["Firstname"]." ".$row["Lastname"]."</td>
-        <td align='left'>".$row["File"]."</td>
+        <td align='left'>".$rowfile."</td>
         <td align='left'>".date("d-m-Y", strtotime($row["CreatedDate"]))."</td>
         <td align='left'>".$row["View"]."</td>
         <td>
@@ -48,7 +53,7 @@ if ($result->num_rows > 0) {
         <td align='left'>".$row["ProjectName"]."</td>
         <td align='left'><span class='badge  badge-pill badge-".$classType."'>".$row["Type"]."</span></td>
         <td align='left'>".$row["Prefix"]." ".$row["Firstname"]." ".$row["Lastname"]."</td>
-        <td align='left'>".$row["File"]."</td>
+        <td align='left'>".$rowfile."</td>
         <td align='left'>".date("d-m-Y", strtotime($row["CreatedDate"]))."</td>
         <td align='left'>".$row["View"]."</td>
         <td>

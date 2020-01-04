@@ -21,7 +21,7 @@
 </head>
 <body>
 
-	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-primary" style="width: 100%;">
 	  <a class="navbar-brand" href="index.php">WEB-ADVISOR</a>
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 	    <span class="navbar-toggler-icon"></span>
@@ -30,7 +30,7 @@
 	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 	    <ul class="navbar-nav mr-auto">
 	      <li class="nav-item ">
-	        <a class="nav-link" href="index.php">แดชบอร์ด<span class="sr-only">(current)</span></a>
+	        <a class="nav-link" href="index.php">หน้าแรก<span class="sr-only">(current)</span></a>
 	      </li>
 	      <li class="nav-item active">
 	        <a class="nav-link" href="all_project.php">โครงงานทั้งหมด</a>
@@ -53,39 +53,6 @@
 	<br/>
   <main>
   	<div class="container">
-  		<div class="row">
-  		  <div class="col-sm-12">
-  				<div class="card"  style="width: 100%;">
-  					<div class="card-body">
-  						<h3 class="card-title">โครงงานในที่ปรึกษา</h3>
-  						<div class="dropdown-divider"></div>
-  						<!-- Alert -->
-  						<div class="hide" id="add_alert" role="alert">
-  							<div id="messages_content"></div>
-  						</div>
-  						<!-- End Alert -->
-  						<div class="table-responsive">
-  							<table class="table table-hover" id="example">
-  								<thead>
-  									<tr>
-  										<th scope="col" align="left">Id</th>
-  										<th scope="col" align="left" width="25%">ชื่อโครงงาน</th>
-  										<th scope="col" align="left" width="50%">คำอธิบายโครงงาน</th>
-  										<th scope="col" align="left" width="15%">วันที่อัพโหลด</th>
-                      <th scope="col" align="left" width="10%">ไฟล์</th>
-  									</tr>
-  								</thead>
-  								<tbody>
-  								<?php include('../api/project_advisor/project_table.php'); ?>
-  								</tbody>
-  							</table>
-  						</div>
-
-  					</div>
-  				</div>
-  				<br/>
-  			</div>
-  		</div>
       <div class="row">
         <div class="col-sm-12">
           <div class="card"  style="width: 100%;">
@@ -124,35 +91,6 @@
   <script type="text/javascript" src="../js/datatables.min.js"></script>
   <script>
   $(document).ready(function() {
-      $('#example').DataTable({
-          "pageLength": 3,
-          "order": [[ 0, "desc" ]],
-  				"columnDefs": [
-              {
-                  "targets": [ 0 ],
-                  "visible": false,
-                  "searchable": false
-              },
-          ],
-  				"pagingType": "full_numbers",
-  				"scrollY":        "80vh",
-          "scrollCollapse": true,
-  				"language": {
-  					 "lengthMenu": "จำนวนแถว _MENU_",
-  					 "zeroRecords": "ไม่พบข้อมูล",
-  					 "info": "แสดงหน้า _PAGE_ จากทั้งหมด _PAGES_ หน้า",
-  					 "infoEmpty": "ไม่มีข้อมูล",
-  					 "infoFiltered": "(ค้นหาจากทั้งหมด _MAX_ ข้อมูล)",
-  					 "search": "ค้นหา:",
-  					 "paginate": {
-          			"first": "หน้าแรก",
-          			"last":  "หน้าสุดท้าย",
-  			        "next": "ถัดไป",
-          			"previous": "ย้อนกลับ"
-      },
-  			 },
-  				"dom": 'frtp'
-      } );
       $('#example2').DataTable({
 
           "order": [[ 0, "desc" ]],

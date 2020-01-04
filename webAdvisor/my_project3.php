@@ -21,7 +21,7 @@
 </head>
 <body>
 
-	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-primary" style="width: 100%;">
 	  <a class="navbar-brand" href="index.php">WEB-ADVISOR</a>
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 	    <span class="navbar-toggler-icon"></span>
@@ -30,7 +30,7 @@
 	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 	    <ul class="navbar-nav mr-auto">
 	      <li class="nav-item ">
-	        <a class="nav-link" href="index.php">แดชบอร์ด<span class="sr-only">(current)</span></a>
+	        <a class="nav-link" href="index.php">หน้าแรก<span class="sr-only">(current)</span></a>
 	      </li>
 	      <li class="nav-item ">
 	        <a class="nav-link" href="all_project.php">โครงงานทั้งหมด</a>

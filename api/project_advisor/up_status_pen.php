@@ -20,8 +20,12 @@
 		// register user if there are no errors in the form
 		if (count($errors) == 0) {
       $query = "UPDATE projectinfo SET Status='$status' WHERE Id='$projectId'";
-
 			mysqli_query($db, $query);
+
+			$UpdateBy = $_SESSION['userlogin']["Id"];
+			$query2 = "INSERT INTO `project_update_history`(ProjectId,UpdateBy,Status_update)  VALUES ('$projectId','$UpdateBy','$status')";
+			mysqli_query($db, $query2);
+
 			$_SESSION['success'] = "success";
 			header('location: ../../webAdvisor/my_project.php');
 		}else{

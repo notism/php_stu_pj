@@ -20,7 +20,7 @@
 
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-primary" style="width: 100%;">
 	  <a class="navbar-brand" href="index.php">WEB-ADMIN</a>
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 	    <span class="navbar-toggler-icon"></span>
@@ -34,6 +34,9 @@
 	      <li class="nav-item">
 	        <a class="nav-link" href="userManagement.php">หน้าจัดการผู้ใช้ระบบ</a>
 	      </li>
+				<li class="nav-item ">
+				 <a class="nav-link" href="pj_history.php">ประวัติการอนุมัติโครงงาน</a>
+			 </li>
 				<li class="nav-item">
 				 <a class="nav-link" href="projectManagement.php">หน้าจัดการโครงงาน</a>
 			 </li>
@@ -84,7 +87,7 @@
     				</div>
   				</div>
   				<div class="col-sm">
-    				<div class="card text-center text-white bg-primary mb-3">
+    				<div class="card text-center text-white bg-primary mb-3 ">
       				<div class="card-body">
         			<h6 class="card-title">จำนวนผู้เข้าดูโครงงาน</h6>
 							<div class="dropdown-divider"></div>
@@ -95,7 +98,7 @@
 			</div>
 			<div class="row">
 				<div class="col-sm">
-					<div class="card text-center text-white  bg-info   mb-3">
+					<div class="card text-center text-white  bg-info   mb-3 shadow-lg p-3 ">
 						<div class="card-body">
 						<h6 class="card-title">โครงงานล่าสุด</h6>
 						<div class="dropdown-divider"></div>
@@ -104,7 +107,7 @@
 					</div>
 				</div>
 				<div class="col-sm">
-					<div class="card text-center text-white bg-success mb-3">
+					<div class="card text-center text-white bg-success mb-3 shadow-lg p-3">
 						<div class="card-body">
 						<h6 class="card-title"><i class="fas fa-star"></i> โครงงานยอดนิยมประจำเดือน <i class="fas fa-star"></i></h6>
 						<div class="dropdown-divider"></div>
@@ -113,7 +116,7 @@
 					</div>
 				</div>
 				<div class="col-sm">
-					<div class="card text-center text-white bg-danger mb-3">
+					<div class="card text-center text-white bg-danger mb-3 shadow-lg p-3">
 						<div class="card-body">
 						<h6 class="card-title"><i class="fas fa-medal"></i> โครงงานยอดนิยมประจำปี <i class="fas fa-medal"></i></h6>
 						<div class="dropdown-divider"></div>

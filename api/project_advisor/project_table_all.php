@@ -2,7 +2,7 @@
 
 include('../config/connect.php');
 $advisor_s = $_SESSION['userlogin']["Id"];
-$sql = "SELECT * FROM projectinfo";
+$sql = "SELECT * FROM projectinfo WHERE Status='อนุมัติแล้ว'";
 $result = $db->query($sql);
 
 if ($result->num_rows > 0) {
