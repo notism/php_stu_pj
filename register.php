@@ -2,7 +2,7 @@
 	// if(isset($_SESSION['userlogin'])){
 	// 	header("Location: index.php");
 	// }
-	 include('api/register/regis.php');
+	 // include('api/register/regis.php');
 ?>
 <!DOCTYPE html>
 <html>
@@ -22,7 +22,7 @@
 				<form enctype="multipart/form-data" action="api/register/regis.php" method="post">
 					<div class="input-group mb-3">
 							<div class="input-group-append">
-							<h4>Register</h4>						
+							<h4>Register</h4>
 								</div>
 							</div>
 					<div class="input-group mb-3">

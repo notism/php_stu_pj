@@ -41,9 +41,7 @@
 				<li class="nav-item">
 				 <a class="nav-link" href="projectManagement.php">หน้าจัดการโครงงาน</a>
 			 </li>
-				<li class="nav-item">
-				 	<a class="nav-link" href="feedbackManagement.php">หน้าจัดการข้อเสนอแนะและปัญหา</a>
-			 </li>
+		
 	    </ul>
 			<span class="navbar-text" style="font-size: 14px">
 		 		สวัสดี,คุณ <?php echo $_SESSION['userlogin']["Username"] ?>&nbsp;
