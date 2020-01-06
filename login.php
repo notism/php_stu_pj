@@ -29,27 +29,32 @@
 						<div class="input-group-append">
 							<span class="input-group-text"><i class="fas fa-user"></i></span>
 						</div>
-						<input type="text" name="username" id="username" class="form-control input_user" required>
+						<input type="text" name="username" id="username" placeholder="ชื่อผู้ใช้" class="form-control input_user" required>
 					</div>
 					<div class="input-group mb-3">
 						<div class="input-group-append">
 							<span class="input-group-text"><i class="fas fa-key"></i></span>
 						</div>
-						<input type="password" name="password" id="password" class="form-control input_pass" required>
+						<input type="password" name="password" id="password" placeholder="รหัสผ่าน" class="form-control input_pass" required>
 					</div>
 
 
 			</div>
-			<div class="d-flex justify-content-center mt-3 login_container">
-				<button type="button" name="button" id="login" class="btn login_btn">Login</button>
+			<div class="d-flex justify-content-center mt-1 login_container">
+				<button type="button" name="button" id="login" class="btn login_btn">เข้าสู่ระบบ</button>
 			</div>
 			</form>
-			<div class="mt-4">
-				<div class="d-flex justify-content-center links">
-					Don't have an account? <a href="register.php" class="ml-2">Sign Up</a>
+				<div class='dropdown-divider mt-3'></div>
+				<div class="d-flex justify-content-center mt-3 login_container">
+					<input class="btn btn-secondary btn-block" type="submit" name="Submit2" value="เข้าสู่ระบบโดย Guest" onclick='window.location.href="webOther/index.php"'>
 				</div>
+			<div class="mt-4">
+
+				<!-- <div class="d-flex justify-content-center links">
+					Don't have an account? <a href="register.php" class="ml-2">Sign Up</a>
+				</div> -->
 				<div class="d-flex justify-content-center">
-					<a href="#">Forgot your password?</a>
+					<a href="forgot_password.php">ลืมรหัสผ่านใช่หรือไม่?</a>
 				</div>
 			</div>
 		</div>

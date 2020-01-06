@@ -18,7 +18,7 @@
 </head>
 <body>
 
-	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-primary" style="width: 100%;">
 	  <a class="navbar-brand" href="index.php">WEB-STUDENT</a>
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 	    <span class="navbar-toggler-icon"></span>
@@ -69,7 +69,67 @@
 							<div id="messages_content"></div>
 						</div>
 						<!-- End Alert -->
-              <?php include('../api/studentInfomation/stdInfo.php'); ?>
+            <?php include('../api/studentInfomation/stdInfo.php'); ?>
+						<div class='dropdown-divider'></div>
+						<div class='text-right '>
+							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addSHisModel"><i class="fas fa-plus"></i> เพิ่มประวัติการศึกษา</button>
+						</div>
+						<div class="table-responsive mt-2">
+							<table class="table table-hover" id="example">
+								<thead>
+									<tr>
+										<th scope="col" align="left" width="15%">ระดับการศึกษา</th>
+										<th scope="col" align="left">ชื่อสถานศึกษา</th>
+										<th scope="col" align="left" width="20%">วุฒิที่ได้รับ</th>
+										<th scope="col" align="left" width="15%">ช่วงเวลาที่ศึกษา</th>
+										<th scope="col" align="left" width="8%">แก้ไข</th>
+										<th scope="col" align="left" width="8%">ลบ</th>
+									</tr>
+								</thead>
+								<tbody>
+								<?php include('../api/studentInfomation/stdInfo_std_his.php'); ?>
+								</tbody>
+							</table>
+						</div>
+						<div class='dropdown-divider'></div>
+						<div class='text-right '>
+							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addTHisModel"><i class="fas fa-plus"></i> เพิ่มประวัติการฝึกอบรม</button>
+						</div>
+						<div class="table-responsive mt-2">
+							<table class="table table-hover" id="example">
+								<thead>
+									<tr>
+										<th scope="col" align="left">หัวข้อ</th>
+										<th scope="col" align="left" width="25%">หน่วยงานที่ให้บริการ</th>
+										<th scope="col" align="left" width="15%">ช่วงเวลาที่เข้าอบรม</th>
+										<th scope="col" align="left" width="8%">แก้ไข</th>
+										<th scope="col" align="left" width="8%">ลบ</th>
+									</tr>
+								</thead>
+								<tbody>
+								<?php include('../api/studentInfomation/stdInfo_tain_his.php'); ?>
+								</tbody>
+							</table>
+						</div>
+						<div class='dropdown-divider'></div>
+						<div class='text-right '>
+							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addSkillsModel"><i class="fas fa-plus"></i> เพิ่มทักษะความสามารถ</button>
+						</div>
+						<div class="table-responsive mt-2">
+							<table class="table table-hover" id="example">
+								<thead>
+									<tr>
+										<th scope="col" align="left" width="15%">ประเภท</th>
+										<th scope="col" align="left" >ทักษะ</th>
+										<th scope="col" align="left" width="8%">แก้ไข</th>
+										<th scope="col" align="left" width="8%">ลบ</th>
+									</tr>
+								</thead>
+								<tbody>
+								<?php include('../api/studentInfomation/std_skill.php'); ?>
+								</tbody>
+							</table>
+						</div>
 					</div>
 				</div>
         <!-- end card -->
@@ -92,17 +152,17 @@
 		</div>
 		<div class="modal-body">
 			<div class="input-group mb-1">
-				<label class="form-check-label">รหัสผู้ใช้:&nbsp;</label>
-			</div>
-			<div class="input-group mb-3">
-					<input type="text" class="form-control" placeholder="userId" name="userId" id="userId" readonly>
-			</div>
-			<div class="input-group mb-1">
 				<label class="form-check-label">ชื่อผู้ใช้:&nbsp;</label>
 			</div>
 			<div class="input-group mb-3">
 					<input type="text" class="form-control" placeholder="username" name="username" id="username" readonly>
 			</div>
+			<div class="input-group mb-1">
+        <label class="form-check-label">คำนำหน้า:&nbsp;</label>
+      </div>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="คำนำหน้า" name="prefix" id="prefix">
+      </div>
       <div class="row">
         <div class="col">
           <label class="form-check-label">ชื่อ:&nbsp;</label>
@@ -123,11 +183,22 @@
     			</div>
         </div>
       </div>
+			<div class="input-group mb-1">
+				<label class="form-check-label">อีเมล:&nbsp;</label>
+			</div>
+			<div class="input-group mb-3">
+				<input type="email" class="form-control" placeholder="อีเมล" name="email" id="email">
+			</div>
+			<div class="input-group mb-1">
+				<label class="form-check-label">โทรศัพท์:&nbsp;</label>
+			</div>
+			<div class="input-group mb-3">
+				<input type="text" class="form-control" placeholder="โทรศัพท์" name="tel" id="tel">
+			</div>
       <div class="form-group">
         <label for="exampleFormControlSelect1">สาขาวิชา:</label>
         <div class="input-group mb-3">
-        <select class="form-control" name="school" id="exampleFormControlSelect1">
-					<option id="school">-สาขาวิชา-</option>
+        <select class="form-control" name="school" id="exampleFormControlSelect1" required>
           <option id="school" value="เทคโนโลยีสารสนเทศ">เทคโนโลยีสารสนเทศ</option>
         </select>
         </div>
@@ -135,8 +206,7 @@
       <div class="form-group">
         <label for="exampleFormControlSelect1">สำนักวิชา:</label>
         <div class="input-group mb-3">
-        <select class="form-control" name="faculty" id="exampleFormControlSelect1">
-					<option id="faculty">-สำนักวิชา-</option>
+        <select class="form-control" name="faculty" id="exampleFormControlSelect1" required>
           <option id="faculty" value="เทคโนโลยีสังคม">เทคโนโลยีสังคม</option>
         </select>
         </div>
@@ -144,8 +214,7 @@
       <div class="form-group">
         <label for="exampleFormControlSelect1">ชื่อปริญญา:</label>
         <div class="input-group mb-3">
-        <select class="form-control" name="degree" id="exampleFormControlSelect1">
-					<option id="degree">-ชื่อปริญญา-</option>
+        <select class="form-control" name="degree"  id="exampleFormControlSelect1" required>
           <option id="degree" value="วิทยาการสารสนเทศบัณฑิต">วิทยาการสารสนเทศบัณฑิต</option>
         </select>
         </div>
@@ -187,7 +256,6 @@
         <label for="exampleFormControlSelect1">การเกณฑ์ทหาร:</label>
         <div class="input-group mb-3">
         <select class="form-control" name="military" id="exampleFormControlSelect1">
-					<option id="military">-การเกณฑ์ทหาร-</option>
 					<option id="military" value="ยังไม่ผ่านการเกณฑทหาร์">ยังไม่ผ่านการเกณฑทหาร์</option>
 					<option id="military" value="ได้รับการยกเว้น">ได้รับการยกเว้น</option>
 					<option id="military" value="ผ่อนผัน">ผ่อนผัน</option>
@@ -196,16 +264,10 @@
         </div>
       </div>
 			<div class="input-group mb-1">
-				<label class="form-check-label">อีเมล:&nbsp;</label>
+				<label class="form-check-label">รูปโปรไฟล์:&nbsp;</label>
 			</div>
 			<div class="input-group mb-3">
-				<input type="email" class="form-control" placeholder="อีเมล" name="email" id="email2">
-			</div>
-			<div class="input-group mb-1">
-				<label class="form-check-label">โทรศัพท์:&nbsp;</label>
-			</div>
-			<div class="input-group mb-3">
-				<input type="text" class="form-control" placeholder="โทรศัพท์" name="tel" id="tel">
+				<input type="file" class="form-control-file" name="fileToUpload" id="fileToUpload">
 			</div>
 		</div>
 		<div class="modal-footer">
@@ -217,13 +279,366 @@
 </form>
 </div>
 
+<!-- Modal Add StudyHistory -->
+<div class="modal fade" id="addSHisModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+<form enctype="multipart/form-data" action="../api/studentInfomation/add_stdy_his.php" method="post">
+<div class="modal-dialog modal-dialog-scrollable" role="document">
+	<div class="modal-content">
+		<div class="modal-header">
+			<h5 class="modal-title">เพิ่มประวัติการศึกษา</h5>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		<div class="modal-body">
+			<div class="input-group mb-3">
+				<input type="text" class="form-control" placeholder="ชื่อสถานการศึกษา (ตย.มหาวิทยาลัยเทคโนโลยีสรุนารี)" name="SchoolName" id="SchoolName" required>
+			</div>
+			<div class="input-group mb-3">
+				<input type="text" class="form-control" placeholder="ระดับการศึกษา (ตย.ปริญญาตรี)" name="Level" id="Level" required>
+			</div>
+			<div class="input-group mb-3">
+				<input type="text" class="form-control" placeholder="วุฒิที่ได้รับ (ตย.ปริญญาตรี)" name="Qualification" id="Qualification" required>
+			</div>
+			<div class="input-group mb-3">
+				<input type="text" class="form-control" placeholder="ช่วงเวลาที่ศึกษา (ตย.2550-2552)" name="Time" id="Time">
+			</div>
+		</div>
+
+		<div class="modal-footer">
+			<button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+			<button type="submit" name="add_stdy_his" id="submit" value="Submit" class="btn btn-primary">บันทึก</button>
+		</div>
+	</div>
+</div>
+</form>
+</div>
+
+<!-- Modal Edit StudyHistory-->
+<div class="modal fade" id="editshisModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+<form enctype="multipart/form-data" action="../api/studentInfomation/edit_1.php" method="post">
+<div class="modal-dialog modal-dialog-scrollable" role="document">
+	<div class="modal-content">
+		<div class="modal-header">
+			<h5 class="modal-title">แก้ไขประวัติการศึกษา</h5>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		<div class="modal-body">
+				<input type="hidden" class="form-control" placeholder="รหัส" name="Id" id="IdEdit1" readonly>
+			<div class="input-group mb-1">
+				<label class="form-check-label">ชื่อสถานการศึกษา:&nbsp;</label>
+			</div>
+			<div class="input-group mb-3">
+				<input type="text" class="form-control" placeholder="ชื่อสถานการศึกษา (ตย.มหาวิทยาลัยเทคโนโลยีสรุนารี)" name="SchoolName" id="sc1" required>
+			</div>
+			<div class="input-group mb-1">
+				<label class="form-check-label">ระดับการศึกษา:&nbsp;</label>
+			</div>
+			<div class="input-group mb-3">
+				<input type="text" class="form-control" placeholder="ระดับการศึกษา (ตย.ปริญญาตรี)" name="Level" id="lv1" required>
+			</div>
+			<div class="input-group mb-1">
+				<label class="form-check-label">วุฒิที่ได้รับ:&nbsp;</label>
+			</div>
+			<div class="input-group mb-3">
+				<input type="text" class="form-control" placeholder="วุฒิที่ได้รับ (ตย.ปริญญาตรี)" name="Qualification" id="qu1" required>
+			</div>
+			<div class="input-group mb-1">
+				<label class="form-check-label">ช่วงเวลาที่ศึกษา:&nbsp;</label>
+			</div>
+			<div class="input-group mb-3">
+				<input type="text" class="form-control" placeholder="ช่วงเวลาที่ศึกษา (ตย.2550-2552)" name="Time" id="time1">
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+			<button type="submit" name="edit_1" id="submit" value="Submit" class="btn btn-primary">ยืนยัน</button>
+		</div>
+	</div>
+</div>
+</form>
+</div>
+
+<!-- Modal Delete StudyHistory -->
+<div class="modal fade" id="deleteshisModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+<form enctype="multipart/form-data" action="../api/studentInfomation/del_shis.php" method="post">
+<div class="modal-dialog modal-dialog-scrollable" role="document">
+	<div class="modal-content">
+		<div class="modal-header">
+			<h5 class="modal-title"><div id="del_msg1"></div></h5>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		<div class="modal-body">
+			<div class="input-group mb-1">
+				<label class="form-check-label">กดยืนยันเพื่อลบข้อมูล&nbsp;</label>
+			</div>
+					<input type="hidden" class="form-control" placeholder="รหัส" name="Id1" id="Id1" readonly>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+			<button type="submit" name="del1" id="submit" value="Submit" class="btn btn-danger">ยืนยัน</button>
+		</div>
+	</div>
+</div>
+</form>
+</div>
+
+<!-- Modal Add tainningHistory -->
+<div class="modal fade" id="addTHisModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+<form enctype="multipart/form-data" action="../api/studentInfomation/add_tny_his.php" method="post">
+<div class="modal-dialog modal-dialog-scrollable" role="document">
+	<div class="modal-content">
+		<div class="modal-header">
+			<h5 class="modal-title">เพิ่มประวัติการเข้าอบรม</h5>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		<div class="modal-body">
+			<div class="input-group mb-3">
+				<input type="text" class="form-control" placeholder="หัวข้อ (ตย.Big data)" name="Header" id="Header" required>
+			</div>
+			<div class="input-group mb-3">
+				<input type="text" class="form-control" placeholder="หน่วยงานที่ให้บริการ (ตย.มหาวิทยาลัยเทคโนโลยีสุรนารี)" name="Organize" id="Organize" required>
+			</div>
+			<div class="input-group mb-3">
+				<input type="text" class="form-control" placeholder="ช่วงเวลาที่เข้าอบรม (ตย.2550)" name="Time" id="Time">
+			</div>
+		</div>
+
+		<div class="modal-footer">
+			<button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+			<button type="submit" name="add_tny_his" id="submit" value="Submit" class="btn btn-primary">บันทึก</button>
+		</div>
+	</div>
+</div>
+</form>
+</div>
+
+<!-- Modal Edit tainningHistory-->
+<div class="modal fade" id="editthisModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+<form enctype="multipart/form-data" action="../api/studentInfomation/edit_2.php" method="post">
+<div class="modal-dialog modal-dialog-scrollable" role="document">
+	<div class="modal-content">
+		<div class="modal-header">
+			<h5 class="modal-title">แก้ไขประวัติการเข้าอบรม</h5>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		<div class="modal-body">
+				<input type="hidden" class="form-control" placeholder="รหัส" name="Id2" id="IdEdit2" readonly>
+			<div class="input-group mb-1">
+				<label class="form-check-label">หัวข้อ:&nbsp;</label>
+			</div>
+			<div class="input-group mb-3">
+				<input type="text" class="form-control" placeholder="หัวข้อ (ตย.Big data)" name="Header2" id="Header2" required>
+			</div>
+			<div class="input-group mb-1">
+				<label class="form-check-label">หน่วยงานที่ให้บริการ:&nbsp;</label>
+			</div>
+			<div class="input-group mb-3">
+				<input type="text" class="form-control" placeholder="หน่วยงานที่ให้บริการ (ตย.มหาวิทยาลัยเทคโนโลยีสุรนารี)" name="Organize2" id="Organize2" required>
+			</div>
+			<div class="input-group mb-1">
+				<label class="form-check-label">ช่วงเวลาที่เข้าอบรม:&nbsp;</label>
+			</div>
+			<div class="input-group mb-3">
+				<input type="text" class="form-control" placeholder="ช่วงเวลาที่เข้าอบรม (ตย.2550)" name="Time2" id="Time2">
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+			<button type="submit" name="edit_2" id="submit" value="Submit" class="btn btn-primary">ยืนยัน</button>
+		</div>
+	</div>
+</div>
+</form>
+</div>
+
+
+<!-- Modal Delete tainningHistory -->
+<div class="modal fade" id="deletethisModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+<form enctype="multipart/form-data" action="../api/studentInfomation/del_this.php" method="post">
+<div class="modal-dialog modal-dialog-scrollable" role="document">
+	<div class="modal-content">
+		<div class="modal-header">
+			<h5 class="modal-title"><div id="del_msg2"></div></h5>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		<div class="modal-body">
+			<div class="input-group mb-1">
+				<label class="form-check-label">กดยืนยันเพื่อลบข้อมูล&nbsp;</label>
+			</div>
+				<input type="hidden" class="form-control" placeholder="รหัส" name="Id2" id="Id2" readonly>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+			<button type="submit" name="del2" id="submit" value="Submit" class="btn btn-danger">ยืนยัน</button>
+		</div>
+	</div>
+</div>
+</form>
+</div>
+
+<!-- Modal Add skillsHistory -->
+<div class="modal fade" id="addSkillsModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+<form enctype="multipart/form-data" action="../api/studentInfomation/add_skills.php" method="post">
+<div class="modal-dialog modal-dialog-scrollable" role="document">
+	<div class="modal-content">
+		<div class="modal-header">
+			<h5 class="modal-title">เพิ่มทักษะความสามารถ</h5>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		<div class="modal-body">
+			<div class="input-group mb-3">
+				<input type="text" class="form-control" placeholder="ประเภท (ตย.ภาษาต่างประเทศ)" name="Type" id="Type" required>
+			</div>
+			<div class="input-group mb-3">
+				<input type="textarea" class="form-control" placeholder="ทักษะ (ตย.ภาษาอังกฤษ,ภาษาจีน และภาษาญี่ปุ่น)" name="Skills" id="Skills" required>
+			</div>
+		</div>
+
+		<div class="modal-footer">
+			<button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+			<button type="submit" name="add_skills" id="submit" value="Submit" class="btn btn-primary">บันทึก</button>
+		</div>
+	</div>
+</div>
+</form>
+</div>
+
+<!-- Modal Edit skillsHistory-->
+<div class="modal fade" id="editskillsModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+<form enctype="multipart/form-data" action="../api/studentInfomation/edit_3.php" method="post">
+<div class="modal-dialog modal-dialog-scrollable" role="document">
+	<div class="modal-content">
+		<div class="modal-header">
+			<h5 class="modal-title">แก้ไขทักษะความสามารถ</h5>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		<div class="modal-body">
+				<input type="hidden" class="form-control" placeholder="รหัส" name="Id" id="IdEdit3" readonly>
+			<div class="input-group mb-1">
+				<label class="form-check-label">ประเภท:&nbsp;</label>
+			</div>
+			<div class="input-group mb-3">
+				<input type="text" class="form-control" placeholder="ประเภท (ตย.ภาษาต่างประเทศ)" name="Type" id="Type2" required>
+			</div>
+			<div class="input-group mb-1">
+				<label class="form-check-label">ทักษะ:&nbsp;</label>
+			</div>
+			<div class="input-group mb-3">
+				<input type="textarea" class="form-control" placeholder="ทักษะ (ตย.ภาษาอังกฤษ,ภาษาจีน และภาษาญี่ปุ่น)" name="Skills" id="Skills2" required>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+			<button type="submit" name="edit_3" id="submit" value="Submit" class="btn btn-primary">ยืนยัน</button>
+		</div>
+	</div>
+</div>
+</form>
+</div>
+
+<!-- Modal Delete skillsHistory -->
+<div class="modal fade" id="deleteskillsModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+<form enctype="multipart/form-data" action="../api/studentInfomation/del_skills.php" method="post">
+<div class="modal-dialog modal-dialog-scrollable" role="document">
+	<div class="modal-content">
+		<div class="modal-header">
+			<h5 class="modal-title"><div id="del_msg3"></div></h5>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		<div class="modal-body">
+			<div class="input-group mb-1">
+				<label class="form-check-label">กดยืนยันเพื่อลบข้อมูล&nbsp;</label>
+			</div>
+			<input type="hidden" class="form-control" placeholder="รหัส" name="Id3" id="Id3" readonly>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+			<button type="submit" name="del3" id="submit" value="Submit" class="btn btn-danger">ยืนยัน</button>
+		</div>
+	</div>
+</div>
+</form>
+</div>
+
+
+
 <script type="text/javascript" src="../js/datatables.min.js"></script>
 <script>
+$('#editshisModel').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget) // Button that triggered the modal
+  var id = button.data('id')
+	var lv = button.data('lv')
+	var time = button.data('time')
+	var sc = button.data('sc')
+	var qu = button.data('qu')
+  document.getElementById("IdEdit1").value = id;
+	document.getElementById("sc1").value = sc;
+	document.getElementById("time1").value = time;
+	document.getElementById("lv1").value = lv;
+	document.getElementById("qu1").value = qu;
+})
+$('#editthisModel').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget) // Button that triggered the modal
+  var id = button.data('id')
+	var hd = button.data('hd')
+	var time = button.data('time')
+	var og = button.data('og')
+  document.getElementById("IdEdit2").value = id;
+	document.getElementById("Header2").value = hd;
+	document.getElementById("Time2").value = time;
+	document.getElementById("Organize2").value = og;
+})
+$('#editskillsModel').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget) // Button that triggered the modal
+  var id = button.data('id')
+	var skill = button.data('sk')
+	var type = button.data('ty')
+  document.getElementById("IdEdit3").value = id;
+	document.getElementById("Type2").value = type;
+	document.getElementById("Skills2").value = skill;
+})
+$('#deleteshisModel').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget) // Button that triggered the modal
+  var id = button.data('del_id')
+	var SchoolName = button.data('sc')
+	document.getElementById("Id1").value = id;
+   $('#del_msg1').html('<label>คุณต้องการลบ ' + SchoolName +' ใช่ไหม?</label>');
+})
+$('#deletethisModel').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget) // Button that triggered the modal
+  var id = button.data('del_id')
+	var Header = button.data('hd')
+	document.getElementById("Id2").value = id;
+   $('#del_msg2').html('<label>คุณต้องการลบ ' + Header +' ใช่ไหม?</label>');
+})
+$('#deleteskillsModel').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget) // Button that triggered the modal
+  var id = button.data('del_id')
+	var Header = button.data('ty')
+	document.getElementById("Id3").value = id;
+   $('#del_msg3').html('<label>คุณต้องการลบทักษะ ' + Header +' ใช่ไหม?</label>');
+})
 $('#editUserModel').on('show.bs.modal', function (event) {
   var button = $(event.relatedTarget) // Button that triggered the modal
   var username = button.data('username')
 	var email = button.data('email')
-	var id = button.data('id')
 	var firstname = button.data('fn')
 	var lastname = button.data('ln')
 	var gpax = button.data('gpax')
@@ -231,8 +646,9 @@ $('#editUserModel').on('show.bs.modal', function (event) {
 	var religion = button.data('religion')
 	var nation = button.data('nation')
 	var tel = button.data('tel')
-	document.getElementById("email2").value = email;
-	document.getElementById("userId").value = id;
+	var prefix = button.data('prefix')
+	document.getElementById("prefix").value = prefix;
+	document.getElementById("email").value = email;
 	document.getElementById("username").value = username;
 	document.getElementById("firstname").value = firstname;
 	document.getElementById("lastname").value = lastname;
