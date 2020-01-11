@@ -40,7 +40,7 @@
 				<li class="nav-item">
 				 <a class="nav-link" href="projectManagement.php">หน้าจัดการโครงงาน</a>
 			 </li>
-		
+
 	    </ul>
 			<span class="navbar-text" style="font-size: 14px">
 		 		สวัสดี,คุณ <?php echo $_SESSION['userlogin']["Username"] ?>&nbsp;
@@ -58,7 +58,7 @@
 				<div class="dropdown-divider"></div><br/>
 				<div class="row">
   				<div class="col-sm">
-    				<div class="card text-center text-white bg-primary  mb-3">
+    				<div class="card text-center text-white bg-primary  mb-3" >
       				<div class="card-body">
         			<h6 class="card-title">จำนวนผู้ใช้ระบบทั้งหมด</h6>
 							<div class="dropdown-divider"></div>
@@ -96,7 +96,7 @@
 			</div>
 			<div class="row">
 				<div class="col-sm">
-					<div class="card text-center text-white  bg-info   mb-3 shadow-lg p-3 ">
+					<div class="card text-center text-white  bg-info   mb-3 shadow-lg p-3 " style="height: 120px;">
 						<div class="card-body">
 						<h6 class="card-title">โครงงานล่าสุด</h6>
 						<div class="dropdown-divider"></div>
@@ -105,7 +105,7 @@
 					</div>
 				</div>
 				<div class="col-sm">
-					<div class="card text-center text-white bg-success mb-3 shadow-lg p-3">
+					<div class="card text-center text-white bg-success mb-3 shadow-lg p-3" style="height: 120px;">
 						<div class="card-body">
 						<h6 class="card-title"><i class="fas fa-star"></i> โครงงานยอดนิยมประจำเดือน <i class="fas fa-star"></i></h6>
 						<div class="dropdown-divider"></div>
@@ -114,7 +114,7 @@
 					</div>
 				</div>
 				<div class="col-sm">
-					<div class="card text-center text-white bg-danger mb-3 shadow-lg p-3">
+					<div class="card text-center text-white bg-danger mb-3 shadow-lg p-3" style="height: 120px;">
 						<div class="card-body">
 						<h6 class="card-title"><i class="fas fa-medal"></i> โครงงานยอดนิยมประจำปี <i class="fas fa-medal"></i></h6>
 						<div class="dropdown-divider"></div>
@@ -122,6 +122,7 @@
 						</div>
 					</div>
 				</div>
+
 
 		</div>
 			<div class="dropdown-divider"></div>

@@ -11,48 +11,71 @@
 	<title>Student Project</title>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="../css/bootstrapA.css">
+	<link rel="stylesheet" type="text/css" href="../css/Colum.css"/>
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 	<link rel="stylesheet" type="text/css" href="../css/datatables.css"/>
+	<link rel="stylesheet" href="../nice/css/mdb.min.css">
 </head>
+<style>
+body{
+	background-image:url("../img/back.gif")
+}
+
+</style>
 <body>
 
-	<nav class="navbar navbar-expand-lg navbar-dark bg-primary" style="width: 100%;">
-	  <a class="navbar-brand" href="index.php">WEB-STUDENT</a>
-	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-	    <span class="navbar-toggler-icon"></span>
-	  </button>
+	<!--Navbar-->
+<nav class="navbar navbar-expand-lg navbar-dark " style="background-color:#56187f;">
 
-	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-	    <ul class="navbar-nav mr-auto">
-	      <li class="nav-item ">
-	        <a class="nav-link" href="index.php"><i class="fas fa-home"></i> หน้าแรก<span class="sr-only">(current)</span></a>
-	      </li>
-	      <li class="nav-item active">
-	        <a class="nav-link" href="stdInfo.php"><i class="far fa-id-card"></i> ข้อมูลส่วนตัว</a>
-	      </li>
-				<li class="nav-item">
-				 	<a class="nav-link" href="#"><i class="fas fa-layer-group"></i> โครงงานของฉัน</a>
-			 </li>
-       <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            อื่นๆ
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#"><i class="fas fa-user"></i> แก้ไขโปรไฟล์</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#"><i class="fas fa-lock"></i> แก้ไขรหัสผ่าน</a>
-          </div>
-        </li>
-	    </ul>
-			<span class="navbar-text" style="font-size: 14px">
-		 		สวัสดี,คุณ <?php echo $_SESSION['userlogin']["Username"] ?>&nbsp;
+<!-- Navbar brand -->
+<a class="navbar-brand" href="#">WEB-STUDENT</a>
+
+<!-- Collapse button -->
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+  aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+</button>
+
+<!-- Collapsible content -->
+<div class="collapse navbar-collapse" id="basicExampleNav">
+
+  <!-- Links -->
+  <ul class="navbar-nav mr-auto">
+	<li class="nav-item ">
+	  <a class="nav-link" href="index.php"><i class="fas fa-home "></i> หน้าแรก
+	  </a>
+	</li>
+	<li class="nav-item active">
+	  <a class="nav-link" href="stdInfo.php"><i class="fas fa-user"></i> ข้อมูลส่วนตัว</a>
+	</li>
+	<li class="nav-item ">
+	  <a class="nav-link" href="project_all.php"><i class="fas fa-folder "></i> โครงงานของฉัน</a>
+	</li>
+	 <li class="nav-item dropdown">
+		<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		  อื่นๆ
+		</a>
+		<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+		  <a class="dropdown-item" href="edit_password.php"><i class="fas fa-lock "></i> แก้ไขรหัสผ่าน</a>
+		</div>
+	  </li>
+	<!-- Dropdown -->
+	</li>
+
+  </ul>
+  <!-- Links -->
+
+            <span class="navbar-text" style="font-size: 14px;color:white"><?php include('../webStudent/usericon.php'); ?>
+			&nbsp;	สวัสดี,คุณ <?php echo $_SESSION['userlogin']["Username"]; ?>&nbsp;
 	 		</span>
-			<span class="navbar-text" style="font-size: 14px">
-				<a href="../logout.php" ><i class="fas fa-sign-out-alt" style="color:white"></i></a>
-			</span>
-	</nav>
+		  <span class="navbar-text" style="font-size: 14px">
+			  <a href="../logout.php" ><i class="fas fa-sign-out-alt fa-lg" style="color:white"></i></a>
+		  </span>
+
+</nav>
+<!--/.Navbar-->
 </div>
 	<br/>
 <main>
@@ -77,7 +100,7 @@
 						<div class="table-responsive mt-2">
 							<table class="table table-hover" id="example">
 								<thead>
-									<tr>
+									<tr style="background-color:#56187f;color:white">
 										<th scope="col" align="left" width="15%">ระดับการศึกษา</th>
 										<th scope="col" align="left">ชื่อสถานศึกษา</th>
 										<th scope="col" align="left" width="20%">วุฒิที่ได้รับ</th>
@@ -98,7 +121,7 @@
 						<div class="table-responsive mt-2">
 							<table class="table table-hover" id="example">
 								<thead>
-									<tr>
+									<tr style="background-color:#56187f;color:white">
 										<th scope="col" align="left">หัวข้อ</th>
 										<th scope="col" align="left" width="25%">หน่วยงานที่ให้บริการ</th>
 										<th scope="col" align="left" width="15%">ช่วงเวลาที่เข้าอบรม</th>
@@ -118,7 +141,7 @@
 						<div class="table-responsive mt-2">
 							<table class="table table-hover" id="example">
 								<thead>
-									<tr>
+									<tr style="background-color:#56187f;color:white">
 										<th scope="col" align="left" width="15%">ประเภท</th>
 										<th scope="col" align="left" >ทักษะ</th>
 										<th scope="col" align="left" width="8%">แก้ไข</th>
@@ -127,6 +150,18 @@
 								</thead>
 								<tbody>
 								<?php include('../api/studentInfomation/std_skill.php'); ?>
+								</tbody>
+							</table>
+						</div>
+						<div class="table-responsive mt-2" >
+							<table class="table table-hover" id="example">
+								<thead >
+									<tr style="background-color:#56187f;color:white">
+										<th scope="col" align="left" width="100%">จัดทำโครงงาน</th>
+									</tr>
+								</thead>
+								<tbody>
+								<?php include('../api/studentInfomation/std_project_me_view.php'); ?>
 								</tbody>
 							</table>
 						</div>
@@ -143,7 +178,7 @@
 <div class="modal fade" id="editUserModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
 <form enctype="multipart/form-data" action="../api/studentInfomation/edit.php" method="post">
 <div class="modal-dialog modal-dialog-scrollable" role="document">
-	<div class="modal-content">
+	<div class="modal-content" Style='background-image:url("../img/back1.jpg")'>
 		<div class="modal-header">
 			<h5 class="modal-title">แก้ไขข้อมูลผู้ใช้</h5>
 			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -155,13 +190,13 @@
 				<label class="form-check-label">ชื่อผู้ใช้:&nbsp;</label>
 			</div>
 			<div class="input-group mb-3">
-					<input type="text" class="form-control" placeholder="username" name="username" id="username" readonly>
+					<input type="text" class="form-control" placeholder="username" name="username" id="usernamex" readonly>
 			</div>
 			<div class="input-group mb-1">
         <label class="form-check-label">คำนำหน้า:&nbsp;</label>
       </div>
       <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="คำนำหน้า" name="prefix" id="prefix">
+        <input type="text" class="form-control" placeholder="คำนำหน้า" name="prefix" id="prefixx">
       </div>
       <div class="row">
         <div class="col">
@@ -174,12 +209,12 @@
       <div class="row">
         <div class="col">
           <div class="input-group mb-3">
-    				<input type="text" class="form-control" placeholder="ชื่อ" name="firstname" id="firstname">
+    				<input type="text" class="form-control" placeholder="ชื่อ" name="firstname" id="firstnamex">
     			</div>
         </div>
         <div class="col">
           <div class="input-group mb-3">
-    				<input type="text" class="form-control" placeholder="นามสกุล" name="lastname" id="lastname">
+    				<input type="text" class="form-control" placeholder="นามสกุล" name="lastname" id="lastnamex">
     			</div>
         </div>
       </div>
@@ -187,13 +222,13 @@
 				<label class="form-check-label">อีเมล:&nbsp;</label>
 			</div>
 			<div class="input-group mb-3">
-				<input type="email" class="form-control" placeholder="อีเมล" name="email" id="email">
+				<input type="email" class="form-control" placeholder="อีเมล" name="email" id="emailx">
 			</div>
 			<div class="input-group mb-1">
 				<label class="form-check-label">โทรศัพท์:&nbsp;</label>
 			</div>
 			<div class="input-group mb-3">
-				<input type="text" class="form-control" placeholder="โทรศัพท์" name="tel" id="tel">
+				<input type="text" class="form-control" placeholder="โทรศัพท์" name="tel" id="telx">
 			</div>
       <div class="form-group">
         <label for="exampleFormControlSelect1">สาขาวิชา:</label>
@@ -223,14 +258,14 @@
         <label class="form-check-label">GPAX:&nbsp;</label>
       </div>
       <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="GPAX" name="gpax" id="gpax">
+        <input type="text" class="form-control" placeholder="GPAX" name="gpax" id="gpaxx">
       </div>
       <div class="dropdown-divider"></div>
       <div class="input-group mb-1">
         <label class="form-check-label">วันเกิด:&nbsp;</label>
       </div>
       <div class="input-group mb-3">
-        <input type="date" class="form-control" placeholder="วันเกิด" name="birthday" id="birthday">
+        <input type="date" class="form-control" placeholder="วันเกิด" name="birthday" id="birthdayx">
       </div>
 			<div class="row">
 				<div class="col">
@@ -243,12 +278,12 @@
 			<div class="row">
 				<div class="col">
 					<div class="input-group mb-3">
-						<input type="text" class="form-control" placeholder="สัญชาติ" name="religion" id="religion">
+						<input type="text" class="form-control" placeholder="สัญชาติ" name="religion" id="religionx">
 					</div>
 				</div>
 				<div class="col">
 					<div class="input-group mb-3">
-						<input type="text" class="form-control" placeholder="เชื้อชาติ" name="nation" id="nation">
+						<input type="text" class="form-control" placeholder="เชื้อชาติ" name="nation" id="nationx">
 					</div>
 				</div>
 			</div>
@@ -283,7 +318,7 @@
 <div class="modal fade" id="addSHisModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
 <form enctype="multipart/form-data" action="../api/studentInfomation/add_stdy_his.php" method="post">
 <div class="modal-dialog modal-dialog-scrollable" role="document">
-	<div class="modal-content">
+	<div class="modal-content" Style='background-image:url("../img/back1.jpg")'>
 		<div class="modal-header">
 			<h5 class="modal-title">เพิ่มประวัติการศึกษา</h5>
 			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -318,7 +353,7 @@
 <div class="modal fade" id="editshisModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
 <form enctype="multipart/form-data" action="../api/studentInfomation/edit_1.php" method="post">
 <div class="modal-dialog modal-dialog-scrollable" role="document">
-	<div class="modal-content">
+	<div class="modal-content" Style='background-image:url("../img/back1.jpg")'>
 		<div class="modal-header">
 			<h5 class="modal-title">แก้ไขประวัติการศึกษา</h5>
 			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -365,7 +400,7 @@
 <div class="modal fade" id="deleteshisModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
 <form enctype="multipart/form-data" action="../api/studentInfomation/del_shis.php" method="post">
 <div class="modal-dialog modal-dialog-scrollable" role="document">
-	<div class="modal-content">
+	<div class="modal-content" Style='background-image:url("../img/back1.jpg")'>
 		<div class="modal-header">
 			<h5 class="modal-title"><div id="del_msg1"></div></h5>
 			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -391,7 +426,7 @@
 <div class="modal fade" id="addTHisModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
 <form enctype="multipart/form-data" action="../api/studentInfomation/add_tny_his.php" method="post">
 <div class="modal-dialog modal-dialog-scrollable" role="document">
-	<div class="modal-content">
+	<div class="modal-content" Style='background-image:url("../img/back1.jpg")'>
 		<div class="modal-header">
 			<h5 class="modal-title">เพิ่มประวัติการเข้าอบรม</h5>
 			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -423,7 +458,7 @@
 <div class="modal fade" id="editthisModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
 <form enctype="multipart/form-data" action="../api/studentInfomation/edit_2.php" method="post">
 <div class="modal-dialog modal-dialog-scrollable" role="document">
-	<div class="modal-content">
+	<div class="modal-content" Style='background-image:url("../img/back1.jpg")'>
 		<div class="modal-header">
 			<h5 class="modal-title">แก้ไขประวัติการเข้าอบรม</h5>
 			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -465,7 +500,7 @@
 <div class="modal fade" id="deletethisModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
 <form enctype="multipart/form-data" action="../api/studentInfomation/del_this.php" method="post">
 <div class="modal-dialog modal-dialog-scrollable" role="document">
-	<div class="modal-content">
+	<div class="modal-content" Style='background-image:url("../img/back1.jpg")'>
 		<div class="modal-header">
 			<h5 class="modal-title"><div id="del_msg2"></div></h5>
 			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -491,7 +526,7 @@
 <div class="modal fade" id="addSkillsModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
 <form enctype="multipart/form-data" action="../api/studentInfomation/add_skills.php" method="post">
 <div class="modal-dialog modal-dialog-scrollable" role="document">
-	<div class="modal-content">
+	<div class="modal-content" Style='background-image:url("../img/back1.jpg")'>
 		<div class="modal-header">
 			<h5 class="modal-title">เพิ่มทักษะความสามารถ</h5>
 			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -520,7 +555,7 @@
 <div class="modal fade" id="editskillsModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
 <form enctype="multipart/form-data" action="../api/studentInfomation/edit_3.php" method="post">
 <div class="modal-dialog modal-dialog-scrollable" role="document">
-	<div class="modal-content">
+	<div class="modal-content" Style='background-image:url("../img/back1.jpg")'>
 		<div class="modal-header">
 			<h5 class="modal-title">แก้ไขทักษะความสามารถ</h5>
 			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -555,7 +590,7 @@
 <div class="modal fade" id="deleteskillsModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
 <form enctype="multipart/form-data" action="../api/studentInfomation/del_skills.php" method="post">
 <div class="modal-dialog modal-dialog-scrollable" role="document">
-	<div class="modal-content">
+	<div class="modal-content" Style='background-image:url("../img/back1.jpg")'>
 		<div class="modal-header">
 			<h5 class="modal-title"><div id="del_msg3"></div></h5>
 			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -637,26 +672,66 @@ $('#deleteskillsModel').on('show.bs.modal', function (event) {
 })
 $('#editUserModel').on('show.bs.modal', function (event) {
   var button = $(event.relatedTarget) // Button that triggered the modal
-  var username = button.data('username')
-	var email = button.data('email')
-	var firstname = button.data('fn')
-	var lastname = button.data('ln')
-	var gpax = button.data('gpax')
-	var birthday = button.data('bd')
-	var religion = button.data('religion')
-	var nation = button.data('nation')
-	var tel = button.data('tel')
-	var prefix = button.data('prefix')
-	document.getElementById("prefix").value = prefix;
-	document.getElementById("email").value = email;
-	document.getElementById("username").value = username;
-	document.getElementById("firstname").value = firstname;
-	document.getElementById("lastname").value = lastname;
-	document.getElementById("gpax").value = gpax;
-	document.getElementById("birthday").value = birthday;
-	document.getElementById("religion").value = religion;
-	document.getElementById("nation").value = nation;
-	document.getElementById("tel").value = tel;
+	if(button.data('username')!=null){
+		var username = button.data('username')
+	}else{
+		var username = ''
+	}
+	if(button.data('email')!=null){
+			var email = button.data('email')
+	}else{
+			var email = ''
+	}
+	if(button.data('fn')!=null){
+			var firstname = button.data('fn')
+	}else{
+			var firstname = ''
+	}
+	if(button.data('ln')!=null){
+			var lastname = button.data('ln')
+	}else{
+			var lastname = ''
+	}
+	if(button.data('gpax')!=null){
+		var gpax = button.data('gpax')
+	}else{
+		var gpax = '1234'
+	}
+	if(button.data('bd')!=null){
+		var birthday = button.data('bd')
+	}else{
+		var birthday = ''
+	}
+	if(button.data('religion')!=null){
+		var religion = button.data('religion')
+	}else{
+		var religion = ''
+	}
+	if(button.data('nation')!=null){
+		var nation = button.data('nation')
+	}else{
+		var nation = ''
+	}
+	if(button.data('tel')!=''){
+		var tel = button.data('tel')
+	}else{
+		var tel = '4321'
+	}
+	if(button.data('prefix')!=null){
+		var prefix = button.data('prefix')
+	}else{
+		var prefix = ''
+	}
+	document.getElementById("prefixx").value = prefix;
+	document.getElementById("emailx").value = email;
+	document.getElementById("usernamex").value = username;
+	document.getElementById("firstnamex").value = firstname;
+	document.getElementById("lastnamex").value = lastname;
+	document.getElementById("gpaxx").value = gpax;
+	document.getElementById("birthdayx").value = birthday;
+	document.getElementById("religionx").value = religion;
+	document.getElementById("nationx").value = nation;
+	document.getElementById("telx").value = tel;
 })
 </script>
 </body>

@@ -24,6 +24,20 @@ if ($result->num_rows > 0) {
 
       ";
     }
+}else{
+  echo "
+  <tr>
+  <td align='left'> ว่าง </td>
+  <td align='left'> ว่าง </td>
+  <td align='left'> ว่าง </td>
+  <td align='left'> ว่าง </td>
+  <td>
+  </td>
+  <td>
+  </td>
+  </tr>
+
+  ";
 }
 $db->close();
 ?>

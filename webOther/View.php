@@ -1,14 +1,4 @@
-<?php
-  session_start();
 
-	if(!isset($_SESSION['userlogin'])){
-		header("Location: ../login.php");
-    }
-    $D = $_SESSION['userlogin']["Id"];
-    
-    
-   
-?>
 <!DOCTYPE html>
 <html>
 
@@ -110,57 +100,38 @@ $proid = $_GET["Proid"];
 
 </head>
 <body onload="myHide();">
-
 <!--Navbar-->
 <nav class="navbar navbar-expand-lg navbar-dark " style="background-color:#56187f;">
 
-  <!-- Navbar brand -->
-  <a class="navbar-brand" href="#">WEB-STUDENT</a>
+<!-- Navbar brand -->
+<a class="navbar-brand" href="#">WEB-POSONAL</a>
 
-  <!-- Collapse button -->
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
-    aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+<!-- Collapse button -->
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+  aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+</button>
 
-  <!-- Collapsible content -->
-  <div class="collapse navbar-collapse" id="basicExampleNav">
+<!-- Collapsible content -->
+<div class="collapse navbar-collapse" id="basicExampleNav">
 
-    <!-- Links -->
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="index.php"><i class="fas fa-home "></i> หน้าแรก
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="stdInfo.php"><i class="fas fa-user"></i> ข้อมูลส่วนตัว</a>
-      </li>
-      <li class="nav-item ">
-        <a class="nav-link" href="project_all.php"><i class="fas fa-folder "></i> โครงงานของฉัน</a>
-	  </li>
-       <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            อื่นๆ
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="edit_password.php"><i class="fas fa-lock "></i> แก้ไขรหัสผ่าน</a>
-          </div>
-        </li>
-      <!-- Dropdown -->
-      </li>
-           
-    </ul>
-    <!-- Links -->
+<ul class="navbar-nav mr-auto">
+	<li class="nav-item active">
+	  <a class="nav-link" href="index.php"><i class="fas fa-home "></i> หน้าแรก
+	  </a>
+	</li>
+  <li class="nav-item ">
+	  <a class="nav-link" href=../login.php><i class="fas fa-sign-in-alt "></i> ล็อกอิน
+	  </a>
+	</li>
+		 
+  </ul>
 
-      <span class="navbar-text" style="font-size: 14px;color:white"><?php include('../webStudent/usericon.php'); ?> 
-			&nbsp;	สวัสดี,คุณ <?php echo $_SESSION['userlogin']["Username"]; ?>&nbsp;
-	 		</span>
-			<span class="navbar-text" style="font-size: 14px">
-				<a href="../logout.php" ><i class="fas fa-sign-out-alt fa-lg" style="color:white"></i></a>
-			</span>
+	
 
 </nav>
 <!--/.Navbar-->
+
 </div>
 	<br/>
 <main  >
@@ -227,7 +198,7 @@ $Adv = $row1["Prefix"]." ".$row1["Firstname"]." ".$row1["Lastname"];
  $result1 = $db->query($sql1);
  while($row1 = $result1->fetch_assoc()){
 
-echo "<form action='stdview.php' method='get'><input type='hidden' name='mem' value='".$row1["Id"]."'>".$space."<button type='submit' Style='background-color:#dfeefd;border: 0px solid #d3d3d3;'><font color='red'><u>".$row1["Prefix"]." ".$row1["Firstname"]." ".$row1["Lastname"]."</u></font></button></form><Br>";
+echo $space.$row1["Prefix"]." ".$row1["Firstname"]." ".$row1["Lastname"]."<Br>";
  }
      
  ?> 
@@ -239,10 +210,7 @@ echo "<form action='stdview.php' method='get'><input type='hidden' name='mem' va
 <Table width="80%">
 <tr>
 <td>
-<center><button type="button" class="btn btn-elegant btn-rounded mx-0 " onclick="window.open('../file/<?php echo $File; ?>')"><i class="fas fa-file-pdf fa-lg "></i> เปิดเอกสาร</button>
-</center></td><td>
-<center><form action="pdf.php" method="post"><input type="hidden" name="PDF" value="<?php echo $File; ?>"><button type="submit" class="btn btn-unique btn-rounded mx-0 "><i class="fas fa-download fa-lg "></i> ดาวน์โหลด</button></form>
-</center>
+
 </td>
 </tr>
 </table>

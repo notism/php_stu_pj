@@ -6,17 +6,7 @@
   }
    
   $D = $_SESSION['userlogin']["Id"];
-  include('../config/connect.php');
-  $sql = "SELECT Team FROM users where ID = '".$D."'";
-  $result = $db->query($sql);
-  while($row = $result->fetch_assoc()) {
-  $Team1 = $row["Team"];
-  }
-  if($Team1==""){
-      $Team = "line.jpg";
-    }else{
-      $Team = $Team1;
-    }
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -50,7 +40,9 @@ input[type=text], select {
   box-sizing: border-box;
 }
 
-
+body{
+	background-image:url("../img/back.gif")
+}
 
 </style>
 
@@ -225,57 +217,52 @@ return (false);
 <body>
 
 	<!--Navbar-->
-<nav class="navbar navbar-expand-lg navbar-dark " style="background-color:#921ecc;">
+<nav class="navbar navbar-expand-lg navbar-dark " style="background-color:#56187f;">
 
-  <!-- Navbar brand -->
-  <a class="navbar-brand" href="#"><i class="fab fa-pinterest-p"></i> Student</a>
+<!-- Navbar brand -->
+<a class="navbar-brand" href="#">WEB-STUDENT</a>
 
-  <!-- Collapse button -->
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
-    aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+<!-- Collapse button -->
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+  aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+</button>
 
-  <!-- Collapsible content -->
-  <div class="collapse navbar-collapse" id="basicExampleNav">
+<!-- Collapsible content -->
+<div class="collapse navbar-collapse" id="basicExampleNav">
 
-    <!-- Links -->
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item ">
-        <a class="nav-link" href="#"><i class="fas fa-home "></i> หน้าแรก
+  <!-- Links -->
+  <ul class="navbar-nav mr-auto">
+    <li class="nav-item ">
+      <a class="nav-link" href="index.php"><i class="fas fa-home "></i> หน้าแรก
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="stdInfo.php"><i class="fas fa-user"></i> ข้อมูลส่วนตัว</a>
+    </li>
+    <li class="nav-item active">
+      <a class="nav-link" href="project_all.php"><i class="fas fa-folder "></i> โครงงานของฉัน</a>
+  </li>
+     <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          อื่นๆ
         </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="edit_password.php"><i class="fas fa-lock "></i> แก้ไขรหัสผ่าน</a>
+        </div>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#"><i class="fas fa-user"></i> ข้อมูลส่วนตัว</a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="#"><i class="fas fa-folder "></i> โครงงานของฉัน</a>
-	  </li>
-	  <li class="nav-item ">
-				 	<a class="nav-link" href="#"><i class="fas fa-bell "></i><span> การแจ้งเตือน </span><span class="badge btn-danger">3</span></a>
-			 </li>
-       <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            อื่นๆ
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#"><i class="fas fa-user"></i> แก้ไขโปรไฟล์</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#"><i class="fas fa-lock "></i> แก้ไขรหัสผ่าน</a>
-          </div>
-        </li>
-      <!-- Dropdown -->
-      </li>
-           
-    </ul>
-    <!-- Links -->
+    <!-- Dropdown -->
+    </li>
+         
+  </ul>
+  <!-- Links -->
 
-            <span class="navbar-text" style="font-size: 14px;color:white"><img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg" class="rounded-circle z-depth-0" alt="avatar image" height="24"> 
-		 		สวัสดี,คุณ <?php echo $_SESSION['userlogin']["Username"].$Team; ?>&nbsp;
-	 		</span>
-			<span class="navbar-text" style="font-size: 14px">
-				<a href="../logout.php" ><i class="fas fa-sign-out-alt fa-lg" style="color:white"></i></a>
-			</span>
+    <span class="navbar-text" style="font-size: 14px;color:white"><?php include('../webStudent/usericon.php'); ?> 
+    &nbsp;	สวัสดี,คุณ <?php echo $_SESSION['userlogin']["Username"]; ?>&nbsp;
+     </span>
+    <span class="navbar-text" style="font-size: 14px">
+      <a href="../logout.php" ><i class="fas fa-sign-out-alt fa-lg" style="color:white"></i></a>
+    </span>
 
 </nav>
 <!--/.Navbar-->
@@ -287,7 +274,7 @@ return (false);
 		  <div class="col-sm-12">
         <!-- start card -->
 				<div class="card"  style="width: 100%;">
-					<div class="card-body" Style='background-image:url("../img/<?php echo $Team; ?>")'>
+					<div class="card-body" >
 						<h3 class="card-title">โครงงานของฉัน</h3>
 						<div class="dropdown-divider"></div>
 						<!-- Alert -->
@@ -319,9 +306,9 @@ return (false);
 							<li class="page-item active">
 							<a class="page-link">ทั้งหมด</a>
 							</li>
-							<li class="page-item"><a href="project1.php" class="page-link">อนุมัติแล้ว</a></li>
-							<li class="page-item"><a href="project2.php" class="page-link">รออนุมัติ</a></li>
-							<li class="page-item"><a href="project3.php" class="page-link">ไม่อนุมัติ</a></li>
+							<li class="page-item"><a href="project_accept.php" class="page-link">อนุมัติแล้ว</a></li>
+							<li class="page-item"><a href="project_waitting.php" class="page-link">รออนุมัติ</a></li>
+							<li class="page-item"><a href="project_unaccept.php" class="page-link">ไม่อนุมัติ</a></li>
 						</ul>
 						</nav>
 						
@@ -359,11 +346,11 @@ return (false);
 							<li class='list-group-item ' Style='background-color:#f1f1f1;'>
 							<Table width=100% ><tr>
 							<td width=3% >".$i."</td>
-							<td width=10% align='left'><img class='img-fluid rounded mb-3 mb-md-0' src='../img/Project.jpg' alt='' width=100px></td>
+							<td width=10% align='left'><img class='img-fluid rounded mb-3 mb-md-0' src='../img/".$row["Picture"]."' alt='' width=100px></td>
 							<td width=13%>เรื่อง ".$row["ProjectName"]."</td>
 							<td width=10% align='center'>".$S."</td>
-							<td width=20%>".$row["Description"]."</td>
-              <td width=10% align='center'> <form   method='get' action='ProjectEdit.php' ><input type='hidden' name='Proid' value='".$row["Id"]."'>
+							<td width=20% >".$row["Description"]."</td>
+              <td width=10% align='center'> <form   method='get' action='project_edit.php' ><input type='hidden' name='Proid' value='".$row["Id"]."'>
               <button type='submit' class='btn btn-danger btn-rounded btn-sm my-0' ><i class='fas fa-edit '></i> แก้ไข</button></td></form>
 							</tr>
 							</Table></li>
@@ -437,7 +424,13 @@ $(document).ready(function(){
     <tr><td align="center">
     <font color="#7502f3"><i class="fas fa-cube fa-2x"></i></font> 
     </td><td>
-             <input type='text' name="Ptype" placeholder='ประเภทโครงงาน' required>
+            <select class="mdb-select md-form" style="width:50%" name="Ptype" required>
+            <option value="" disabled selected>เลือกประเภทโครงงาน</option>
+            <option value="ธุรกิจ"> ธุรกิจ</option>
+            <option value="สังคม"> สังคม</option>
+            <option value="การศึกษา"> การศึกษา</option>
+            <option value="อื่นๆ"> อื่นๆ</option>
+            </select>
     </td></tr>
     <tr><td align="center"><font color="#ad02f3"><i class="fas fa-book-open fa-2x"></i></font>  
     </td><td> <div class="form-group">
@@ -453,14 +446,14 @@ $(document).ready(function(){
 
 include('../config/connect.php');
 
-$sql = "SELECT * FROM users";
+$sql = "SELECT * FROM users where Role = 'advisor'";
 $result = $db->query($sql);
 $i = 1;
 if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
         echo "
        
-        <option value='".$row["Id"]."'>".$row["Firstname"]." ".$row["Lastname"]."</option>
+        <option value='".$row["Id"]."'>".$row["Prefix"]." ".$row["Firstname"]." ".$row["Lastname"]."</option>
         
         ";$i++;
     }

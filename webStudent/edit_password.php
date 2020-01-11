@@ -4,6 +4,7 @@
 	if(!isset($_SESSION['userlogin'])){
 		header("Location: ../login.php");
 	}
+	$preset =rand();
 
 ?>
 <!DOCTYPE html>
@@ -23,6 +24,17 @@
 	<style>
 body{
 	background-image:url("../img/back.gif")
+}
+input[type=password], select {
+  width: 55%;
+  height: 45px;
+  px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 2px solid #d3d3d3;
+  border-radius: 4px;
+  box-sizing: border-box;
 }
 
 </style>
@@ -88,82 +100,59 @@ body{
         <!-- start card -->
 				<div class="card"  style="width: 100%;">
 					<div class="card-body"  >
-					<h3 class="card-title">โครงงาน</h3>
+					<h3 class="card-title">แก้ไขรหัสผ่าน</h3>
 						<div class="dropdown-divider"></div>
 
 						<div class="hide" id="add_alert" role="alert" >
 							<div id="messages_content" ></div>
 						</div>
-						<!-- End Alert -->
-						<nav aria-label="Page navigation example">
-						<ul class="pagination pg-blue">
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<li class="page-item active">
-						<a href="index.php" class="page-link">ทั้งหมด</a>
-							</li>
-							<li class="page-item "><a href="index_business.php" class="page-link">ธุรกิจ</a></li>
-							<li class="page-item"><a href="index_social.php" class="page-link">สังคม</a></li>
-							<li class="page-item"><a href="index_education.php" class="page-link">การศึกษา</a></li>
-							<li class="page-item"><a href="index_other.php" class="page-link">อื่นๆ</a></li>
-						</ul>
-						</nav>
-						<div class="table-responsive">
-							<table class="table table-hover" id="example">
-								<thead>
-									<tr>
+                        <br>
+						<Table width=75% align='right'><tr><td><br><br><h3></h3></td></tr><tr><td>                      
+                        <form action="" method="post">
+                        <input type='password' name='reset1' placeholder='กรอกรหัสผ่านใหม่'><input type="hidden" name="SM" value="<?php echo $preset; ?>"><br><input type='password' name='reset2' placeholder='กรอกรหัสผ่านใหม่อีกครั้ง'><br>
+ </td></tr>
+ <tr><td><center><button type="submit" name="submit" class="btn purple-gradient btn-rounded mx-2 " > ยืนยัน </button></form><br><br><br>
 
-										<th style="visibility: hidden;"></th>
-										<th scope="col" align="left"></th>
-										<th style="visibility: hidden;"></th>
-										
-										
-										<!-- <th scope="col">Update</th> -->
-									</tr>
-								</thead>
-								<tbody>
-								<?php include('../api/projectManagement/ProjectTable.php'); ?>
-								</tbody>
-							</table>
-						</div>
+</center></td></tr>
+ 
+ 
+ <?php 
+ 
+ if(isset($_POST["submit"])){
+
+       if($_POST["reset1"]==$_POST["reset2"]){
+        $P = md5($_POST['reset1']);
+        include('../config/connect.php');
+        $sql = "UPDATE users
+        SET Password = '".$P."'        
+        WHERE Id = '".$_SESSION['userlogin']['Id']."'";
+        if ($db->query($sql) === TRUE) {
+        echo "<script type='text/javascript'>alert('เปลี่ยนรหัสผ่านเรียบร้อยแล้ว');</script>";
+                }
+       }else{
+        echo "<tr><td ><p Style='cursor: pointer;border-left: solid 3px #ffbb33;background-color:#fffde7;width:60%' ><br>&nbsp; หมายเหตุ : รหัสผ่านไม่ตรงกัน ตรวจสอบอีกครั้ง <br><br></p></td></tr>";
+                            
+       }
+
+
+
+
+
+
+ }
+ 
+ 
+ ?>
+ 
+ 
+ 
+ 
+ 
+ 
+ </Table>
                          
-						
-				
-              
-<script type="text/javascript" src="../js/datatables.min.js"></script>
-<script>
-$(document).ready(function() {
 
-    $('#example').DataTable({
-
-        "order": [[ 0, "desc" ]],
-				"columnDefs": [
-            {
-                "targets": [ 0,2 ],
-                "visible": true,
-                "searchable": false
-            },
-        ],
-				"pagingType": "full_numbers",
-				"language": {
-					 "lengthMenu": "จำนวนแถว _MENU_",
-					 "zeroRecords": "ไม่พบข้อมูล",
-					 "info": "แสดงหน้า _PAGE_ จากทั้งหมด _PAGES_ หน้า",
-					 "infoEmpty": "ไม่มีข้อมูล",
-					 "infoFiltered": "(ค้นหาจากทั้งหมด _MAX_ ข้อมูล)",
-					 "search": "ค้นหา:",
-					 "paginate": {
-        			"first": "หน้าแรก",
-        			"last":  "หน้าสุดท้าย",
-			        "next": "ถัดไป",
-        			"previous": "ย้อนกลับ"
-    },
-			 },
-				"dom": 'frtlip'
-    } );
-} );
-</script>
-
-
+                    
 					</div>
 				</div>
         <!-- end card -->

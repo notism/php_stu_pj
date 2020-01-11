@@ -5,17 +5,7 @@
 		header("Location: ../login.php");
     }
     $D = $_SESSION['userlogin']["Id"];
-    include('../config/connect.php');
-    $sql = "SELECT Team FROM users where ID = '".$D."'";
-    $result = $db->query($sql);
-    while($row = $result->fetch_assoc()) {
-    $Team1 = $row["Team"];
-    }
-    if($Team1==""){
-        $Team = "line.jpg";
-      }else{
-        $Team = $Team1;
-      }
+  
 ?>
 <!DOCTYPE html>
 <html>
@@ -36,17 +26,79 @@
 	
 	<style>
 
+body{
+	background-image:url("../img/back.gif")
+}
 
+input[type=text], select {
+  width: 97%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 0px solid #d3d3d3;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background-color:#fce4ec;
+}
+
+
+#hide {
+  width: 10%;
+  display: inline-block;
+  border: 1px solid #d3d3d3;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background-color:#fce4ec;
+}
+
+#hide1,#hide2,#hide3,#hide4 {
+  width: 10%;
+  display: inline-block;
+  border: 1px solid #d3d3d3;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background-color:#fce4ec;
+}
 </style>
 
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
-function myHide()
-{
-	document.getElementById('hidepage').style.display='block';//content ที่ต้องการแสดงหลังจากเพจโหลดเสร็จ
-	document.getElementById('hidepage2').style.display='none';//content ที่ต้องการแสดงระหว่างโหลดเพจ
-}
+$(document).ready(function(){
+  $("pp").hide();
+  $("#hide").click(function(){
+    $("pp").toggle();
+  });
+});
+
+$(document).ready(function(){
+  $("p1").hide();
+  $("#hide1").click(function(){
+    $("p1").toggle();
+  });
+});
+
+$(document).ready(function(){
+  $("p2").hide();
+  $("#hide2").click(function(){
+    $("p2").toggle();
+  });
+});
+
+$(document).ready(function(){
+  $("p3").hide();
+  $("#hide3").click(function(){
+    $("p3").toggle();
+  });
+});
+
+$(document).ready(function(){
+  $("p4").hide();
+  $("#hide4").click(function(){
+    $("p4").toggle();
+  });
+});
 </script>
+
 
 <?php  
 $proid = $_GET["Proid"];
@@ -67,6 +119,7 @@ $proid = $_GET["Proid"];
     $Type = $row["Type"];
     $File = $row["File"];
     $View = $row["View"];
+    $Sta = $row["Status"];
 
     if($row["P1"]==""){
         $P1 = "0";
@@ -113,76 +166,67 @@ $proid = $_GET["Proid"];
 <body onload="myHide();">
 
 	<!--Navbar-->
-<nav class="navbar navbar-expand-lg navbar-dark " style="background-color:#921ecc;">
+  <nav class="navbar navbar-expand-lg navbar-dark " style="background-color:#56187f;">
 
-  <!-- Navbar brand -->
-  <a class="navbar-brand" href="#">Student</a>
+<!-- Navbar brand -->
+<a class="navbar-brand" href="#">WEB-STUDENT</a>
 
-  <!-- Collapse button -->
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
-    aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+<!-- Collapse button -->
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+  aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+</button>
 
-  <!-- Collapsible content -->
-  <div class="collapse navbar-collapse" id="basicExampleNav">
+<!-- Collapsible content -->
+<div class="collapse navbar-collapse" id="basicExampleNav">
 
-    <!-- Links -->
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item ">
-        <a class="nav-link" href="#"><i class="fas fa-home "></i> หน้าแรก
+  <!-- Links -->
+  <ul class="navbar-nav mr-auto">
+    <li class="nav-item ">
+      <a class="nav-link" href="index.php"><i class="fas fa-home "></i> หน้าแรก
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="stdInfo.php"><i class="fas fa-user"></i> ข้อมูลส่วนตัว</a>
+    </li>
+    <li class="nav-item active">
+      <a class="nav-link" href="project_all.php"><i class="fas fa-folder "></i> โครงงานของฉัน</a>
+  </li>
+     <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          อื่นๆ
         </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="edit_password.php"><i class="fas fa-lock "></i> แก้ไขรหัสผ่าน</a>
+        </div>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#"><i class="fas fa-user"></i> ข้อมูลส่วนตัว</a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="#"><i class="fas fa-folder "></i> โครงงานของฉัน</a>
-	  </li>
-	  <li class="nav-item ">
-				 	<a class="nav-link" href="#"><i class="fas fa-bell "></i><span> การแจ้งเตือน </span><span class="badge btn-danger">3</span></a>
-			 </li>
-       <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            อื่นๆ
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#"><i class="fas fa-user"></i> แก้ไขโปรไฟล์</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#"><i class="fas fa-lock "></i> แก้ไขรหัสผ่าน</a>
-          </div>
-        </li>
-      <!-- Dropdown -->
-      </li>
-           
-    </ul>
-    <!-- Links -->
+    <!-- Dropdown -->
+    </li>
+         
+  </ul>
+  <!-- Links -->
 
-            <span class="navbar-text" style="font-size: 14px;color:white"><img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg" class="rounded-circle z-depth-0" alt="avatar image" height="24"> 
-		 		สวัสดี,คุณ <?php echo $_SESSION['userlogin']["Username"] ?>&nbsp;
-	 		</span>
-			<span class="navbar-text" style="font-size: 14px">
-				<a href="../logout.php" ><i class="fas fa-sign-out-alt fa-lg" style="color:white"></i></a>
-			</span>
+    <span class="navbar-text" style="font-size: 14px;color:white"><?php include('../webStudent/usericon.php'); ?> 
+    &nbsp;	สวัสดี,คุณ <?php echo $_SESSION['userlogin']["Username"]; ?>&nbsp;
+     </span>
+    <span class="navbar-text" style="font-size: 14px">
+      <a href="../logout.php" ><i class="fas fa-sign-out-alt fa-lg" style="color:white"></i></a>
+    </span>
 
 </nav>
 <!--/.Navbar-->
 </div>
 	<br/>
 <main  >
-	<div class="container">
+<div class="container">
 		<div class="row">
 		  <div class="col-sm-12">
         <!-- start card -->
-				<div class="card"  style="width: 100%;">
-					<div class="card-body"  Style='background-image:url("../img/<?php echo $Team; ?>");'>
+			
+			
                    
-                   <div class="row" >
-                    <div class="col-lg" align='center'><span></span></div>
-                    <div class="col-lg" align='right'><p style="cursor: pointer;border: solid 2px #212121;width:30%"><?php echo $QRcode; ?></p></div>
-                    </div>
-
-                        <div class="dropdown-divider"></div>
+                  
+                        
 						<!-- Alert -->
 						<div class="hide" id="add_alert" role="alert" >
 							<div id="messages_content" ></div>
@@ -200,25 +244,64 @@ $proid = $_GET["Proid"];
 
   <div class="row pr-lg-5">
   
-    <div class="col-md-7 mb-4">
+    <div class="col-md-6 mb-4">
 
       <div class="view"><span><br>&nbsp;&nbsp;&nbsp;จำนวนคนดู <?php echo $View+1; ?> ครั้ง <i class='fas fa-eye '></i> 
         <!-- Hoverable -->
 <br><br><br><br><br>
-<img src="img/<?php echo $Pic; ?>" class="img-fluid rounded-circle hoverable" alt="hoverable"><br><br><br><br>
+<img src="../img/<?php echo $Pic; ?>" class="img-fluid  hoverable" >
       </div>
 
     </div>
-    <div class="col-md-5 d-flex align-items-center" Style='cursor: pointer;border-Top: solid 5px #4285f4;background-color:#dfeefd'>
+    <div class="col-md-6 d-flex align-items-center" Style='cursor: pointer;border-Top: solid 5px #ff4444;background-color:#fce4ec'>
       <div >
       <br><br>
-        <h3 class="font-weight-bold mb-4" align="center"><?php echo $N; ?></h3>
+      <form name="myForm"  method="post" action="updateproject.php" enctype="multipart/form-data">
+      <input type="hidden" name="PId" value="<?php echo $proid ?>">
+      <input type="hidden" name="Sta" value="<?php echo $Sta ?>">
+      <font color="red"><i class="fas fa-pencil-alt fa-lg"></i> แก้ไขโครงงาน</font>
+        <h3 class="font-weight-bold mb-4" align="center"><input type="text" value="<?php echo $N; ?>" name="Pname"></h3>
 
-          <p><B>รายละเอียด</B> <br>
-          <?php echo $space.$Des."<br>"; ?>
-          <B>ประเภท</B><br>
-          <?php echo $space.$Type."<br>"; ?>
-          <B>อาจารย์ที่ปรึกษา</B><br>
+          <B>รายละเอียด</B> <button type="button" id="hide1"><i class='fas fa-plus fa-sm'></i></button><br>
+          <div class="form-group">
+          <p1><textarea rows="10" name="Des" cols="50%" class="form-control rounded-0" id="exampleFormControlTextarea2" style="background-color:#fce4ec;border: 0px;"><?php echo $space.$Des; ?></textarea></p1>
+          </div>
+          <B>ประเภท</B> <button type="button" id="hide2"><i class='fas fa-plus fa-sm'></i></button><br>
+          <p2>
+          <?php 
+          if($Type=="ธุรกิจ"){
+            echo '<select class="mdb-select md-form" style="width:96%" name="Ptype" >
+            <option value="'.$Type.'" selected>'.$Type.'</option> 
+            <option value="สังคม" >สังคม</option> 
+            <option value="การศึกษา" >การศึกษา</option> 
+            <option value="อื่นๆ" >อื่นๆ</option> 
+            </select>';
+          }else if($Type=="สังคม"){
+            echo '<select class="mdb-select md-form" style="width:96%" name="Ptype" >
+            <option value="'.$Type.'" selected>'.$Type.'</option> 
+            <option value="ธุรกิจ" >ธุรกิจ</option> 
+            <option value="การศึกษา" >การศึกษา</option> 
+            <option value="อื่นๆ" >อื่นๆ</option> 
+            </select>';
+          }else if($Type=="การศึกษา"){
+            echo '<select class="mdb-select md-form" style="width:96%" name="Ptype" >
+            <option value="'.$Type.'" selected>'.$Type.'</option> 
+            <option value="ธุรกิจ" >ธุรกิจ</option> 
+            <option value="สังคม" >สังคม</option> 
+            <option value="อื่นๆ" >อื่นๆ</option> 
+            </select>';
+          }else{
+            echo '<select class="mdb-select md-form" style="width:96%" name="Ptype" >
+            <option value="'.$Type.'" selected>'.$Type.'</option> 
+            <option value="ธุรกิจ" >ธุรกิจ</option> 
+            <option value="สังคม" >สังคม</option> 
+            <option value="การศึกษา" >การศึกษา</option> 
+            </select>';
+
+          }
+          
+          ?></p2><br>
+          <B>อาจารย์ที่ปรึกษา</B> <button type="button" id="hide3"><i class='fas fa-plus fa-sm'></i></button><br>
           <?php
  include('../config/connect.php');
  $sql1 = "SELECT * FROM `users` WHERE id = '$Ad'";
@@ -227,28 +310,260 @@ $proid = $_GET["Proid"];
 
 $Adv = $row1["Prefix"]." ".$row1["Firstname"]." ".$row1["Lastname"];
  }
- echo $space.$Adv;      
+      
  ?> 
-          <br>
-          <B>สมาชิกในกลุ่ม</B><br>
+ <p3>
+ <select class="mdb-select md-form" style="width:96%" name="Aname" >
+            <option value="<?php echo $Ad ?>" selected><?php echo $Adv; ?></option>
+
+
+    <?php
+
+include('../config/connect.php');
+
+$sql = "SELECT * FROM users where Role = 'advisor'";
+$result = $db->query($sql);
+$i = 1;
+if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+        echo "
+       
+        <option value='".$row["Id"]."'>".$row["Prefix"]." ".$row["Firstname"]." ".$row["Lastname"]."</option>
+        
+        ";$i++;
+    }
+} else {
+    echo "0 results";
+}
+$db->close();
+?>
+
+
+</select></p3><br>
+          <B>สมาชิกในกลุ่ม</B>
+<button type="button" id="hide"><i class='fas fa-plus fa-sm'></i></button><br>
+<pp>
           <?php
  include('../config/connect.php');
- $sql1 = "SELECT * FROM `users` WHERE id in ($P1,$P2,$P3,$P4,$P5)";
+ $sql1 = "SELECT * FROM `users` WHERE id = '$P1'";
  $result1 = $db->query($sql1);
  while($row1 = $result1->fetch_assoc()){
 
-echo  $Adv = $space.$row1["Prefix"]." ".$row1["Firstname"]." ".$row1["Lastname"]."<br>";
-   
- }     
- ?><br><B>เอกสารแนบ : <?php echo $File; ?></B><br> </p>
-<br><br>
-<center><button type="button" class="btn btn-orange btn-rounded mx-0" onclick="window.open('file/<?php echo $File; ?>')">เปิดเอกสาร</button></center>
+$Pi1 = $row1["Prefix"]." ".$row1["Firstname"]." ".$row1["Lastname"];
+ }
+      
+ ?> 
+          <select class="mdb-select md-form" style="width:96%" name="P1" >
+            <option value="<?php echo $P1 ?>" selected>คนที่1. <?php if($P1=='0'||$P1==' '){echo "ว่าง";}else{echo $Pi1;}  ?></option>
 
+
+    <?php
+
+include('../config/connect.php');
+
+$sql = "SELECT * FROM users where Firstname != '' and Role = 'student' and Id != '$P1'";
+$result = $db->query($sql);
+$i = 1;
+if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+        echo "
+       
+        <option value='".$row["Id"]."'>".$row["Prefix"]." ".$row["Firstname"]." ".$row["Lastname"]."</option>
+        
+        ";$i++;
+    }
+} else {
+    echo "0 results";
+}
+$db->close();
+?></select>  
+
+
+<?php
+ include('../config/connect.php');
+ $sql1 = "SELECT * FROM `users` WHERE id = '$P2'";
+ $result1 = $db->query($sql1);
+ while($row1 = $result1->fetch_assoc()){
+
+$Pi2 = $row1["Prefix"]." ".$row1["Firstname"]." ".$row1["Lastname"];
+ }
+      
+ ?> 
+          <select class="mdb-select md-form" style="width:96%" name="P2" >
+            <option value="<?php echo $P2 ?>" selected>คนที่2. <?php if($P2=='0'||$P2==' '){echo "ว่าง";}else{echo $Pi2;}  ?></option>
+
+
+    <?php
+
+include('../config/connect.php');
+
+$sql = "SELECT * FROM users where Firstname != '' and Role = 'student' and Id != '$P2'";
+$result = $db->query($sql);
+$i = 1;
+if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+        echo "
+       
+        <option value='".$row["Id"]."'>".$row["Prefix"]." ".$row["Firstname"]." ".$row["Lastname"]."</option>
+        
+        ";$i++;
+    }
+} else {
+    echo "0 results";
+}
+$db->close();
+?></select>  
+
+
+
+<?php
+ include('../config/connect.php');
+ $sql1 = "SELECT * FROM `users` WHERE id = '$P3'";
+ $result1 = $db->query($sql1);
+ while($row1 = $result1->fetch_assoc()){
+
+$Pi3 = $row1["Prefix"]." ".$row1["Firstname"]." ".$row1["Lastname"];
+ }
+      
+ ?> 
+          <select class="mdb-select md-form" style="width:96%" name="P3" >
+            <option value="<?php echo $P3 ?>" selected>คนที่3. <?php if($P3=='0'||$P3==' '){echo "ว่าง";}else{echo $Pi3;}  ?></option>
+
+
+    <?php
+
+include('../config/connect.php');
+
+$sql = "SELECT * FROM users where Firstname != '' and Role = 'student' and Id != '$P3'";
+$result = $db->query($sql);
+$i = 1;
+if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+        echo "
+       
+        <option value='".$row["Id"]."'>".$row["Prefix"]." ".$row["Firstname"]." ".$row["Lastname"]."</option>
+        
+        ";$i++;
+    }
+} else {
+    echo "0 results";
+}
+$db->close();
+?></select>  
+
+
+
+<?php
+ include('../config/connect.php');
+ $sql1 = "SELECT * FROM `users` WHERE id = '$P4'";
+ $result1 = $db->query($sql1);
+ while($row1 = $result1->fetch_assoc()){
+
+$Pi4 = $row1["Prefix"]." ".$row1["Firstname"]." ".$row1["Lastname"];
+ }
+      
+ ?> 
+          <select class="mdb-select md-form" style="width:96%" name="P4" >
+            <option value="<?php echo $P4 ?>" selected>คนที่4. <?php if($P4=='0'||$P4==' '){echo "ว่าง";}else{echo $Pi4;}  ?></option>
+
+
+    <?php
+
+include('../config/connect.php');
+
+$sql = "SELECT * FROM users where Firstname != '' and Role = 'student' and Id != '$P4'";
+$result = $db->query($sql);
+$i = 1;
+if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+        echo "
+       
+        <option value='".$row["Id"]."'>".$row["Prefix"]." ".$row["Firstname"]." ".$row["Lastname"]."</option>
+        
+        ";$i++;
+    }
+} else {
+    echo "0 results";
+}
+$db->close();
+?></select> 
+
+
+<?php
+ include('../config/connect.php');
+ $sql1 = "SELECT * FROM `users` WHERE id = '$P5'";
+ $result1 = $db->query($sql1);
+ while($row1 = $result1->fetch_assoc()){
+
+$Pi5 = $row1["Prefix"]." ".$row1["Firstname"]." ".$row1["Lastname"];
+ }
+      
+ ?> 
+          <select class="mdb-select md-form" style="width:96%" name="P5" >
+            <option value="<?php echo $P5 ?>" selected>คนที่5. <?php if($P5=='0'||$P5==' '){echo "ว่าง";}else{echo $Pi5;}  ?></option>
+
+
+    <?php
+
+include('../config/connect.php');
+
+$sql = "SELECT * FROM users where Firstname != '' and Role = 'student' and Id != '$P5'";
+$result = $db->query($sql);
+$i = 1;
+if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+        echo "
+       
+        <option value='".$row["Id"]."'>".$row["Prefix"]." ".$row["Firstname"]." ".$row["Lastname"]."</option>
+        
+        ";$i++;
+    }
+} else {
+    echo "0 results";
+}
+$db->close();
+?></select> 
+</pp>
+<br>
+<B>อัพเดตรูปภาพหน้าปก และ ไฟล์งาน</B> <button type="button" id="hide4"><i class='fas fa-plus fa-sm'></i></button><br><br>
+<p4>อัพเดทไฟล์รูปหน้าปกโครงงาน<br>
+              <font color="#d50000 ">หมายเหตุ : นามสกุล .jpg .gif .png </font>
+              <div class="file-field">
+              <a class="btn-floating purple-gradient mt-0 float-left">
+                <i class="fas fa-cloud-upload-alt fa-lg" aria-hidden="true" ></i>
+                <input type="file" name="Picture"  >
+              </a>
+            </div>
+<br><br>
+อัพเดทไฟล์โครงงาน<br>
+               <font color="#d50000 ">หมายเหตุ : ไฟล์ PDF</font>
+              <div class="file-field">
+              <a class="btn-floating purple-gradient mt-0 float-left">
+                <i class="fas fa-cloud-upload-alt fa-lg" aria-hidden="true" ></i>
+                <input type="file"   name="Pdf" >
+              </a>
+            </div>
+<br><br></p4><br>
+<center><p style="cursor: pointer;border: solid 0px #212121;width:30%"><?php echo $QRcode; ?></p></center>
+
+<br>
+<center>
+<div class="row" >
+    <div class="col-4" ><button type="submit" name="edit_user" id="submit" value="Submit" class="btn btn-primary btn-md"><i class="fas fa-save"  ></i> บันทึก</button></form></div>
+    <div class="col-4" ><form name="myForm"  method="post" action="deleteproject.php" >
+                            <input type="hidden" name="PId" value="<?php echo $proid ?>">
+                            <input type="hidden" name="Pname" value="<?php echo $N ?>">
+                            <button type="submit" class="btn btn-danger btn-md" data-dismiss="modal" onclick="return confirm('ต้องการลบโครงงาน <?php echo $N; ?> ใช่หรือไหม?')"> &nbsp;<i class="fas fa-trash-alt" ></i> ลบ&nbsp;&nbsp;   </button></form></div>
+    <div class="col-4" ><button type="button" class="btn btn-warning btn-md" data-dismiss="modal" onclick="window.history.go(-1); return false;"><i class="fas fa-reply"></i> ยกเลิก</button></div>
+  </div>
+</center>
+<Br>
 
       </div>
       <br><br>
-    </div>
-  </div>
+     
+    
+
   <br><br>
 </section>
 <!--Section: Content-->

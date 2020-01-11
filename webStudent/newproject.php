@@ -4,12 +4,9 @@
 	if(!isset($_SESSION['userlogin'])){
 		header("Location: ../login.php");
     }
+  $D = $_SESSION['userlogin']["Id"];
     
-    if($_SESSION['userlogin']["Team"]==""){
-        $Team = "line.jpg";
-      }else{
-        $Team = $_SESSION['userlogin']["Team"];
-      }
+   
 ?>
 <!DOCTYPE html>
 <html>
@@ -26,64 +23,61 @@
 	<link rel="stylesheet" href="../nice/css/mdb.min.css">
 	
 	<style>
-
+body{
+	background-image:url("../img/back.gif")
+}
 
 </style>
 </head>
 <body>
 
 	<!--Navbar-->
-<nav class="navbar navbar-expand-lg navbar-dark " style="background-color:#921ecc;">
+  <nav class="navbar navbar-expand-lg navbar-dark " style="background-color:#56187f;">
 
-  <!-- Navbar brand -->
-  <a class="navbar-brand" href="#">Student</a>
+<!-- Navbar brand -->
+<a class="navbar-brand" href="#">WEB-STUDENT</a>
 
-  <!-- Collapse button -->
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
-    aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+<!-- Collapse button -->
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+  aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+</button>
 
-  <!-- Collapsible content -->
-  <div class="collapse navbar-collapse" id="basicExampleNav">
+<!-- Collapsible content -->
+<div class="collapse navbar-collapse" id="basicExampleNav">
 
-    <!-- Links -->
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item ">
-        <a class="nav-link" href="#"><i class="fas fa-home "></i> หน้าแรก
+  <!-- Links -->
+  <ul class="navbar-nav mr-auto">
+    <li class="nav-item ">
+      <a class="nav-link" href="index.php"><i class="fas fa-home "></i> หน้าแรก
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="stdInfo.php"><i class="fas fa-user"></i> ข้อมูลส่วนตัว</a>
+    </li>
+    <li class="nav-item active">
+      <a class="nav-link" href="project_all.php"><i class="fas fa-folder "></i> โครงงานของฉัน</a>
+  </li>
+     <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          อื่นๆ
         </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="edit_password.php"><i class="fas fa-lock "></i> แก้ไขรหัสผ่าน</a>
+        </div>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#"><i class="fas fa-user"></i> ข้อมูลส่วนตัว</a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="#"><i class="fas fa-folder "></i> โครงงานของฉัน</a>
-	  </li>
-	  <li class="nav-item ">
-				 	<a class="nav-link" href="#"><i class="fas fa-bell "></i><span> การแจ้งเตือน </span><span class="badge btn-danger">3</span></a>
-			 </li>
-       <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            อื่นๆ
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#"><i class="fas fa-user"></i> แก้ไขโปรไฟล์</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#"><i class="fas fa-lock "></i> แก้ไขรหัสผ่าน</a>
-          </div>
-        </li>
-      <!-- Dropdown -->
-      </li>
-           
-    </ul>
-    <!-- Links -->
+    <!-- Dropdown -->
+    </li>
+         
+  </ul>
+  <!-- Links -->
 
-            <span class="navbar-text" style="font-size: 14px;color:white"><img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg" class="rounded-circle z-depth-0" alt="avatar image" height="24"> 
-		 		สวัสดี,คุณ <?php echo $_SESSION['userlogin']["Username"] ?>&nbsp;
-	 		</span>
-			<span class="navbar-text" style="font-size: 14px">
-				<a href="../logout.php" ><i class="fas fa-sign-out-alt fa-lg" style="color:white"></i></a>
-			</span>
+    <span class="navbar-text" style="font-size: 14px;color:white"><?php include('../webStudent/usericon.php'); ?> 
+    &nbsp;	สวัสดี,คุณ <?php echo $_SESSION['userlogin']["Username"]; ?>&nbsp;
+     </span>
+    <span class="navbar-text" style="font-size: 14px">
+      <a href="../logout.php" ><i class="fas fa-sign-out-alt fa-lg" style="color:white"></i></a>
+    </span>
 
 </nav>
 <!--/.Navbar-->
@@ -144,7 +138,7 @@ $P3;
 $P4;
 $P5;
 $Pic = $_FILES["Picture"]["name"];
-$Doc = $_FILES["Pdf"]["name"]."<br>";
+$Doc = $_FILES["Pdf"]["name"];
 
 $file = strtolower($_FILES["Picture"]["name"]);
 $sizefile = $_FILES["Picture"]["size"]; 
@@ -184,15 +178,15 @@ $i = "1";
  
 if((($type==".jpg")||($type==".gif")||($type==".png"))&&($type2==".pdf")){
 
-if(move_uploaded_file($_FILES["Picture"]["tmp_name"],"img/".$_FILES["Picture"]["name"])){
+if(move_uploaded_file($_FILES["Picture"]["tmp_name"],"../img/".$_FILES["Picture"]["name"])){
 
-    If(move_uploaded_file($_FILES["Pdf"]["tmp_name"],"file/".$_FILES["Pdf"]["name"])){
+    If(move_uploaded_file($_FILES["Pdf"]["tmp_name"],"../file/".$_FILES["Pdf"]["name"])){
 
 
 
     include('../config/connect.php');
-    $sql = "INSERT into projectinfo (ProjectName , Type , Description , Advisor , P1 , P2 , P3 , P4 , P5 , Picture , File , Status)
-    VALUES ('".$Pname."', '".$Ptype."', '".$PDes."' , '".$Aname."' , '".$P1."' , '".$P2."' ,'".$P3."' , '".$P4."' , '".$P5."' , '".$Pic."' , '".$Doc."' , 'รออนุมัติ')";
+    $sql = "INSERT into projectinfo (ProjectName , Type , Description , Advisor , P1 , P2 , P3 , P4 , P5 , Picture , File , Status , CreatedBy)
+    VALUES ('".$Pname."', '".$Ptype."', '".$PDes."' , '".$Aname."' , '".$P1."' , '".$P2."' ,'".$P3."' , '".$P4."' , '".$P5."' , '".$Pic."' , '".$Doc."' , 'รออนุมัติ' , '".$D."')";
             
 
             if ($db->query($sql) === TRUE) {
@@ -217,7 +211,7 @@ if(move_uploaded_file($_FILES["Picture"]["tmp_name"],"img/".$_FILES["Picture"]["
                 ";
             }
 
-            $pageback  = "window.location.href = 'project.php'"; 
+            $pageback  = "window.location.href = 'project_all.php'"; 
    }  
 
 }

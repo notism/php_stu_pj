@@ -1,8 +1,8 @@
 <?php
 
 include('../config/connect.php');
-$student = $_SESSION['userlogin']['Id'];
-$sql = "SELECT * FROM profile LEFT JOIN users ON users.Username=profile.CreatedBy WHERE users.Id='$student'";
+$student = $_SESSION['mem'];
+$sql = "SELECT * FROM users INNER JOIN profile ON users.Username=profile.CreatedBy WHERE users.Id='$student'";
 $result = $db->query($sql);
 
 if ($result->num_rows > 0) {
@@ -13,13 +13,6 @@ if ($result->num_rows > 0) {
         $imgUrl_fix = 'fix_user_img.png';
       }
       echo "
-      <div class='text-right'>
-      <button type='button' class='btn btn-primary'
-      data-toggle='modal' data-target='#editUserModel'
-      data-username=".$row["Username"]." data-email=".$row["Email"]."  data-fn=".$row["Firstname"]."  data-ln=".$row["Lastname"]." data-nation=".$row["Nation"]."
-      data-prefix=".$row["Prefix"]." data-tel=".$row["Tel"]." data-bd=".$row["Birthday"]." data-gpax=".$row["GPAX"]." data-religion=".$row["Religion"]." >
-
-      <i class='fas fa-pen'></i> แก้ไขข้อมูล</button>
       </div>
 
       <center>
