@@ -12,12 +12,43 @@ if ($result->num_rows > 0) {
       }else{
         $imgUrl_fix = 'fix_user_img.png';
       }
+      if($row["Nation"]!=null){
+        $nation = $row["Nation"];
+      }else{
+        $nation = '-';
+      }
+      if($row["Prefix"]!=null){
+        $prefix = $row["Prefix"];
+      }else{
+        $prefix = '-';
+      }
+      if($row["Tel"]!=null){
+        $tel = $row["Tel"];
+      }else{
+        $tel = '-';
+      }
+      if($row["Birthday"]!=null){
+        $bd = $row["Birthday"];
+      }else{
+        $bd = '';
+      }
+      if($row["GPAX"]!=null){
+        $gpax = $row["GPAX"];
+      }else{
+        $gpax = '-';
+      }
+      if($row["Religion"]!=null){
+        $religion = $row["Religion"];
+      }else{
+        $religion = '-';
+      }
+
       echo "
       <div class='text-right'>
       <button type='button' class='btn btn-primary'
       data-toggle='modal' data-target='#editUserModel'
-      data-username=".$row["Username"]." data-email=".$row["Email"]."  data-fn=".$row["Firstname"]."  data-ln=".$row["Lastname"]." data-nation=".$row["Nation"]."
-      data-prefix=".$row["Prefix"]." data-tel=".$row["Tel"]." data-bd=".$row["Birthday"]." data-gpax=".$row["GPAX"]." data-religion=".$row["Religion"]." >
+      data-usernamex=".$row["Username"]." data-emailx=".$row["Email"]."  data-fnx=".$row["Firstname"]."  data-lnx=".$row["Lastname"]." data-nationx=".$nation."  data-prefixx=".$prefix." data-telx=".$tel." data-bdx=".$bd."
+      data-gpaxx=".$gpax." data-religionx=".$religion.">
 
       <i class='fas fa-pen'></i> แก้ไขข้อมูล</button>
       </div>

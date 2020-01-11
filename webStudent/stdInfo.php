@@ -190,13 +190,13 @@ body{
 				<label class="form-check-label">ชื่อผู้ใช้:&nbsp;</label>
 			</div>
 			<div class="input-group mb-3">
-					<input type="text" class="form-control" placeholder="username" name="username" id="usernamex" readonly>
+					<input type="text" class="form-control" placeholder="username" name="username" id="username" readonly>
 			</div>
 			<div class="input-group mb-1">
         <label class="form-check-label">คำนำหน้า:&nbsp;</label>
       </div>
       <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="คำนำหน้า" name="prefix" id="prefixx">
+        <input type="text" class="form-control" placeholder="คำนำหน้า" name="prefix" id="prefix">
       </div>
       <div class="row">
         <div class="col">
@@ -209,12 +209,12 @@ body{
       <div class="row">
         <div class="col">
           <div class="input-group mb-3">
-    				<input type="text" class="form-control" placeholder="ชื่อ" name="firstname" id="firstnamex">
+    				<input type="text" class="form-control" placeholder="ชื่อ" name="firstname" id="firstname">
     			</div>
         </div>
         <div class="col">
           <div class="input-group mb-3">
-    				<input type="text" class="form-control" placeholder="นามสกุล" name="lastname" id="lastnamex">
+    				<input type="text" class="form-control" placeholder="นามสกุล" name="lastname" id="lastname">
     			</div>
         </div>
       </div>
@@ -222,13 +222,13 @@ body{
 				<label class="form-check-label">อีเมล:&nbsp;</label>
 			</div>
 			<div class="input-group mb-3">
-				<input type="email" class="form-control" placeholder="อีเมล" name="email" id="emailx">
+				<input type="email" class="form-control" placeholder="อีเมล" name="email" id="email">
 			</div>
 			<div class="input-group mb-1">
 				<label class="form-check-label">โทรศัพท์:&nbsp;</label>
 			</div>
 			<div class="input-group mb-3">
-				<input type="text" class="form-control" placeholder="โทรศัพท์" name="tel" id="telx">
+				<input type="text" class="form-control" placeholder="โทรศัพท์" name="tel" id="tel">
 			</div>
       <div class="form-group">
         <label for="exampleFormControlSelect1">สาขาวิชา:</label>
@@ -258,14 +258,14 @@ body{
         <label class="form-check-label">GPAX:&nbsp;</label>
       </div>
       <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="GPAX" name="gpax" id="gpaxx">
+        <input type="text" class="form-control" placeholder="GPAX" name="gpax" id="gpax">
       </div>
       <div class="dropdown-divider"></div>
       <div class="input-group mb-1">
         <label class="form-check-label">วันเกิด:&nbsp;</label>
       </div>
       <div class="input-group mb-3">
-        <input type="date" class="form-control" placeholder="วันเกิด" name="birthday" id="birthdayx">
+        <input type="date" class="form-control" placeholder="วันเกิด" name="birthday" id="birthday">
       </div>
 			<div class="row">
 				<div class="col">
@@ -278,12 +278,12 @@ body{
 			<div class="row">
 				<div class="col">
 					<div class="input-group mb-3">
-						<input type="text" class="form-control" placeholder="สัญชาติ" name="religion" id="religionx">
+						<input type="text" class="form-control" placeholder="สัญชาติ" name="religion" id="religion">
 					</div>
 				</div>
 				<div class="col">
 					<div class="input-group mb-3">
-						<input type="text" class="form-control" placeholder="เชื้อชาติ" name="nation" id="nationx">
+						<input type="text" class="form-control" placeholder="เชื้อชาติ" name="nation" id="nation">
 					</div>
 				</div>
 			</div>
@@ -672,66 +672,46 @@ $('#deleteskillsModel').on('show.bs.modal', function (event) {
 })
 $('#editUserModel').on('show.bs.modal', function (event) {
   var button = $(event.relatedTarget) // Button that triggered the modal
-	if(button.data('username')!=null){
-		var username = button.data('username')
-	}else{
-		var username = ''
+	if(button.data('usernamex')!=null){
+		var username = button.data('usernamex');
+		document.getElementById("username").value = username;
 	}
-	if(button.data('email')!=null){
-			var email = button.data('email')
-	}else{
-			var email = ''
+	if(button.data('emailx')!=null){
+			var email = button.data('emailx');
+			document.getElementById("email").value = email;
 	}
-	if(button.data('fn')!=null){
-			var firstname = button.data('fn')
-	}else{
-			var firstname = ''
+	if(button.data('fnx')!=null){
+			var firstname = button.data('fnx');
+			document.getElementById("firstname").value = firstname;
 	}
-	if(button.data('ln')!=null){
-			var lastname = button.data('ln')
-	}else{
-			var lastname = ''
+	if(button.data('lnx')!=null){
+			var lastname = button.data('lnx');
+			document.getElementById("lastname").value = lastname;
 	}
-	if(button.data('gpax')!=null){
-		var gpax = button.data('gpax')
-	}else{
-		var gpax = '1234'
+	if(button.data('gpaxx')!=null){
+		var gpax = button.data('gpaxx');
+		document.getElementById("gpax").value = gpax;
 	}
-	if(button.data('bd')!=null){
-		var birthday = button.data('bd')
-	}else{
-		var birthday = ''
+	if(button.data('bdx')!=null){
+		var birthday = button.data('bdx');
+		document.getElementById("birthday").value = birthday;
 	}
-	if(button.data('religion')!=null){
-		var religion = button.data('religion')
-	}else{
-		var religion = ''
+	if(button.data('religionx')!=null){
+		var religion = button.data('religionx');
+		document.getElementById("religion").value = religion;
 	}
-	if(button.data('nation')!=null){
-		var nation = button.data('nation')
-	}else{
-		var nation = ''
+	if(button.data('nationx')!=null){
+		var nation = button.data('nationx');
+		document.getElementById("nation").value = nation;
 	}
-	if(button.data('tel')!=''){
-		var tel = button.data('tel')
-	}else{
-		var tel = '4321'
+	if(button.data('telx')!=null){
+		var tel = button.data('telx');
+		document.getElementById("tel").value = tel;
 	}
-	if(button.data('prefix')!=null){
-		var prefix = button.data('prefix')
-	}else{
-		var prefix = ''
+	if(button.data('prefixx')!=null){
+		var prefix = button.data('prefixx');
+		document.getElementById("prefix").value = prefix;
 	}
-	document.getElementById("prefixx").value = prefix;
-	document.getElementById("emailx").value = email;
-	document.getElementById("usernamex").value = username;
-	document.getElementById("firstnamex").value = firstname;
-	document.getElementById("lastnamex").value = lastname;
-	document.getElementById("gpaxx").value = gpax;
-	document.getElementById("birthdayx").value = birthday;
-	document.getElementById("religionx").value = religion;
-	document.getElementById("nationx").value = nation;
-	document.getElementById("telx").value = tel;
 })
 </script>
 </body>

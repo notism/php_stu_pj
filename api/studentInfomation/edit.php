@@ -69,7 +69,7 @@
     $religion = mysqli_real_escape_string($db, $_POST['religion']);
     $nation = mysqli_real_escape_string($db, $_POST['nation']);
     $military = mysqli_real_escape_string($db, $_POST['military']);
-    $tel = mysqli_real_escape_string($db, $_POST['tel']);  
+    $tel = mysqli_real_escape_string($db, $_POST['tel']);
 
 		$myfile = $_FILES["fileToUpload"]["name"];
 
@@ -77,7 +77,11 @@
 		// register user if there are no errors in the form
 		if (count($errors) == 0) {
 			$passwordX = md5($password);//encrypt the password before saving in the database
-      $query = "UPDATE users SET Email='$email',Firstname='$firstname', Lastname='$lastname',imgUrl='$myfile',Prefix='$prefix' WHERE Username='$username'";
+			if($myfile!=''||$myfile!=null){
+				 $query = "UPDATE users SET Email='$email',Firstname='$firstname', Lastname='$lastname',imgUrl='$myfile',Prefix='$prefix' WHERE Username='$username'";
+			}else{
+				 $query = "UPDATE users SET Email='$email',Firstname='$firstname', Lastname='$lastname',Prefix='$prefix' WHERE Username='$username'";
+			}
       $query2 = "UPDATE profile SET Tel='$tel',Birthday='$birthday',Religion='$religion',Nation='$nation',Military='$military',Faculty='$faculty',Department='$school',Degree='$degree',GPAX='$gpax' WHERE CreatedBy='$username'";
       // $query = "UPDATE profile SET Tel='$tel',Birthday='$birthday',Religion='$religion',Nation='$nation',Military='$military',Faculty='$faculty',Department='$school',Degree='$degree',GPAX='$gpax', WHERE CreatedBy='$username'";
 
