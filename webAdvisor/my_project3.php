@@ -116,7 +116,7 @@
 	    </div>
 	    <div class="modal-body">
 	      <div class="input-group mb-1">
-	        <label class="form-check-label">หมายเลขโครงงาน:&nbsp;</label>
+	        <label class="form-check-label">กดยืนยันเพื่ออนุมัติโครงงาน&nbsp;</label>
 	      </div>
 	      <div class="input-group mb-3">
 	          <input type="text" class="form-control" placeholder="หมายเลขโครงงาน" name="projectId3" id="projectId3" readonly>
@@ -124,7 +124,7 @@
 	    </div>
 	    <div class="modal-footer">
 	      <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-	      <button type="submit" name="update_status3" id="submit" value="Submit" class="btn btn-success">อนุมัติ</button>
+	      <button type="submit" name="update_status3" id="submit" value="Submit" class="btn btn-success">ยืนยัน</button>
 	    </div>
 	  </div>
 	</div>

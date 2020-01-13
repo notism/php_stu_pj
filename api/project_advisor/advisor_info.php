@@ -1,8 +1,9 @@
 <?php
 
 include('../config/connect.php');
-$student = $_SESSION['userlogin']['Id'];
-$sql = "SELECT * FROM users INNER JOIN profile ON users.Username=profile.CreatedBy WHERE users.Id='$student'";
+$advisor = $_SESSION['userlogin']['Id'];
+$sql = "SELECT * FROM profile LEFT JOIN users ON users.Username=profile.CreatedBy LEFT JOIN fuaculty ON fuaculty.fac_id=profile.Faculty
+          LEFT JOIN department ON department.dep_id=profile.Department  WHERE users.Id='$advisor'";
 $result = $db->query($sql);
 
 if ($result->num_rows > 0) {
@@ -12,12 +13,22 @@ if ($result->num_rows > 0) {
         }else{
           $imgUrl_fix = 'fix_user_img.png';
         }
+        if($row["Prefix"]!=null){
+          $prefix = $row["Prefix"];
+        }else{
+          $prefix = '-';
+        }
+        if($row["Tel"]!=null){
+          $tel = $row["Tel"];
+        }else{
+          $tel = '-';
+        }
         echo "
         <div class='text-right'>
         <button type='button' class='btn btn-primary'
         data-toggle='modal' data-target='#editUserModel'
         data-username=".$row["Username"]." data-email=".$row["Email"]."  data-fn=".$row["Firstname"]."  data-ln=".$row["Lastname"]."
-        data-prefix=".$row["Prefix"]." data-tel=".$row["Tel"].">
+        data-prefix=".$prefix." data-tel=".$tel.">
 
         <i class='fas fa-pen'></i> แก้ไขข้อมูล</button>
         </div>
@@ -31,17 +42,17 @@ if ($result->num_rows > 0) {
         <br/>
         <div class='row'>
           <div class='col'>
-          <h5>".$row["Prefix"]." ".$row["Firstname"]." ".$row["Lastname"]."</h5>
+          <h5>".$prefix." ".$row["Firstname"]." ".$row["Lastname"]."</h5>
           </div>
         </div>
         <div class='row'>
           <div class='col'>
-          <h6>Email: ".$row["Email"]." | โทร. ".$row["Tel"]."</h6>
+          <h6>Email: ".$row["Email"]." | โทร. ".$tel."</h6>
           </div>
         </div>
         <div class='row'>
           <div class='col'>
-          <small class='form-text text-muted'>สาขา ".$row["Department"]." สำนัก ".$row["Faculty"]."</small>
+          <small class='form-text text-muted'>สาขา ".$row["dep_name"]." สำนัก ".$row["fac_name"]."</small>
           </div>
         </div>
 

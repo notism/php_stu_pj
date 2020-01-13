@@ -21,7 +21,7 @@
 </head>
 <body>
 
-	<nav class="navbar navbar-expand-lg navbar-dark bg-primary" style="width: 100%;">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 	  <a class="navbar-brand" href="index.php">WEB-ADMIN</a>
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 	    <span class="navbar-toggler-icon"></span>
@@ -38,10 +38,10 @@
 				<li class="nav-item active">
 				 <a class="nav-link" href="pj_history.php">ประวัติการอนุมัติโครงงาน</a>
 			 </li>
-       <li class="nav-item">
+       <!-- <li class="nav-item">
         <a class="nav-link" href="projectManagement.php">หน้าจัดการโครงงาน</a>
-      </li>
-	
+      </li> -->
+
 	    </ul>
 			<span class="navbar-text" style="font-size: 14px">
 		 		สวัสดี,คุณ <?php echo $_SESSION['userlogin']["Username"] ?>&nbsp;

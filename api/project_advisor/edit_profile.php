@@ -14,7 +14,7 @@
 	// ADD USER
 	if (isset($_POST['edit_user'])) {
 
-    $target_dir = "../../img_user/";
+  $target_dir = "../../img_user/";
   $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
   $uploadOk = 1;
   $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
@@ -75,11 +75,26 @@
 		// register user if there are no errors in the form
 		if (count($errors) == 0) {
 			$passwordX = md5($password);//encrypt the password before saving in the database
-      $query = "UPDATE users SET Email='$email',Password='$passwordX',Prefix='$prefix',Firstname='$firstname',Lastname='$lastname',ImgUrl='$myfile' WHERE Username='$username'";
-			mysqli_query($db, $query);
 
-      $query2 = "UPDATE profile SET Tel='$tel',Department='$department',Faculty='$faculty' WHERE CreatedBy='$username'";
+			if($faculty==null && $department==null ){
+					$query2 = "UPDATE profile SET Tel='$tel' WHERE CreatedBy='$username'";
+			}elseif ($faculty==null && $department!=null ) {
+					$query2 = "UPDATE profile SET Tel='$tel',Department='$department' WHERE CreatedBy='$username'";
+			}elseif ($faculty!=null && $department==null) {
+					$query2 = "UPDATE profile SET Tel='$tel',Faculty='$faculty' WHERE CreatedBy='$username'";
+			}else{
+					$query2 = "UPDATE profile SET Tel='$tel',Faculty='$faculty',Department='$department' WHERE CreatedBy='$username'";
+			}
+      // $query2 = "UPDATE profile SET Tel='$tel',Department='$department',Faculty='$faculty' WHERE CreatedBy='$username'";
       mysqli_query($db, $query2);
+
+			if($myfile!=''||$myfile!=null){
+				 $query = "UPDATE users SET Email='$email',Password='$passwordX',Firstname='$firstname', Lastname='$lastname',imgUrl='$myfile',Prefix='$prefix' WHERE Username='$username'";
+			}else{
+				 $query = "UPDATE users SET Email='$email',Password='$passwordX',Firstname='$firstname', Lastname='$lastname',Prefix='$prefix' WHERE Username='$username'";
+			}
+
+			mysqli_query($db, $query);
 
 			$_SESSION['success'] = "success";
 			header('location: ../../webAdvisor/profileManagement.php');

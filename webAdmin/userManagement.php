@@ -21,7 +21,7 @@
 </head>
 <body>
 
-	<nav class="navbar navbar-expand-lg navbar-dark bg-primary" style="width: 100%;">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 	  <a class="navbar-brand" href="index.php">WEB-ADMIN</a>
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 	    <span class="navbar-toggler-icon"></span>
@@ -38,10 +38,10 @@
 				<li class="nav-item ">
 				 <a class="nav-link" href="pj_history.php">ประวัติการอนุมัติโครงงาน</a>
 			 </li>
-				<li class="nav-item">
+				<!-- <li class="nav-item">
 				 <a class="nav-link" href="projectManagement.php">หน้าจัดการโครงงาน</a>
-			 </li>
-		
+			 </li> -->
+
 	    </ul>
 			<span class="navbar-text" style="font-size: 14px">
 		 		สวัสดี,คุณ <?php echo $_SESSION['userlogin']["Username"] ?>&nbsp;
@@ -128,7 +128,7 @@
 				<div align="center">
 				<div class="form-check form-check-inline">
 					<input class="form-check-input" type="radio" name="role" id="role" value="admin">
-					<label class="form-check-label" for="role">แอดมิน</label>
+					<label class="form-check-label" for="role">ผู้ดูแลระบบ</label>
 				</div>
 				<div class="form-check form-check-inline">
 					<input class="form-check-input" type="radio" name="role" id="role" value="student">
@@ -137,10 +137,6 @@
 				<div class="form-check form-check-inline">
 					<input class="form-check-input" type="radio" name="role" id="role" value="advisor">
 					<label class="form-check-label" for="role">คณะอาจาย์</label>
-				</div>
-				<div class="form-check form-check-inline">
-					<input class="form-check-input" type="radio" name="role" id="role" value="personal">
-					<label class="form-check-label" for="role">บุคคลทั่วไป</label>
 				</div>
 			</div>
       </div>
@@ -165,12 +161,9 @@
 			</button>
 		</div>
 		<div class="modal-body">
-			<div class="input-group mb-1">
-				<label class="form-check-label">หมายเลขผู้ใช้งาน:&nbsp;</label>
-			</div>
-			<div class="input-group mb-3">
-					<input type="text" class="form-control" placeholder="userId" name="userId" id="userId" readonly>
-			</div>
+
+					<input type="hidden" class="form-control" placeholder="userId" name="userId" id="userId" readonly>
+
 			<div class="input-group mb-1">
 				<label class="form-check-label">ชื่อผู้ใช้:&nbsp;</label>
 			</div>
@@ -195,7 +188,7 @@
 			<div align="center">
 			<div class="form-check form-check-inline">
 				<input class="form-check-input" type="radio" name="role" id="role2" value="admin">
-				<label class="form-check-label" for="role">แอดมิน</label>
+				<label class="form-check-label" for="role">ผู้ดูแลระบบ</label>
 			</div>
 			<div class="form-check form-check-inline">
 				<input class="form-check-input" type="radio" name="role" id="role2" value="student">
@@ -203,11 +196,7 @@
 			</div>
 			<div class="form-check form-check-inline">
 				<input class="form-check-input" type="radio" name="role" id="role2" value="advisor">
-				<label class="form-check-label" for="role">คณะอาจาย์</label>
-			</div>
-			<div class="form-check form-check-inline">
-				<input class="form-check-input" type="radio" name="role" id="role2" value="personal">
-				<label class="form-check-label" for="role">บุคคลทั่วไป</label>
+				<label class="form-check-label" for="role">อาจารย์</label>
 			</div>
 		</div>
 		</div>
@@ -233,11 +222,11 @@
 		</div>
 		<div class="modal-body">
 			<div class="input-group mb-1">
-				<label class="form-check-label">หมายเลขผู้ใช้งาน:&nbsp;</label>
+				<label class="form-check-label">กดยืนยันเพื่อลบข้อมูลผู้ใช้งาน&nbsp;</label>
 			</div>
-			<div class="input-group mb-3">
-					<input type="text" class="form-control" placeholder="userId" name="userId" id="userId2" readonly>
-			</div>
+
+					<input type="hidden" class="form-control" placeholder="userId" name="userId" id="userId2" readonly>
+
 		</div>
 		<div class="modal-footer">
 			<button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>

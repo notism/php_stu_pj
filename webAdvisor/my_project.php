@@ -116,10 +116,10 @@
   		</div>
   		<div class="modal-body">
   			<div class="input-group mb-1">
-  				<label class="form-check-label">หมายเลขโครงงาน:&nbsp;</label>
+  				<label class="form-check-label">เลือกสถานะที่คุณต้องการอัพเดต&nbsp;</label>
   			</div>
   			<div class="input-group mb-3">
-  					<input type="text" class="form-control" placeholder="หมายเลขโครงงาน" name="projectId" id="projectId" readonly>
+  					<input type="hidden" class="form-control" placeholder="หมายเลขโครงงาน" name="projectId" id="projectId" readonly>
   			</div>
         <div class="input-group mb-1">
           <label class="form-check-label">สถานะ:&nbsp;</label>

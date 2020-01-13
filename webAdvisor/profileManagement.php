@@ -18,6 +18,8 @@
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 	<link rel="stylesheet" type="text/css" href="../css/datatables.css"/>
+	<link rel="stylesheet" href="../css/bootstrap-selecta.css">
+	<script src="../js/bootstrap-select.js"></script>
 </head>
 <body>
 
@@ -112,29 +114,53 @@
         <div class="input-group mb-3">
           <input type="text" class="form-control" placeholder="นามสกุล" name="lastname" id="lastname2" >
         </div>
+				<div class="input-group mb-1">
+					<label class="form-check-label">โทร:&nbsp;</label>
+				</div>
+				<div class="input-group mb-3">
+					<input type="tel" class="form-control" placeholder="โทรศัพท์" name="tel" id="tel2"  pattern="[0-9]{10}">
+				</div>
         <div class="form-group">
           <label for="exampleFormControlSelect1">สำนักวิชา:</label>
           <div class="input-group mb-3">
-          <select class="form-control" name="faculty" id="exampleFormControlSelect1" required>
-            <option id="faculty">-สำนักวิชา-</option>
-            <option id="faculty" value="เทคโนโลยีสังคม">เทคโนโลยีสังคม</option>
+          <select class="selectpicker" size="5" name="faculty" id="exampleFormControlSelect1"  data-live-search="true" title="โปรดเลือกสำนักวิชา" required>
+						<?php
+						include('../config/connect.php');
+						$sql = "SELECT * FROM fuaculty" ;
+						$result = $db->query($sql);
+						if ($result->num_rows > 0) {
+							while($row = $result->fetch_assoc()) {
+						    echo '<option value="'.$row["fac_id"].'">'.$row["fac_name"].'</option>';
+							}
+						} else {
+						    echo '<option value="-">ไม่พบข้อมูล</option>';
+						}
+						$db->close();
+						?>
           </select>
           </div>
         </div>
         <div class="form-group">
           <label for="exampleFormControlSelect1">สาขาวิชา:</label>
           <div class="input-group mb-3">
-          <select class="form-control" name="department" id="exampleFormControlSelect1" required>
-  					<option id="department">-สาขาวิชา-</option>
-            <option id="department" value="เทคโนโลยีสารสนเทศ">เทคโนโลยีสารสนเทศ</option>
+          <select class="selectpicker" size="5" name="department" id="exampleFormControlSelect1" data-live-search="true" title="โปรดเลือกสาขาวิชา" required>
+						<?php
+						include('../config/connect.php');
+						$sql = "SELECT * FROM department" ;
+						$result = $db->query($sql);
+						if ($result->num_rows > 0) {
+							while($row = $result->fetch_assoc()) {
+								echo '<option value="'.$row["dep_id"].'">'.$row["dep_name"].'</option>';
+							}
+						} else {
+							while($row = $result->fetch_assoc()) {
+								echo '<option value="-">ไม่พบข้อมูล</option>';
+							}
+						}
+						$db->close();
+						?>
           </select>
           </div>
-        </div>
-        <div class="input-group mb-1">
-          <label class="form-check-label">โทร:&nbsp;</label>
-        </div>
-        <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="โทร." name="tel" id="tel2" >
         </div>
   			<div class="input-group mb-1">
   				<label class="form-check-label">รหัสผ่าน:&nbsp;</label>
