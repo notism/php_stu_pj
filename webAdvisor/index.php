@@ -21,7 +21,7 @@
 </head>
 <body>
 
-	<nav class="navbar navbar-expand-lg navbar-dark bg-primary" style="width: 100%;">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 	  <a class="navbar-brand" href="index.php">WEB-ADVISOR</a>
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 	    <span class="navbar-toggler-icon"></span>
@@ -42,11 +42,11 @@
 				<a class="nav-link" href="profileManagement.php">หน้าจัดการข้อมูลส่วนตัว</a>
 			</li>
 	    </ul>
+			<span class="navbar-text" style="font-size: 14px;color:white">
+				สวัสดี,คุณ <?php echo $_SESSION['userlogin']["Username"]; ?>&nbsp;
+			 </span>
 			<span class="navbar-text" style="font-size: 14px">
-		 		สวัสดี,คุณ <?php echo $_SESSION['userlogin']["Username"] ?>&nbsp;
-	 		</span>
-			<span class="navbar-text" style="font-size: 14px">
-				<a href="../logout.php" ><i class="fas fa-sign-out-alt" style="color:white"></i></a>
+				<a href="../logout.php" ><i class="fas fa-sign-out-alt fa-lg" style="color:white"></i></a>
 			</span>
 	</nav>
 </div>

@@ -26,7 +26,7 @@ if ($result->num_rows > 0) {
         <td align='left'>".date("d-m-Y", strtotime($row["CreatedDate"]))."</td>
         <td align='left'><a href='../api/project_advisor/pdf_download.php?file=".$row["File"]."'>Download</a></td>
         <td>
-        <button type='button' class='btn btn-success btn-block' data-toggle='modal' data-target='#acceptModel' data-id=".$row["Id"]." data-name=".$row["ProjectName"].">".$row["Status"]."</button>
+        <button type='button' class='btn btn-success btn-block'>".$row["Status"]."</button>
         </td>
         </tr>";
       }else{
@@ -37,7 +37,7 @@ if ($result->num_rows > 0) {
         <td align='left'>".date("d-m-Y", strtotime($row["CreatedDate"]))."</td>
         <td align='left'>ไม่พบไฟล์</td>
         <td>
-        <button type='button' class='btn btn-success btn-block' data-toggle='modal' data-target='#acceptModel' data-id=".$row["Id"]." data-name=".$row["ProjectName"].">".$row["Status"]."</button>
+        <button type='button' class='btn btn-success btn-block'>".$row["Status"]."</button>
         </td>
         </tr>";
       }

@@ -77,20 +77,29 @@
 		// register user if there are no errors in the form
 		if (count($errors) == 0) {
 			$passwordX = md5($password);//encrypt the password before saving in the database
+
+			if($faculty==null && $school==null ){
+				  $query2 = "UPDATE profile SET Tel='$tel',Birthday='$birthday',Religion='$religion',Nation='$nation',Military='$military',Degree='$degree',GPAX='$gpax' WHERE CreatedBy='$username'";
+			}elseif ($faculty==null && $school!=null ) {
+				  $query2 = "UPDATE profile SET Tel='$tel',Birthday='$birthday',Religion='$religion',Nation='$nation',Military='$military',Department='$school',Degree='$degree',GPAX='$gpax' WHERE CreatedBy='$username'";
+			}elseif ($faculty!=null && $school==null) {
+				  $query2 = "UPDATE profile SET Tel='$tel',Birthday='$birthday',Religion='$religion',Nation='$nation',Military='$military',Faculty='$faculty',Degree='$degree',GPAX='$gpax' WHERE CreatedBy='$username'";
+			}else{
+				  $query2 = "UPDATE profile SET Tel='$tel',Birthday='$birthday',Religion='$religion',Nation='$nation',Military='$military',Faculty='$faculty',Department='$school',Degree='$degree',GPAX='$gpax' WHERE CreatedBy='$username'";
+			}
+
 			if($myfile!=''||$myfile!=null){
 				 $query = "UPDATE users SET Email='$email',Firstname='$firstname', Lastname='$lastname',imgUrl='$myfile',Prefix='$prefix' WHERE Username='$username'";
 			}else{
 				 $query = "UPDATE users SET Email='$email',Firstname='$firstname', Lastname='$lastname',Prefix='$prefix' WHERE Username='$username'";
 			}
-      $query2 = "UPDATE profile SET Tel='$tel',Birthday='$birthday',Religion='$religion',Nation='$nation',Military='$military',Faculty='$faculty',Department='$school',Degree='$degree',GPAX='$gpax' WHERE CreatedBy='$username'";
+
       // $query = "UPDATE profile SET Tel='$tel',Birthday='$birthday',Religion='$religion',Nation='$nation',Military='$military',Faculty='$faculty',Department='$school',Degree='$degree',GPAX='$gpax', WHERE CreatedBy='$username'";
 
       mysqli_query($db, $query);
-      mysqli_query($db, $query2);
-			$_SESSION['success'] = "success";
+      mysqli_query($db, $query2);		
 			header('location: ../../webStudent/stdInfo.php');
 		}else{
-      $_SESSION['success'] = "fail";
       header('location: ../../webStudent/stdInfo1.php');
     }
 

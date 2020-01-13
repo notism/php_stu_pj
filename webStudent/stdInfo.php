@@ -17,6 +17,8 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 	<link rel="stylesheet" type="text/css" href="../css/datatables.css"/>
 	<link rel="stylesheet" href="../nice/css/mdb.min.css">
+	<link rel="stylesheet" href="../css/bootstrap-selecta.css">
+	<script src="../js/bootstrap-select.js"></script>
 </head>
 <style>
 body{
@@ -87,7 +89,7 @@ body{
 					<div class="card-body">
 						<h3 class="card-title">ข้อมูลส่วนตัว</h3>
 						<div class="dropdown-divider"></div>
-						<!-- Alert -->
+						<!-- Alert -->				
 						<div class="hide" id="add_alert" role="alert">
 							<div id="messages_content"></div>
 						</div>
@@ -228,30 +230,56 @@ body{
 				<label class="form-check-label">โทรศัพท์:&nbsp;</label>
 			</div>
 			<div class="input-group mb-3">
-				<input type="text" class="form-control" placeholder="โทรศัพท์" name="tel" id="tel">
+				<input type="tel" class="form-control" placeholder="โทรศัพท์" name="tel" id="tel"  pattern="[0-9]{10}">
+			</div>
+			<div class="form-group">
+				<label for="exampleFormControlSelect1">สำนักวิชา:</label>
+				<div class="input-group mb-3">
+				<select class="selectpicker" size="5" name="faculty" id="exampleFormControlSelect1"  data-live-search="true" title="โปรดเลือกสำนักวิชา" required>
+					<?php
+					include('../config/connect.php');
+					$sql = "SELECT * FROM fuaculty" ;
+					$result = $db->query($sql);
+					if ($result->num_rows > 0) {
+						while($row = $result->fetch_assoc()) {
+					    echo '<option value="'.$row["fac_id"].'">'.$row["fac_name"].'</option>';
+						}
+					} else {
+					    echo '<option value="-">ไม่พบข้อมูล</option>';
+					}
+					$db->close();
+					?>
+				</select>
+				</div>
 			</div>
       <div class="form-group">
         <label for="exampleFormControlSelect1">สาขาวิชา:</label>
         <div class="input-group mb-3">
-        <select class="form-control" name="school" id="exampleFormControlSelect1" required>
-          <option id="school" value="เทคโนโลยีสารสนเทศ">เทคโนโลยีสารสนเทศ</option>
-        </select>
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="exampleFormControlSelect1">สำนักวิชา:</label>
-        <div class="input-group mb-3">
-        <select class="form-control" name="faculty" id="exampleFormControlSelect1" required>
-          <option id="faculty" value="เทคโนโลยีสังคม">เทคโนโลยีสังคม</option>
-        </select>
+					<?php
+					include('../config/connect.php');
+					$sql = "SELECT * FROM department" ;
+					$result = $db->query($sql);
+					if ($result->num_rows > 0) {
+						echo '<select class="selectpicker" size="5" name="school" id="exampleFormControlSelect1" data-live-search="true" title="โปรดเลือกสาขาวิชา" required>';
+						while($row = $result->fetch_assoc()) {
+							echo '<option value="'.$row["dep_id"].'">'.$row["dep_name"].'</option>';
+						}
+						echo '</select>';
+					} else {
+						echo '<select class="selectpicker" size="5" name="school" id="exampleFormControlSelect1" data-live-search="true" title="โปรดเลือกสาขาวิชา" required>';
+						while($row = $result->fetch_assoc()) {
+							echo '<option value="-">ไม่พบข้อมูล</option>';
+						}
+						echo '</select>';
+					}
+					$db->close();
+					?>
         </div>
       </div>
       <div class="form-group">
         <label for="exampleFormControlSelect1">ชื่อปริญญา:</label>
         <div class="input-group mb-3">
-        <select class="form-control" name="degree"  id="exampleFormControlSelect1" required>
-          <option id="degree" value="วิทยาการสารสนเทศบัณฑิต">วิทยาการสารสนเทศบัณฑิต</option>
-        </select>
+        	<input type="text" class="form-control" placeholder="ชื่อปริญญา" name="degree" id="degree">
         </div>
       </div>
       <div class="input-group mb-1">
@@ -711,6 +739,10 @@ $('#editUserModel').on('show.bs.modal', function (event) {
 	if(button.data('prefixx')!=null){
 		var prefix = button.data('prefixx');
 		document.getElementById("prefix").value = prefix;
+	}
+	if(button.data('degree')!=null){
+		var degree = button.data('degree');
+		document.getElementById("degree").value = degree;
 	}
 })
 </script>
