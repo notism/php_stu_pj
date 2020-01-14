@@ -38,6 +38,9 @@
 				<li class="nav-item ">
 				 <a class="nav-link" href="pj_history.php">ประวัติการอนุมัติโครงงาน</a>
 			 </li>
+			 <li class="nav-item active">
+				<a class="nav-link" href="feedback_topic.php">การแจ้งปัญหาและข้อเสนอแนะ</a>
+			</li>
 				<!-- <li class="nav-item active">
 				 <a class="nav-link" href="projectManagement.php">หน้าจัดการโครงงาน</a>
 			 </li> -->

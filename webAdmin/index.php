@@ -37,6 +37,9 @@
 				<li class="nav-item ">
 				 <a class="nav-link" href="pj_history.php">ประวัติการอนุมัติโครงงาน</a>
 			 </li>
+			 <li class="nav-item">
+				<a class="nav-link" href="feedback_topic.php">การแจ้งปัญหาและข้อเสนอแนะ</a>
+			</li>
 				<!-- <li class="nav-item">
 				 <a class="nav-link" href="projectManagement.php">หน้าจัดการโครงงาน</a>
 			 </li> -->
@@ -150,17 +153,6 @@
 				<div class="col">
 					<div class="card text-center mb-3">
 						<div class="card-body">
-						<h6 class="card-title">ยอดการเข้าชมโครงงาน (แบ่งตามประเภทโครงงาน)</h6>
-						<div class="dropdown-divider"></div>
-							<div id="AmountWatch" style="height: 350px; width: 100%;"></div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col">
-					<div class="card text-center mb-3">
-						<div class="card-body">
 						<h6 class="card-title">ยอดการอัพโหลดโครงงานประจำปี <script>document.write(new Date().getFullYear())</script></h6>
 						<div class="dropdown-divider"></div>
 							<div id="uploadChart" style="height: 350px; width: 100%;"></div>
@@ -172,11 +164,13 @@
 
 
 
+
 			<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
   		</div>
 		</div>
 	</div>
+
 </main><br/>
 </body>
 
@@ -236,22 +230,7 @@ var ProjectChart = new CanvasJS.Chart("ProjectChart", {
 });
 ProjectChart.render();
 
-<?php include('../api/dashboard/count_type_pj_chart.php'); ?>
-var AmountWatch = new CanvasJS.Chart("AmountWatch", {
-	animationEnabled: true,
-	theme: "light1", // "light1", "light2", "dark1", "dark2"
-	// title:{
-	// 	text: "Simple Column Chart with Index Labels"
-	// },
-	data: [{
-		type: "column", //change type to bar, line, area, pie, etc
-		//indexLabel: "{y}", //Shows y value on all Data Points
-		indexLabelFontColor: "#5A5757",
-		indexLabelPlacement: "outside",
-		dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
-	}]
-});
-AmountWatch.render();
+
 
 <?php include('../api/dashboard/sum_upload_pj_thisyear.php'); ?>
 var uploadChart = new CanvasJS.Chart("uploadChart", {

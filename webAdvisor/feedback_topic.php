@@ -35,13 +35,13 @@
 	      <li class="nav-item ">
 	        <a class="nav-link" href="all_project.php">โครงงานทั้งหมด</a>
 	      </li>
-				<li class="nav-item active">
+				<li class="nav-item ">
 				 <a class="nav-link" href="my_project.php">หน้าจัดการคำขอแสดงโครงงาน</a>
 			 </li>
 			 <li class="nav-item">
 				<a class="nav-link" href="profileManagement.php">หน้าจัดการข้อมูลส่วนตัว</a>
 			</li>
-			<li class="nav-item">
+			<li class="nav-item active">
 			 <a class="nav-link" href="feedback_topic.php">ปัญหาและข้อเสนอแนะ</a>
 		 </li>
 	    </ul>
@@ -60,48 +60,56 @@
   		  <div class="col-sm-12">
   				<div class="card"  style="width: 100%;">
   					<div class="card-body">
-  						<h3 class="card-title">หน้าจัดการคำร้อง</h3>
-  						<div class="dropdown-divider"></div>
-              <ul class="nav nav-tabs nav-fill">
-                <li class="nav-item ">
-              <a class="nav-link " href="my_project.php">รอดำเนินการ</a>
-                </li>
-              <li class="nav-item">
-                <a class="nav-link" href="my_project2.php">อนุมัติแล้ว</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="my_project3.php">ไม่อนุมัติ</a>
-              </li>
-            </ul>
-            <br/>
-  						<!-- Alert -->
-  						<div class="hide" id="add_alert" role="alert">
-  							<div id="messages_content"></div>
-  						</div>
-  						<!-- End Alert -->
-  						<div class="table-responsive">
-  							<table class="table table-hover" id="example">
-  								<thead>
-  									<tr>
-											<th scope="col" align="left">Id</th>
-  										<th scope="col" align="left" width="25%">ชื่อโครงงาน</th>
-  										<th scope="col" align="left" width="38%">คำอธิบายโครงงาน</th>
-  										<th scope="col" align="left" width="15%">วันที่อัพโหลด</th>
-                      <th scope="col" align="left" width="10%">ไฟล์</th>
-                      <th scope="col" align="left" width="17%">คำร้อง</th>
-  									</tr>
-  								</thead>
-  								<tbody>
-  								<?php include('../api/project_advisor/request_table_unaccept.php'); ?>
-  								</tbody>
-  							</table>
-  						</div>
+  						<h3 class="card-title">ปัญหาหรือข้อเสนอแนะ</h3>
+              <div class="table-responsive">
+                <table class="table table-hover" id="example">
+                  <thead>
+                    <tr>
+                      <th scope="col" align="left">Id</th>
+                      <th scope="col" align="left" width="25%">หัวข้อ</th>
+                      <th scope="col" align="left" width="38%">รายละเอียด</th>
+                      <th scope="col" align="left" width="15%">วันที่แจ้ง</th>
+                      <th scope="col" align="left" width="10%">สถานะ</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php
+                    include('../config/connect.php');
+                    $advisor=$_SESSION['userlogin']['Id'];
+                    $sql = "SELECT * FROM feedback_topic WHERE fb_createdBy='$advisor'" ;
+                    $result = $db->query($sql);
+                    if ($result->num_rows > 0) {
+                      while($row = $result->fetch_assoc()) {
+                        if($row["fb_status"]=='กำลังตรวจสอบ'){
+                          $classType = 'warning';
+                        }else if($row["fb_status"]=='ดำเนินการแล้ว'){
+                          $classType = 'success';
+                        }else{
+                          $classType = 'danger';
+                        }
+                        echo "<tr>
+                        <td align='left'>".$row["fb_id"]."</td>
+                        <td align='left'><a href='feedback_topicByid.php?fb_id=".$row["fb_id"]."&fb_topic=".$row["fb_topic"]."'>".$row["fb_topic"]."</a></td>
+                        <td align='left'>".$row["fb_detail"]."</td>
+                        <td align='left'>".date("d-m-Y", strtotime($row["fb_createdDate"]))."</td>
+                        <td align='left'><span style='width: 80px;' class='badge badge-pill badge-".$classType."'>".$row["fb_status"]."</span></td>
+                        </tr>";
+                      }
+                    } else {
+                        echo '<option value="-">ไม่พบข้อมูล</option>';
+                    }
+                    $db->close();
+                    ?>
+                  </tbody>
+                </table>
+              </div>
 
-  					</div>
-  				</div>
+          	</div>
+  				 </div>
   				<br/>
   			</div>
   		</div>
+
 
   	</div>
   </main>
@@ -142,43 +150,9 @@
 	</form>
 	</div>
 
-	<!-- Modal Unaccept -->
-	<div class="modal fade" id="unacceptModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
-	<form enctype="multipart/form-data" action="../api/project_advisor/up_status_un.php" method="post">
-	<div class="modal-dialog modal-dialog-scrollable" role="document">
-	  <div class="modal-content">
-	    <div class="modal-header">
-	      <h5 class="modal-title"><div id="un_msg"></h5>
-	      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-	        <span aria-hidden="true">&times;</span>
-	      </button>
-	    </div>
-	    <div class="modal-body">
-	      <div class="input-group mb-1">
-	        <label class="form-check-label">กดยืนยันเพื่ออนุมัติโครงงาน&nbsp;</label>
-	      </div>
-	      <div class="input-group mb-3">
-	          <input type="text" class="form-control" placeholder="หมายเลขโครงงาน" name="projectId3" id="projectId3" readonly>
-	      </div>
-	    </div>
-	    <div class="modal-footer">
-	      <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-	      <button type="submit" name="update_status3" id="submit" value="Submit" class="btn btn-success">ยืนยัน</button>
-	    </div>
-	  </div>
-	</div>
-	</form>
-	</div>
 
   <script type="text/javascript" src="../js/datatables.min.js"></script>
   <script>
-	$('#unacceptModel').on('show.bs.modal', function (event) {
-	  var button = $(event.relatedTarget) // Button that triggered the modal
-	  var id = button.data('id')
-		var name = button.data('name')
-		document.getElementById("projectId3").value = id;
-	   $('#un_msg').html('<label>อัพเดตสถานะ : ' + name + '</label>');
-	})
   $(document).ready(function() {
       $('#example').DataTable({
           // "pageLength": 3,
@@ -195,7 +169,7 @@
           "scrollCollapse": true,
   				"language": {
   					 "lengthMenu": "จำนวนแถว _MENU_",
-  					 "zeroRecords": "<h5><span class='badge badge-pill badge-danger'>ไม่พบโครงงานที่ไม่อนุมัติ</span></h5>",
+  					 "zeroRecords": "ไม่พบข้อมูล",
   					 "info": "แสดงหน้า _PAGE_ จากทั้งหมด _PAGES_ หน้า",
   					 "infoEmpty": "ไม่มีข้อมูล",
   					 "infoFiltered": "(ค้นหาจากทั้งหมด _MAX_ ข้อมูล)",

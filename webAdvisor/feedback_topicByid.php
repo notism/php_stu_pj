@@ -7,6 +7,13 @@
 	if($_SESSION['userlogin']["Role"]!='advisor'){
 		header("Location: ../login.php");
 	}
+  if(isset($_GET["fb_id"]))
+  {
+    $get_fb_id = $_GET["fb_id"];
+    $get_fb_topic = $_GET['fb_topic'];
+  }else{
+    header("Location: feedback_topic.php");
+  }
 ?>
 <!DOCTYPE html>
 <html>
@@ -35,15 +42,15 @@
 	      <li class="nav-item ">
 	        <a class="nav-link" href="all_project.php">โครงงานทั้งหมด</a>
 	      </li>
-				<li class="nav-item active">
+				<li class="nav-item ">
 				 <a class="nav-link" href="my_project.php">หน้าจัดการคำขอแสดงโครงงาน</a>
 			 </li>
 			 <li class="nav-item">
 				<a class="nav-link" href="profileManagement.php">หน้าจัดการข้อมูลส่วนตัว</a>
 			</li>
-			<li class="nav-item">
-			 <a class="nav-link" href="feedback_topic.php">ปัญหาและข้อเสนอแนะ</a>
-		 </li>
+      <li class="nav-item active">
+       <a class="nav-link" href="feedback_topic.php">ปัญหาและข้อเสนอแนะ</a>
+     </li>
 	    </ul>
 			<span class="navbar-text" style="font-size: 14px;color:white">
 	    	สวัสดี,คุณ <?php echo $_SESSION['userlogin']["Username"]; ?>&nbsp;
@@ -60,48 +67,55 @@
   		  <div class="col-sm-12">
   				<div class="card"  style="width: 100%;">
   					<div class="card-body">
-  						<h3 class="card-title">หน้าจัดการคำร้อง</h3>
-  						<div class="dropdown-divider"></div>
-              <ul class="nav nav-tabs nav-fill">
-                <li class="nav-item ">
-              <a class="nav-link " href="my_project.php">รอดำเนินการ</a>
-                </li>
-              <li class="nav-item">
-                <a class="nav-link" href="my_project2.php">อนุมัติแล้ว</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="my_project3.php">ไม่อนุมัติ</a>
-              </li>
-            </ul>
-            <br/>
-  						<!-- Alert -->
-  						<div class="hide" id="add_alert" role="alert">
-  							<div id="messages_content"></div>
-  						</div>
-  						<!-- End Alert -->
-  						<div class="table-responsive">
-  							<table class="table table-hover" id="example">
-  								<thead>
-  									<tr>
-											<th scope="col" align="left">Id</th>
-  										<th scope="col" align="left" width="25%">ชื่อโครงงาน</th>
-  										<th scope="col" align="left" width="38%">คำอธิบายโครงงาน</th>
-  										<th scope="col" align="left" width="15%">วันที่อัพโหลด</th>
-                      <th scope="col" align="left" width="10%">ไฟล์</th>
-                      <th scope="col" align="left" width="17%">คำร้อง</th>
-  									</tr>
-  								</thead>
-  								<tbody>
-  								<?php include('../api/project_advisor/request_table_unaccept.php'); ?>
-  								</tbody>
-  							</table>
-  						</div>
-
-  					</div>
-  				</div>
+  						<h3 class="card-title">
+                <?php
+                  echo $get_fb_topic;
+                ?>
+              </h3>
+              <div class="table-responsive">
+                <table class="table table-hover">
+                  <div class="dropdown-divider"></div>
+                  <tbody>
+                    <?php
+                    include('../config/connect.php');
+                    $advisor=$_SESSION['userlogin']['Id'];
+                    $sql = "SELECT * FROM feedback_msg JOIN feedback_topic JOIN users WHERE fb_id=msg_topic AND Id=msg_by AND msg_topic='$get_fb_id' ORDER BY msg_id" ;
+                    $result = $db->query($sql);
+                    if ($result->num_rows > 0) {
+                      while($row = $result->fetch_assoc()) {
+                        if($row["Role"]=='student' || $row["Role"]=='advisor'  ){
+                          echo "<h3 class='text-right'><span class='badge badge-pill badge-dark'>".$row["msg_detail"]."</span></h3>
+                            </h3><small class='form-text text-muted text-right'>&nbsp;&nbsp;ตอบกลับเมื่อ ".date("d M Y ณ เวลา H:i", strtotime($row["msg_date"]))." น.</small> <br/>";
+                        }else{
+                          echo "<h3 class='text-left'><span class='badge badge-pill badge-light'>".$row["msg_detail"]."</span>
+                            </h3><small class='form-text text-muted text-left'>&nbsp;&nbsp;ตอบกลับเมื่อ ".date("d M Y ณ เวลา H:i", strtotime($row["msg_date"]))." น.</small> <br/>";
+                        }
+                      }
+                    } else {
+                        echo 'ยังไม่มีการตอบกลับจากเจ้าหน้าที่';
+                    }
+                      $db->close();
+                    ?>
+                  </tbody>
+                </table>
+              </div>
+              <form enctype="multipart/form-data" action="../api/project_advisor/msg_send.php" method="post" id="msgform">
+                  <div class="modal-header"></div>
+                  	<input type="hidden" class="form-control" name="msg_topic" value='<?php echo $get_fb_id;  ?>'>
+                    <input type="hidden" class="form-control" name="msg_topic_l" value='<?php echo $get_fb_topic;  ?>'>
+            				<div class="input-group mb-3">
+            					<textarea form="msgform" class="form-control" placeholder="โปรดกรอกข้อความ..." name="msg_detail" required></textarea>
+            				</div>
+                    <div class="text-right">
+            				      <button type="submit" name="send_msg" id="submit" value="Submit" class="btn btn-primary">ส่ง</button>
+                    </div>
+              </form>
+          	</div>
+  				 </div>
   				<br/>
   			</div>
   		</div>
+
 
   	</div>
   </main>
@@ -142,75 +156,8 @@
 	</form>
 	</div>
 
-	<!-- Modal Unaccept -->
-	<div class="modal fade" id="unacceptModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
-	<form enctype="multipart/form-data" action="../api/project_advisor/up_status_un.php" method="post">
-	<div class="modal-dialog modal-dialog-scrollable" role="document">
-	  <div class="modal-content">
-	    <div class="modal-header">
-	      <h5 class="modal-title"><div id="un_msg"></h5>
-	      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-	        <span aria-hidden="true">&times;</span>
-	      </button>
-	    </div>
-	    <div class="modal-body">
-	      <div class="input-group mb-1">
-	        <label class="form-check-label">กดยืนยันเพื่ออนุมัติโครงงาน&nbsp;</label>
-	      </div>
-	      <div class="input-group mb-3">
-	          <input type="text" class="form-control" placeholder="หมายเลขโครงงาน" name="projectId3" id="projectId3" readonly>
-	      </div>
-	    </div>
-	    <div class="modal-footer">
-	      <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-	      <button type="submit" name="update_status3" id="submit" value="Submit" class="btn btn-success">ยืนยัน</button>
-	    </div>
-	  </div>
-	</div>
-	</form>
-	</div>
 
   <script type="text/javascript" src="../js/datatables.min.js"></script>
-  <script>
-	$('#unacceptModel').on('show.bs.modal', function (event) {
-	  var button = $(event.relatedTarget) // Button that triggered the modal
-	  var id = button.data('id')
-		var name = button.data('name')
-		document.getElementById("projectId3").value = id;
-	   $('#un_msg').html('<label>อัพเดตสถานะ : ' + name + '</label>');
-	})
-  $(document).ready(function() {
-      $('#example').DataTable({
-          // "pageLength": 3,
-          "order": [[ 0, "desc" ]],
-  				"columnDefs": [
-              {
-                  "targets": [ 0 ],
-                  "visible": false,
-                  "searchable": false
-              },
-          ],
-  				"pagingType": "full_numbers",
-  				"scrollY":        "80vh",
-          "scrollCollapse": true,
-  				"language": {
-  					 "lengthMenu": "จำนวนแถว _MENU_",
-  					 "zeroRecords": "<h5><span class='badge badge-pill badge-danger'>ไม่พบโครงงานที่ไม่อนุมัติ</span></h5>",
-  					 "info": "แสดงหน้า _PAGE_ จากทั้งหมด _PAGES_ หน้า",
-  					 "infoEmpty": "ไม่มีข้อมูล",
-  					 "infoFiltered": "(ค้นหาจากทั้งหมด _MAX_ ข้อมูล)",
-  					 "search": "ค้นหา:",
-  					 "paginate": {
-          			"first": "หน้าแรก",
-          			"last":  "หน้าสุดท้าย",
-  			        "next": "ถัดไป",
-          			"previous": "ย้อนกลับ"
-      },
-  			 },
-  				"dom": 'frtlip'
-      } );
 
-  } );
-</script>
 </body>
 </html>
