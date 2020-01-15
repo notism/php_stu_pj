@@ -41,11 +41,10 @@
       $query = "INSERT INTO `users`(Username,Email,Password,Role,CreatedBy,Prefix,Firstname,Lastname)  VALUES
        ('$username','$email','$passwordX','$role','$createdBy','$prefix','$firstname','$lastname')";
 			mysqli_query($db, $query);
-			$_SESSION['success'] = "success";
-			header('location: ../../webAdmin/userManagement.php');
+
+			header('location: ../../webAdmin/userManagement.php?add="success"');
 		}else{
-      $_SESSION['success'] = "fail";
-      header('location: ../../webAdmin/userManagement.php');
+      header('location: ../../webAdmin/userManagement.php?add="fail"');
     }
 
 	}

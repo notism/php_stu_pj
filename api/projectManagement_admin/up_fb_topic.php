@@ -20,10 +20,10 @@
 
 			mysqli_query($db, $query);
 			$_SESSION['success'] = "success";
-			header('location: ../../webAdmin/feedback_topic.php');
+			header('location: ../../webAdmin/feedback_topic.php?res="success"');
 		}else{
       $_SESSION['success'] = "fail";
-      header('location: ../../webAdmin/feedback_topic.php');
+      header('location: ../../webAdmin/feedback_topic.php?res="fail"');
     }
 
 	}

@@ -23,16 +23,20 @@
 
 
 		// register user if there are no errors in the form
-		if (count($errors) == 0) {    
+		if (count($errors) == 0) {
 			$passwordX = md5($password);//encrypt the password before saving in the database
-      $query = "UPDATE users SET Email='$email',Password='$passwordX',Role='$role' WHERE Id='$userId'";
+
+			if($role==null){
+				$query = "UPDATE users SET Email='$email',Password='$passwordX' WHERE Id='$userId'";
+			}else{
+				$query = "UPDATE users SET Email='$email',Password='$passwordX',Role='$role' WHERE Id='$userId'";
+			}
+
 
 			mysqli_query($db, $query);
-			$_SESSION['success'] = "success";
-			header('location: ../../webAdmin/userManagement.php');
+			header('location: ../../webAdmin/userManagement.php?edit="success"');
 		}else{
-      $_SESSION['success'] = "fail";
-      header('location: ../../webAdmin/userManagement.php');
+      header('location: ../../webAdmin/userManagement.php?edit="fail"');
     }
 
 	}

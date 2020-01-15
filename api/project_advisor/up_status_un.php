@@ -24,10 +24,10 @@
 			mysqli_query($db, $query2);
 
 			$_SESSION['success'] = "success";
-			header('location: ../../webAdvisor/my_project3.php');
+			header('location: ../../webAdvisor/my_project3.php?res="success"');
 		}else{
       $_SESSION['success'] = "fail";
-      header('location: ../../webAdvisor/my_project3.php');
+      header('location: ../../webAdvisor/my_project3.php?res="fail"');
     }
 
 	}

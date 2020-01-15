@@ -64,6 +64,27 @@
             <div class="card-body">
               <h3 class="card-title">ข้อมูลส่วนตัว</h3>
               <div class="dropdown-divider"></div>
+							<?php
+							if(isset($_GET["res"]))
+							{
+								$get_res = $_GET["res"];
+								if($get_res=='"success"'){
+									echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+										<center><strong><i class="fas fa-check-circle"></i> แก้ไขข้อมูลส่วนตัวสำเร็จ</strong></center>
+										<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>';
+								}else{
+									echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+										<center><strong><i class="fas fa-times-circle"></i> แก้ไขข้อมูลส่วนตัวไม่สำเร็จ</strong></center>
+										<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>';
+								}
+							}
+							?>
                 <?php include('../api/project_advisor/advisor_info.php'); ?>
 
 

@@ -61,6 +61,28 @@
   				<div class="card"  style="width: 100%;">
   					<div class="card-body">
   						<h3 class="card-title">ปัญหาหรือข้อเสนอแนะ</h3>
+							<div class="dropdown-divider"></div>
+							<?php
+							if(isset($_GET["res"]))
+							{
+								$get_res = $_GET["res"];
+								if($get_res=='"success"'){
+									echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+										<center><strong><i class="fas fa-check-circle"></i> แจ้งปัญหาหรือข้อเสนอแนะสำเร็จ</strong></center>
+										<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>';
+								}else{
+									echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+										<center><strong><i class="fas fa-times-circle"></i> แจ้งปัญหาหรือข้อเสนอแนะไม่สำเร็จ</strong></center>
+										<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>';
+								}
+							}						
+							?>
               <div class="table-responsive">
                 <table class="table table-hover" id="example">
                   <thead>

@@ -97,10 +97,10 @@
 			mysqli_query($db, $query);
 
 			$_SESSION['success'] = "success";
-			header('location: ../../webAdvisor/profileManagement.php');
+			header('location: ../../webAdvisor/profileManagement.php?res="success"');
 		}else{
       $_SESSION['success'] = "fail";
-      header('location: ../../webAdvisor/profileManagement.php');
+      header('location: ../../webAdvisor/profileManagement.php?res="fail"');
     }
 
 	}

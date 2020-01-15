@@ -22,12 +22,10 @@
 		if (count($errors) == 0) {
       $query = "DELETE FROM users WHERE Id = $userId";
 
-			mysqli_query($db, $query);
-			$_SESSION['success'] = "success";
-			header('location: ../../webAdmin/userManagement.php');
+			mysqli_query($db, $query);			
+			header('location: ../../webAdmin/userManagement.php?del="success"');
 		}else{
-      $_SESSION['success'] = "fail";
-      header('location: ../../webAdmin/userManagement.php');
+      header('location: ../../webAdmin/userManagement.php?del="fail"');
     }
 
 	}

@@ -38,7 +38,7 @@
 				<li class="nav-item ">
 				 <a class="nav-link" href="pj_history.php">ประวัติการอนุมัติโครงงาน</a>
 			 </li>
-			 <li class="nav-item active">
+			 <li class="nav-item">
 				<a class="nav-link" href="feedback_topic.php">การแจ้งปัญหาและข้อเสนอแนะ</a>
 			</li>
 				<!-- <li class="nav-item">
@@ -64,9 +64,65 @@
 						<h3 class="card-title">หน้าจัดการผู้ใช้ระบบ</h3>
 						<div class="dropdown-divider"></div>
 						<!-- Alert -->
-						<div class="hide" id="add_alert" role="alert">
-							<div id="messages_content"></div>
-						</div>
+						<?php
+						if(isset($_GET["add"]))
+						{
+							$get_add = $_GET["add"];
+							if($get_add=='"success"'){
+								echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+									<center><strong><i class="fas fa-check-circle"></i> เพิ่มผู้ใช้งานใหม่สำเร็จ</strong></center>
+									<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>';
+							}else{
+								echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+									<center><strong><i class="fas fa-times-circle"></i> เพิ่มผู้ใช้งานใหม่ไม่สำเร็จ</strong></center>
+									<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>';
+							}
+						}
+						if(isset($_GET["del"]))
+						{
+							$get_del = $_GET["del"];
+							if($get_del=='"success"'){
+								echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+									<center><strong><i class="fas fa-check-circle"></i> ลบข้อมูลผู้ใช้งานสำเร็จ</strong></center>
+									<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>';
+							}else{
+								echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+									<center><strong><i class="fas fa-times-circle"></i> ลบข้อมูลผู้ใช้งานไม่สำเร็จ</strong></center>
+									<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>';
+							}
+						}
+						if(isset($_GET["edit"]))
+						{
+							$get_edit = $_GET["edit"];
+							if($get_edit=='"success"'){
+								echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+									<center><strong><i class="fas fa-check-circle"></i> แก้ไขข้อมูลผู้ใช้งานสำเร็จ</strong></center>
+									<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>';
+							}else{
+								echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+									<center><strong><i class="fas fa-times-circle"></i> แก้ไขข้อมูลผู้ใช้งานไม่สำเร็จ</strong></center>
+									<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>';
+							}
+						}
+						?>
 						<!-- End Alert -->
 						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addUserModel"><i class="fas fa-plus"></i> เพิ่มผู้ใช้ใหม่</button>
 						<div class="table-responsive">

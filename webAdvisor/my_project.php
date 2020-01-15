@@ -7,6 +7,7 @@
 	if($_SESSION['userlogin']["Role"]!='advisor'){
 		header("Location: ../login.php");
 	}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -75,9 +76,27 @@
             </ul>
             <br/>
   						<!-- Alert -->
-  						<div class="hide" id="add_alert" role="alert">
-  							<div id="messages_content"></div>
-  						</div>
+							<?php
+							if(isset($_GET["res"]))
+							{
+								$get_res = $_GET["res"];
+								if($get_res=='"success"'){
+									echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+										<center><strong><i class="fas fa-check-circle"></i> อัพเดตสถานะโครงงานสำเร็จ</strong></center>
+										<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>';
+								}else{
+									echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+										<center><strong><i class="fas fa-times-circle"></i> อัพเดตสถานะโครงงานไม่สำเร็จ</strong></center>
+										<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>';
+								}
+							}
+							?>
   						<!-- End Alert -->
   						<div class="table-responsive">
   							<table class="table table-hover" id="example">
