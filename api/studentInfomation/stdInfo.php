@@ -48,6 +48,36 @@ if ($result->num_rows > 0) {
       }else{
         $degree = '-';
       }
+      if($row["Religion"]!=null){
+        $Religion = $row["Religion"];
+      }else{
+        $Religion = '-';
+      }
+      if($row["Nation"]!=null){
+        $Nation = $row["Nation"];
+      }else{
+        $Nation = '-';
+      }
+      if($row["Tel"]!=null){
+        $Tel = $row["Tel"];
+      }else{
+        $Tel = '-';
+      }
+      if($row["GPAX"]!=null){
+        $GPAX = $row["GPAX"];
+      }else{
+        $GPAX = '-';
+      }
+      if($row["dep_name"]!=null){
+        $dep_name = $row["dep_name"];
+      }else{
+        $dep_name = '-';
+      }
+      if($row["fac_name"]!=null){
+        $fac_name = $row["fac_name"];
+      }else{
+        $fac_name = '-';
+      }
 
       echo "
       <div class='text-right'>
@@ -73,18 +103,18 @@ if ($result->num_rows > 0) {
       </div>
       <div class='row'>
         <div class='col'>
-        <h6>Email: ".$row["Email"]." | โทร. ".$row["Tel"]."</h6>
+        <h6>Email: ".$row["Email"]." | โทร. ".$Tel."</h6>
         </div>
       </div>
       <div class='row'>
         <div class='col'>
-        <h6>เกิดเมื่อวันที่ ".date("d M Y", strtotime($row["Birthday"]))." | สัญชาติ/เชื้อชาติ: ".$row["Religion"]."/".$row["Nation"]." | การเกณฑ์ทหาร: ".$row["Military"]."</h6>
+        <h6>เกิดเมื่อวันที่ ".date("d M Y", strtotime($row["Birthday"]))." | สัญชาติ/เชื้อชาติ: ".$Religion."/".$Nation."</h6>
         </div>
       </div>
       <div class='row'>
         <div class='col'>
-        <small class='form-text text-muted'>GPAX: ".$row["GPAX"]." ".$row["Degree"]."</small>
-        <small class='form-text text-muted'>สาขา ".$row["dep_name"]." สำนัก ".$row["fac_name"]."</small>
+        <small class='form-text text-muted'>GPAX: ".$GPAX." ".$row["Degree"]."</small>
+        <small class='form-text text-muted'>สาขา ".$dep_name." สำนัก ".$fac_name."</small>
         </div>
       </div>
 

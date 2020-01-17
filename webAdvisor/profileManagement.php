@@ -232,7 +232,7 @@
   				<label class="form-check-label">รูปโปรไฟล์:&nbsp;</label>
   			</div>
   			<div class="input-group mb-3">
-  				<input type="file" class="form-control-file" name="fileToUpload" id="fileToUpload">
+  				<input type="file" class="btn btn-light btn-block" name="fileToUpload" id="fileToUpload">
   			</div>
   		</div>
   		<div class="modal-footer">
@@ -243,6 +243,7 @@
   </div>
   </form>
   </div>
+
 
   <script type="text/javascript" src="../js/datatables.min.js"></script>
   <script>

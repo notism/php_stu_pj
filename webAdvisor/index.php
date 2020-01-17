@@ -56,93 +56,164 @@
 	<br/>
 	<main>
 		<div class="container-xl">
-			<div class="row ">
-	  				<div class="col-sm">
-	    				<div class="card text-center text-white bg-info shadow-lg  ">
-	      				<div class="card-body">
-	        			<h6 class="card-title">โครงงานที่รับผิดชอบ</h6>
-								<div class="dropdown-divider"></div>
-	        			<h1 class="card-text"><?php include('../api/project_advisor/count_mypj.php'); ?></h1>
-	      				</div>
-	    				</div>
-	  				</div>
-						<div class="col-sm">
-	    				<div class="card text-center text-white bg-success mb-3 shadow-lg  ">
-	      				<div class="card-body">
-	        			<h6 class="card-title">โครงงานที่อนุมัติแล้ว</h6>
-								<div class="dropdown-divider"></div>
-	        			<h1 class="card-text"><?php include('../api/project_advisor/count_acpj.php'); ?></h1>
-	      				</div>
-	    				</div>
-	  				</div>
-						<div class="col-sm">
-	    				<div class="card text-center text-white bg-danger mb-3 shadow-lg  ">
-	      				<div class="card-body">
-	        			<h6 class="card-title">โครงงานที่ไม่อนุมัติ</h6>
-								<div class="dropdown-divider"></div>
-	        			<h1 class="card-text"><?php include('../api/project_advisor/count_unpj.php'); ?></h1>
-	      				</div>
-	    				</div>
-	  				</div>
-	  				<div class="col-sm">
-	    				<div class="card text-center text-white bg-warning mb-3 shadow-lg  ">
-	      				<div class="card-body">
-	        			<h6 class="card-title">โครงงานที่รอการอนุมัติ</h6>
-								<div class="dropdown-divider"></div>
-	        			<h1 class="card-text"><?php include('../api/project_advisor/count_penpj.php'); ?></h1>
-	      				</div>
-	    			</div>
-	  			</div>
-				</div>
 					<div class="card"  style="width: 100%;">
 						<div class="card-body">
-							<h3 class="card-title">โครงงานที่รับผิดชอบ</h3>
+							<h3 class="card-title"><i class="fas fa-home"></i> หน้าแรก</h3>
 							<div class="dropdown-divider"></div>
-							<!-- Alert -->
-							<div class="hide" id="add_alert" role="alert">
-								<div id="messages_content"></div>
+							<div class="text-right">
+								<button type="button" onclick='window.print()' class="btn btn-info mb-2"><i class="fas fa-print"></i> พิมพ์เอกสาร</button>
 							</div>
-							<!-- End Alert -->
-							<div class="table-responsive">
-								<table class="table table-hover" id="example">
-									<thead>
-										<tr>
-											<th scope="col" align="left">Id</th>
-											<th scope="col" align="left" width="25%">ชื่อโครงงาน</th>
-											<th scope="col" align="left" width="50%">คำอธิบายโครงงาน</th>
-											<th scope="col" align="left" width="15%">วันที่อัพโหลด</th>
-											<th scope="col" align="left" width="10%">ไฟล์</th>
-										</tr>
-									</thead>
-									<tbody>
-									<?php include('../api/project_advisor/project_table.php'); ?>
-									</tbody>
-								</table>
+							<div class="row">
+							<div class="col">
+								<div class="card mb-3 bg-light">
+									<h5 class="card-header bg-dark text-white ">โครงงานที่โดดเด่น</h5>
+									<div class="card-body">
+										<div class="row">
+											<div class="col">
+												<div class="card-body">
+													<strong class="card-text text-dark"><i class="fas fa-vote-yea"></i> โครงงานที่มีคะแนนโหวดสูงสุด</strong>
+													<div class="text-right text-dark"><label style="font-size: 1.5em;"><?php include('../api/dashboard/most_vote_pj.php'); ?></label></div>
+													<div class="text-right"><small class="text-muted"><i class="fas fa-star"></i><?php include('../api/dashboard/most_vote_pj_num.php'); ?> คะแนน</small></div>
+												</div>
+												<div class="dropdown-divider"></div>
+												<div class="row">
+												<div class="col">
+													<div class="card-body ">
+													<strong class="card-text text-dark"><i class="fas fa-fire"></i> โครงงานที่มียอดเข้าชมสูงสุดในเดือนนี้</strong>
+													<div class="text-right text-dark "><label  style="font-size: 1.5em;"><?php include('../api/dashboard/most_pj_thismonth.php'); ?></label></div>
+													<div class="text-right"><small class="text-muted"><i class="far fa-eye"></i> <?php include('../api/dashboard/most_pj_thismonth_num.php'); ?> ครั้ง</small></div>
+													</div>
+												</div>
+												</div>
+												<div class="dropdown-divider"></div>
+												<div class="row">
+												<div class="col">
+													<div class="card-body ">
+													<strong class="card-text text-dark"><i class="fas fa-medal"></i> โครงงานที่มียอดเข้าชมสูงสุดในปี <script>document.write(new Date().getFullYear())</script></strong>
+													<div class="text-right text-dark "><label  style="font-size: 1.5em;"><?php include('../api/dashboard/most_pj_thisyear.php'); ?></label></div>
+													<div class="text-right"><small class="text-muted"><i class="far fa-eye"></i>  <?php include('../api/dashboard/most_pj_thisyear_num.php'); ?> ครั้ง</small></div>
+													</div>
+												</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+							<div class="col">
+								<div class="card mb-3">
+									<h5 class="card-header bg-dark text-white ">โครงงานที่รับผิดชอบ</h5>
+									<div class="card-body">
+										<div class="row">
+											<div class="col">
+												<div class="row">
+												<div class="col">
+													<div class="card-body ">
+														<div class="row ">
+															<div class="col-sm">
+																<div class="card text-center  bg-light mb-3 shadow-sm  ">
+																	<div class="card-body">
+																	<h6 class="card-title">โครงงานที่รับผิดชอบ</h6>
+																	<div class="dropdown-divider"></div>
+																	<h1 class="card-text"><?php include('../api/project_advisor/count_mypj.php'); ?></h1>
+																	</div>
+																</div>
+															</div>
+															<div class="col-sm">
+																<a href="my_project2.php" style="color: black;">
+																<div class="card text-center  bg-light mb-3 shadow-sm  ">
+																	<div class="card-body">
+																	<h6 class="card-title">โครงงานที่อนุมัติแล้ว</h6>
+																	<div class="dropdown-divider"></div>
+																	<h1 class="card-text"><?php include('../api/project_advisor/count_acpj.php'); ?></h1>
+																	</div>
+																</div>
+																</a>
+															</div>
+															<div class="col-sm">
+																<a href="my_project3.php" style="color: black;">
+																<div class="card text-center  bg-light mb-3 shadow-sm  ">
+																	<div class="card-body">
+																	<h6 class="card-title">โครงงานที่ไม่อนุมัติ</h6>
+																	<div class="dropdown-divider"></div>
+																	<h1 class="card-text"><?php include('../api/project_advisor/count_unpj.php'); ?></h1>
+																	</div>
+																</div>
+																</a>
+															</div>
+															<div class="col-sm">
+																<a href="my_project.php" style="color: black;">
+																<div class="card text-center  bg-light mb-3 shadow-sm  ">
+																	<div class="card-body">
+																	<h6 class="card-title">โครงงานที่รอการอนุมัติ</h6>
+																	<div class="dropdown-divider"></div>
+																	<h1 class="card-text"><?php include('../api/project_advisor/count_penpj.php'); ?></h1>
+																	</div>
+																</div>
+																</a>
+															</div>
+
+														</div>
+													</div>
+												</div>
+												</div>
+												<div class="dropdown-divider"></div>
+												<div class="row">
+												<div class="col">
+													<div class="card-body ">
+														<div class="table-responsive">
+															<table class="table table-hover" id="example">
+																<thead>
+																	<tr>
+																		<th scope="col" align="left">Id</th>
+																		<th scope="col" align="left" width="25%">ชื่อโครงงาน</th>
+																		<th scope="col" align="left" width="25%">ผู้จัดทำ</th>
+																		<th scope="col" align="left" width="15%">ความนิยม</th>
+																		<th scope="col" align="left" width="10%">ยอดวิว</th>
+																		<th scope="col" align="left" width="13%">วันที่อัพโหลด</th>
+																		<th scope="col" align="left" width="12%">รายละเอียด</th>
+																	</tr>
+																</thead>
+																<tbody>
+																<?php include('../api/project_advisor/project_table.php'); ?>
+																</tbody>
+															</table>
+														</div>
+													</div>
+												</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+							<div class="col">
+								<div class="card mb-3">
+									<h5 class="card-header bg-dark text-white ">ประวัติการอนุมัติโครงงาน</h5>
+									<div class="card-body">
+										<div class="table-responsive">
+												<table class="table table-hover" id="example2" >
+													<thead>
+														<tr>
+															<th scope="col" align="left">รายชื่อโครงงาน</th>
+														</tr>
+													</thead>
+													<tbody >
+													<?php include('../api/project_advisor/history_update.php'); ?>
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
 				<br/>
-			<div class="card " style="width: 100%;">
-				<div class="card-body">
-					<img class="card-img" src="../img/bg-history.png" alt="Card image">
-  			<div class="card-img-overlay">
-					<h3 class="card-title">ประวัติการอนุมัติโครงงาน</h3>
-					<div class="dropdown-divider"></div><br/>
-					<div class="table-responsive">
-						<table class="table table-hover" id="example2" >
-							<thead>
-								<tr>
-									<th scope="col" align="left">ประวัติ</th>
-								</tr>
-							</thead>
-							<tbody >
-							<?php include('../api/project_advisor/history_update.php'); ?>
-							</tbody>
-						</table>
-					</div>
-			 </div>
-		 	</div>
-			</div>
 		</div>
 	</main><br/>
 	<button style="position:fixed;bottom:20px;right:20px;padding:12px 16px;border-radius: 50%;" title="ติดต่อผู้ดูแลระบบ" class="btn btn-danger" data-toggle='modal' data-target='#feedback_model'>

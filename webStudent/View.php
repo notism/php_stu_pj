@@ -5,15 +5,15 @@
 		header("Location: ../login.php");
     }
     $D = $_SESSION['userlogin']["Id"];
-    
-    
-   
+
+
+
 ?>
 <!DOCTYPE html>
 <html>
 <head>
 <title>Student Project</title>
-	
+
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="../css/bootstrapA.css">
 	<link rel="stylesheet" type="text/css" href="../css/Colum.css"/>
@@ -22,7 +22,7 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 	<link rel="stylesheet" type="text/css" href="../css/datatables.css"/>
 	<link rel="stylesheet" href="../nice/css/mdb.min.css">
-	
+
 	<style>
 body{
 	background-image:url("../img/back.gif")
@@ -46,7 +46,7 @@ function myHide()
 
 </script>
 
-<?php  
+<?php
 $proid = $_GET["Proid"];
  include('../config/connect.php');
  $sql = "SELECT * FROM `projectinfo` WHERE id = '$proid' and Status = 'อนุมัติแล้ว'";
@@ -54,7 +54,7 @@ $proid = $_GET["Proid"];
  $rowcount=mysqli_num_rows($result);
  if ($rowcount < 1) {
     echo "<script>window.location.href = 'index.php';</script>";
- 
+
 } else {
 
     while($row = $result->fetch_assoc()) {
@@ -115,7 +115,7 @@ $proid = $_GET["Proid"];
     }
 }
 
-    
+
  $QRcode = '<img src="https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=https://localhost/test/webStudent/View.php?Pid='.$URL.'/&choe=UTF-8" title="Link to my Website" width=100%/>';
 ?>
 
@@ -160,11 +160,11 @@ $proid = $_GET["Proid"];
         </li>
       <!-- Dropdown -->
       </li>
-           
+
     </ul>
     <!-- Links -->
 
-      <span class="navbar-text" style="font-size: 14px;color:white"><?php include('../webStudent/usericon.php'); ?> 
+      <span class="navbar-text" style="font-size: 14px;color:white"><?php include('../webStudent/usericon.php'); ?>
 			&nbsp;	สวัสดี,คุณ <?php echo $_SESSION['userlogin']["Username"]; ?>&nbsp;
 	 		</span>
 			<span class="navbar-text" style="font-size: 14px">
@@ -180,34 +180,34 @@ $proid = $_GET["Proid"];
 		<div class="row">
 		  <div class="col-sm-12">
         <!-- start card -->
-			
-			
-                   
-                  
-                        
+
+
+
+
+
 						<!-- Alert -->
 						<div class="hide" id="add_alert" role="alert" >
 							<div id="messages_content" ></div>
 						</div>
 					<!-- End Alert -->
 
-                   
+
 <?php $space = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" ?>
 
 <div class="container my-5 z-depth-1" Style='cursor: pointer;border-left: solid 0px #4285f4;background-color:#ffffff'>
 
-                    
+
 <!--Section: Content-->
 <section class="dark-grey-text"  >
 
   <div class="row pr-lg-5">
-  
+
     <div class="col-md-7 mb-4">
 
-      <div class="view"><span><br>&nbsp;&nbsp;&nbsp;จำนวนคนดู <?php echo $View+1; ?> ครั้ง <i class='fas fa-eye '></i> 
+      <div class="view"><span><br>&nbsp;&nbsp;&nbsp;จำนวนคนดู <?php echo $View+1; ?> ครั้ง <i class='fas fa-eye '></i>
  <font color="#ffc107"><br><br>
  &nbsp;
-<?php   
+<?php
 if($stars==""||$stars=="0"){
 ?>
 <i class="fas fa-star fa-2x"  id="star1" style="opacity: 0.3;cursor: pointer;"></i>
@@ -272,8 +272,8 @@ if($stars==""||$stars=="0"){
 
 $Adv = $row1["Prefix"]." ".$row1["Firstname"]." ".$row1["Lastname"];
  }
- echo $space.$Adv;      
- ?><br> 
+ echo $space.$Adv;
+ ?><br>
           <br>
           <B>สมาชิกในกลุ่ม</B><Br>
   <?php
@@ -284,8 +284,8 @@ $Adv = $row1["Prefix"]." ".$row1["Firstname"]." ".$row1["Lastname"];
 
 echo "<form action='stdview.php' method='get'><input type='hidden' name='mem' value='".$row1["Id"]."'>".$space."<button type='submit' Style='background-color:#dfeefd;border: 0px solid #d3d3d3;'><font color='red'><u>".$row1["Prefix"]." ".$row1["Firstname"]." ".$row1["Lastname"]."</u></font></button></form><Br>";
  }
-     
- ?> 
+
+ ?>
 <br>
 <center><p style="cursor: pointer;border: solid 0px #212121;width:30%"><?php echo $QRcode; ?></p></center>
 
@@ -325,7 +325,7 @@ if($star==""){
   VALUES ('".$stid."','".$D."', '".$Pst."', '".$proid."')";
    if ($db->query($sqlinsert) === TRUE) {
    }
-       
+
 }else{
   include('../config/connect.php');
 $sqlupdate = "UPDATE  project_star set stid = '".$stid."' , user = '".$D."', star = '".$Pst."' , id = '".$proid."' WHERE stid = '".$stid."'";
@@ -389,7 +389,7 @@ if($star==""||$star=="0"){
 <td><form method="get"><input type="hidden" value="4" name="st"><input type="hidden" value="<?php echo $proid; ?>" name="Proid"><button type="submit" class="img-checker"><i class="fas fa-star fa-2x" onclick="alert('ให้คะแนน 4 ดาว');" id="star54" ></i></button></form></td>
 <td><form method="get"><input type="hidden" value="5" name="st"><input type="hidden" value="<?php echo $proid; ?>" name="Proid"><button type="submit" class="img-checker"><i class="fas fa-star fa-2x" onclick="alert('ให้คะแนน 5 ดาว');" id="star55" ></i></button></form></td>
 </tr></table>
-<?php } 
+<?php }
 include('../config/connect.php');
 $sql8 = "SELECT count(star) as Star FROM `project_star` WHERE id = '$proid'";
 $result8 = $db->query($sql8);
@@ -408,7 +408,7 @@ if($star9==""||$star9=="0"){
 $sqlupdate = "UPDATE  projectinfo set Star = '".$star7."' WHERE id = '".$proid."'";
      if ($db->query($sqlupdate) === TRUE) {
      }
-  
+
 }else{
   include('../config/connect.php');
   $sqlupdate = "UPDATE  projectinfo set Star = '".$star7."' WHERE id = '".$proid."'";
@@ -425,7 +425,7 @@ $sqlupdate = "UPDATE  projectinfo set Star = '".$star7."' WHERE id = '".$proid."
 <br><br>
 <?php
 
-   
+
 
 $namecom = $_SESSION['userlogin']["Username"];
 $imgcom = $_SESSION['userlogin']["ImgUrl"];
@@ -456,7 +456,7 @@ echo "<tr><td align='left'><font color='#4285f4' size='0.5px'><i class='fas fa-c
 }else{
   echo "<Table width='90%'><tr><td align='right'><button type='button' class='btn purple-gradient btn-rounded btn-md' style='border-radius: 36px;'>".$row5['comment']."</button><font size='3px' color='#dd70d1'><i class='fas fa-circle'></i> </font><font size='1px' color='#d270d5'><i class='fas fa-circle'></i> </font> <img src='../img_user/".$imgs."'  class='rounded-circle z-depth-0 z-depth-1-half'  height='36px' width='36px' style='border: solid 1px #a971e3;'> </td></tr>";
   echo "<tr><td align='right'><font color='#4285f4' size='0.5px'><i class='fas fa-clock'></i> โพสต์เมื่อวันที่ ".$T."</font><font color='#e53935' size='1.5px'><form name='myForm'  method='post' action='delete_comment.php' ><input type='hidden' name='DeP' value='".$cm."'><button type='submit' style='cursor: pointer;border: solid 0px #4285f4;background-color:#dfeefd;color:#e53935;' ><u><b>ลบ</b></u></button></font></form></td></tr></Table>";
-   
+
 }
 }
 
@@ -468,14 +468,14 @@ echo "<tr><td align='left'><font color='#4285f4' size='0.5px'><i class='fas fa-c
 
       </div>
       <br><br>
-    
+
 
   <br><br>
 
 </section>
 <br><br>
 <!--Section: Content-->
-</div>  
+</div>
 
   </div>
 </div>
@@ -487,8 +487,8 @@ echo "<tr><td align='left'><font color='#4285f4' size='0.5px'><i class='fas fa-c
 			</div>
 		</div>
 	</div>
-                         
-					
+
+
 </main>
 </body>
 </html>

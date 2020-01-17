@@ -156,7 +156,7 @@
 										<div class="row">
 										<div class="col">
 											<div class="card-body ">
-											<strong class="card-text text-info"><i class="fas fa-history"></i> โครงงานที่อัพโหลดล่าสุด</strong>
+											<strong class="card-text" style='color:indigo;'><i class="fas fa-history"></i> โครงงานที่อัพโหลดล่าสุด</strong>
 											<div class="text-right text-info "><label  style="font-size: 1.8em;"><?php include('../api/dashboard/last_pj.php'); ?></label></div>
 											</div>
 										</div>

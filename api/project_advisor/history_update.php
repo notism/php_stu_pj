@@ -14,13 +14,13 @@ if ($result->num_rows > 0) {
         $classType = 'success';
         $classIcon = 'check';
       }else if($row["Status_update"]=='รออนุมัติ'){
-        $classType = 'warning';      
+        $classType = 'warning';
       }
 
-        echo "<tr data-toggle='tooltip' title=".$row["Description"]." class='table-warning'>
+        echo "<tr data-toggle='tooltip' title=".$row["Description"]." >
         <td align='left'>
           <div class='d-flex w-100 justify-content-between'>
-          <h5 class='mb-1'>".$row["ProjectName"]."</h5>
+          <h5>".$row["ProjectName"]."</h5>
           <small><h4><span class='badge badge-pill badge-".$classType."'><i class='fas fa-".$classIcon."'></i> ".$row["Status_update"]."</span></small>
           </div>
           <small>อัพเดตเมื่อวันที่ ".date("d M Y ณ เวลา H:i", strtotime($row["UpdateDate"]))." น.</small>
