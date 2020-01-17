@@ -421,6 +421,55 @@ $(document).ready(function(){
     <tr><td width=15% align="center"><font color="#330eff"><i class="fas fa-folder-open fa-2x "></i></font>
     </td><td width=70%><input type='text' name="Pname" placeholder='ชื่อเรื่องโครงงาน' required>
     </td></tr>
+<tr><td></td><td>
+
+
+  <select id="mySelect" onchange="myFunction()" name="select">
+  <option value="" disabled selected>เลือกสำนักวิชา</option>
+  <?php
+
+include('../config/connect.php');
+
+$sql = "SELECT * FROM `fuaculty` WHERE 1";
+$result = $db->query($sql);
+$i = 1;
+if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+        echo "
+       
+        <option value='".$row["fac_id"]."'>".$row["fac_name"]."</option>
+        
+        ";$i++;
+    }
+} else {
+    echo "0 results";
+}
+$db->close();
+?>
+
+
+</select>
+<p id="demo"></p>
+
+<script>
+function myFunction() {
+  var x = document.getElementById("mySelect").value;
+  document.getElementById("demo").innerHTML = "<select name='depm' required><option value='' disabled selected>เลือกสาขาวิชา</option><?php
+
+include('../config/connect.php');
+$sql = 'SELECT * FROM department where dep_fuculty_id = 1 order by dep_name ASC;';
+$result = $db->query($sql);
+while($row = $result->fetch_assoc()) {
+  echo '<option value='.$row['dep_id'].'>'.$row['dep_name'].'</option>';
+}
+
+?></select>";
+}
+</script>
+</td></tr>
+
+
+
     <tr><td align="center">
     <font color="#7502f3"><i class="fas fa-cube fa-2x"></i></font> 
     </td><td>

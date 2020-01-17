@@ -60,14 +60,14 @@ div.dataTables_wrapper div.dataTables_info {
 }
 div.dataTables_wrapper div.dataTables_paginate {
   color: white !important;
-  background-color: #56187F!important;
+  background-color: #fff!important;
   margin: 0;
   white-space: nowrap;
   text-align: right;
 }
 div.dataTables_wrapper div.dataTables_paginate ul.pagination {
   color: white !important;
-  background-color: #56187F!important;
+  background-color: #fff!important;
   margin: 2px 0;
   white-space: nowrap;
   justify-content: flex-end;

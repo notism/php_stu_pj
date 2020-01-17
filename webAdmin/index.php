@@ -21,7 +21,7 @@
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary" style="width: 100%;">
-	  <a class="navbar-brand" href="index.php">WEB-ADMIN</a>
+	  <a class="navbar-brand" href="index.php"><img src="../img/icon_admin.png" class="rounded float-left" >&nbsp;ผู้ดูแลระบบ</a>
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 	    <span class="navbar-toggler-icon"></span>
 	  </button>
@@ -45,7 +45,7 @@
 			 </li> -->
 
 	    </ul>
-			<span class="navbar-text" style="font-size: 14px">
+			<span class="navbar-text" style="font-size: 14px;color: white">
 		 		สวัสดี,คุณ <?php echo $_SESSION['userlogin']["Username"] ?>&nbsp;
 	 		</span>
 			<span class="navbar-text" style="font-size: 14px">
@@ -54,115 +54,155 @@
 	</nav>
 	<br/>
 <main>
-	<div class="container-xl">
-		<div class="card" style="width: 100%;">
+	<div class="container">
+		<div class="card">
   		<div class="card-body">
     		<h3 class="card-title">แดชบอร์ด</h3>
-				<div class="dropdown-divider"></div><br/>
+				<div class="dropdown-divider"></div>
+				<div class="text-right">
+					<button type="button" onclick='window.print()' class="btn btn-info mb-2"><i class="fas fa-print"></i> พิมพ์เอกสาร</button>
+				</div>
 				<div class="row">
-  				<div class="col-sm">
-    				<div class="card text-center text-white bg-primary  mb-3" >
-      				<div class="card-body">
-        			<h6 class="card-title">จำนวนผู้ใช้ระบบทั้งหมด</h6>
-							<div class="dropdown-divider"></div>
-        			<h1 class="card-text"><?php include('../api/dashboard/count_users.php'); ?></h1>
-      				</div>
-    				</div>
-  				</div>
-					<div class="col-sm">
-    				<div class="card text-center text-white bg-primary mb-3">
-      				<div class="card-body">
-        			<h6 class="card-title">จำนวนโครงงานทั้งหมด</h6>
-							<div class="dropdown-divider"></div>
-        			<h1 class="card-text"><?php include('../api/dashboard/count_project.php'); ?></h1>
-      				</div>
-    				</div>
-  				</div>
-					<div class="col-sm">
-    				<div class="card text-center text-white bg-primary mb-3">
-      				<div class="card-body">
-        			<h6 class="card-title">โครงงานใหม่ในวันนี้</h6>
-							<div class="dropdown-divider"></div>
-        			<h1 class="card-text"><?php include('../api/dashboard/count_pending_pj.php'); ?></h1>
-      				</div>
-    				</div>
-  				</div>
-  				<div class="col-sm">
-    				<div class="card text-center text-white bg-primary mb-3 ">
-      				<div class="card-body">
-        			<h6 class="card-title">จำนวนผู้เข้าดูโครงงาน</h6>
-							<div class="dropdown-divider"></div>
-        			<h1 class="card-text"><?php include('../api/dashboard/sum_view.php'); ?></h1>
-      				</div>
-    			</div>
-  			</div>
-			</div>
-			<div class="row">
-				<div class="col-sm">
-					<div class="card text-center text-white  bg-info   mb-3 shadow-lg p-3 " style="height: 120px;">
-						<div class="card-body">
-						<h6 class="card-title">โครงงานล่าสุด</h6>
-						<div class="dropdown-divider"></div>
-						<h5 class="card-text"><?php include('../api/dashboard/last_pj.php'); ?></h5>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm">
-					<div class="card text-center text-white bg-success mb-3 shadow-lg p-3" style="height: 120px;">
-						<div class="card-body">
-						<h6 class="card-title"><i class="fas fa-star"></i> โครงงานยอดนิยมประจำเดือน <i class="fas fa-star"></i></h6>
-						<div class="dropdown-divider"></div>
-						<h5 class="card-text"><?php include('../api/dashboard/most_pj_thismonth.php'); ?></h5>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm">
-					<div class="card text-center text-white bg-danger mb-3 shadow-lg p-3" style="height: 120px;">
-						<div class="card-body">
-						<h6 class="card-title"><i class="fas fa-medal"></i> โครงงานยอดนิยมประจำปี <i class="fas fa-medal"></i></h6>
-						<div class="dropdown-divider"></div>
-						<h5 class="card-text"><?php include('../api/dashboard/most_pj_thisyear.php'); ?></h5>
-						</div>
-					</div>
-				</div>
-
-
-		</div>
-			<div class="dropdown-divider"></div>
-			<div class="row">
-    		<div class="col">
-					<div class="card text-center mb-3">
-						<div class="card-body">
-						<h6 class="card-title">กราฟแสดงจำนวนผู้ใช้งานระบบ</h6>
-						<div class="dropdown-divider"></div>
-							<div id="UsersChart" style="height: 250px; width: 100%;"></div>
-						</div>
-					</div>
-    		</div>
-    		<div class="col">
-					<div class="card text-center mb-3">
-						<div class="card-body">
-						<h6 class="card-title">กราฟแสดงสถานะโครงงาน</h6>
-						<div class="dropdown-divider"></div>
-							<div id="ProjectChart" style="height: 250px; width: 100%;"></div>
-						</div>
-					</div>
-    		</div>
-  		</div>
-			<div class="row">
 				<div class="col">
-					<div class="card text-center mb-3">
+					<div class="card mb-3 bg-light">
+						<h5 class="card-header bg-dark text-white ">โครงงาน</h5>
 						<div class="card-body">
-						<h6 class="card-title">ยอดการอัพโหลดโครงงานประจำปี <script>document.write(new Date().getFullYear())</script></h6>
-						<div class="dropdown-divider"></div>
-							<div id="uploadChart" style="height: 350px; width: 100%;"></div>
+							<div class="row">
+								<div class="col">
+									<div class="card-body">
+										<strong class="card-text text-dark"><i class="fas fa-vote-yea"></i> โครงงานที่มีคะแนนโหวดสูงสุด</strong>
+										<div class="text-right text-dark"><label style="font-size: 1.5em;"><?php include('../api/dashboard/most_vote_pj.php'); ?></label></div>
+										<div class="text-right"><small class="text-muted"><i class="fas fa-star"></i> <?php include('../api/dashboard/most_vote_pj_num.php'); ?> คะแนน</small></div>
+									</div>
+									<div class="dropdown-divider"></div>
+									<div class="row">
+									<div class="col">
+										<div class="card-body ">
+										<strong class="card-text text-dark"><i class="fas fa-fire"></i> โครงงานที่มียอดเข้าชมสูงสุดในเดือนนี้</strong>
+										<div class="text-right text-dark "><label  style="font-size: 1.5em;"><?php include('../api/dashboard/most_pj_thismonth.php'); ?></label></div>
+										<div class="text-right"><small class="text-muted"><i class="far fa-eye"></i> <?php include('../api/dashboard/most_pj_thismonth_num.php'); ?> ครั้ง</small></div>
+										</div>
+									</div>
+									</div>
+									<div class="dropdown-divider"></div>
+									<div class="row">
+									<div class="col">
+										<div class="card-body ">
+										<strong class="card-text text-dark"><i class="fas fa-medal"></i> โครงงานที่มียอดเข้าชมสูงสุดในปี <script>document.write(new Date().getFullYear())</script></strong>
+										<div class="text-right text-dark "><label  style="font-size: 1.5em;"><?php include('../api/dashboard/most_pj_thisyear.php'); ?></label></div>
+										<div class="text-right"><small class="text-muted"><i class="far fa-eye"></i>  <?php include('../api/dashboard/most_pj_thisyear_num.php'); ?> ครั้ง</small></div>
+										</div>
+									</div>
+									</div>
+								</div>
+							</div>
+						</div>
 						</div>
 					</div>
 				</div>
+				<div class="row">
+				<div class="col">
+					<div class="card mb-3  ">
+						<h5 class="card-header bg-dark text-white">ผู้ใช้งานระบบ</h5>
+						<div class="card-body">
+							<div class="row">
+							<div class="col">
+								<div id="UsersChart" style="height: 100%; width: 100%;"></div>
+							</div>
+								<div class="col">
+									<div class="card-body">
+										<strong class="card-text "><i class="fas fa-users"></i> ผู้ใช้งานทั้งหมด</strong>
+										<div class="text-right"><label style="font-size: 2.5em;"><?php include('../api/dashboard/count_users.php'); ?></label> คน</div>
+									</div>
+									<div class="dropdown-divider"></div>
+									<div class="row">
+									<div class="col">
+										<div class="card-body ">
+										<strong class="card-text text-success"><i class="fas fa-angle-double-up"></i> เพิ่มขึ้น</strong>
+										<div class="text-right text-success "><label  style="font-size: 2.5em;"><?php include('../api/dashboard/count_new_user.php'); ?></label> คน</div>
+										</div>
+									</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<div class="card mb-3  ">
+							<h5 class="card-header bg-dark text-white">สถานะโครงงาน</h5>
+							<div class="card-body">
+								<div class="row">
+								<div class="col">
+										<div id="ProjectChart" style="height: 100%; width: 100%;"></div>
+								</div>
+									<div class="col">
+										<div class="card-body">
+											<strong class="card-text "><i class="fas fa-layer-group"></i> โครงงานทั้งหมด</strong>
+											<div class="text-right"><label style="font-size: 2em;"><?php include('../api/dashboard/count_project.php'); ?></label> โครงงาน</div>
+										</div>
+										<div class="dropdown-divider"></div>
+										<div class="row">
+										<div class="col">
+											<div class="card-body ">
+											<strong class="card-text text-success"><i class="fas fa-angle-double-up"></i> เพิ่มขึ้น</strong>
+											<div class="text-right text-success "><label  style="font-size: 2em;"><?php include('../api/dashboard/count_pending_pj.php'); ?></label> โครงงาน</div>
+											</div>
+										</div>
+										</div>
+											<div class="dropdown-divider"></div>
+										<div class="row">
+										<div class="col">
+											<div class="card-body ">
+											<strong class="card-text text-info"><i class="fas fa-history"></i> โครงงานที่อัพโหลดล่าสุด</strong>
+											<div class="text-right text-info "><label  style="font-size: 1.8em;"><?php include('../api/dashboard/last_pj.php'); ?></label></div>
+											</div>
+										</div>
+										</div>
+											<div class="dropdown-divider"></div>
+										<div class="row">
+										<div class="col">
+											<div class="card-body ">
+											<strong class="card-text text-dark"><i class="far fa-eye"></i> ยอดเข้าชทโครงงานรวม</strong>
+											<div class="text-right text-dark "><label  style="font-size: 2em;"><?php include('../api/dashboard/sum_view.php'); ?></label> ครั้ง</div>
+											</div>
+										</div>
+										</div>
+									</div>
+								</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+					<div class="col">
+						<div class="card mb-3  ">
+							<h5 class="card-header bg-dark text-white">การอัพโหลดโครงงาน</h5>
+							<div class="card-body">
+								<div class="row">
+									<div class="col">
+										<div class="card-body">
+											<center><strong class="card-title">จำนวนการอัพโหลดโครงงานแบ่งตามสำนักวิชา</center>
+											<div id="uploadfacChart" style="height: 350px; width: 100%;"></div>
+										</div>
+										<div class="dropdown-divider"></div>
+										<div class="row">
+										<div class="col">
+											<div class="card-body ">
+												<center><strong class="card-title">จำนวนการอัพโหลดโครงงานในปี <script>document.write(new Date().getFullYear())</script></strong></center>
+												<div id="uploadChart" style="height: 350px; width: 100%;"></div>
+											</div>
+										</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							</div>
+						</div>
+					</div>
 			</div>
-
-
-
 
 
 			<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
@@ -254,6 +294,27 @@ var uploadChart = new CanvasJS.Chart("uploadChart", {
 });
 uploadChart.render();
 
+<?php include('../api/dashboard/count_pj_fac_chart.php'); ?>
+var uploadfacChart = new CanvasJS.Chart("uploadfacChart", {
+	legend:{
+		fontFamily: "Prompt",
+	},
+	axisY:{
+      labelFontFamily: "Prompt",
+			labelFontSize: 14,
+			title: "จำนวนโครงงาน"
+    },
+	axisX:{
+			labelFontFamily: "Prompt",
+			labelFontSize: 14,
+		},
+	data: [{
+		indexLabelFontFamily: "Prompt",
+		type: "column",
+		dataPoints: <?php echo json_encode($dataUploadfac, JSON_NUMERIC_CHECK); ?>
+	}]
+});
+uploadfacChart.render();
 
 }
 </script>

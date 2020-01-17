@@ -128,37 +128,36 @@
 						<button type="button" onclick='window.print()' class="btn btn-info "><i class="fas fa-print"></i> พิมพ์เอกสาร</button>
 						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addUserModel"><i class="fas fa-plus"></i> เพิ่มผู้ใช้ใหม่</button>
 						</div>
-
-
+					
 						<ul class="nav nav-tabs">
 	  				<li class="nav-item">
-	    				<a class="nav-link active"  style="color: #56187F;" href="userManagement.php"><i class="fas fa-users"></i> ทั้งหมด</a>
+	    				<a class="nav-link "  style="color: #56187F;" href="userManagement.php"><i class="fas fa-users"></i> ทั้งหมด</a>
 	  				</li>
 	  				<li class="nav-item">
 	    				<a class="nav-link" style="color: #56187F;" href="userManagement_std.php"><i class="fas fa-user-graduate"></i> นักศึกษา</a>
 	  				</li>
 	  				<li class="nav-item">
-	    				<a class="nav-link" style="color: #56187F;" href="userManagement_adv.php"><i class="fas fa-chalkboard-teacher"></i> อาจารย์</a>
+	    				<a class="nav-link active" style="color: #56187F;" href="userManagement_adv.php"><i class="fas fa-chalkboard-teacher"></i> อาจารย์</a>
 	  				</li>
 	  				<li class="nav-item">
 	    				<a class="nav-link" style="color: #56187F;" href="userManagement_admin.php"><i class="fas fa-user-shield"></i> ผู้ดูแลระบบ</a>
 	  				</li>
 						</ul>	<br/>
 								<div class="table-responsive-sm">
-									<table class="table table-hover" id="example">
+									<table class="table table-hover" id="example3">
 										<thead>
 											<tr>
 												<th scope="col" align="left">Id</th>
 												<th scope="col" align="left">ชื่อผู้ใช้</th>
+												<th scope="col" align="left">ชื่อ-นามสกุล</th>
 												<th scope="col" align="left">อีเมล</th>
 												<th scope="col" align="left">วันที่ลงทะเบียน</th>
-												<th scope="col" align="left">สถานะ</th>
 												<th scope="col" width="5%">แก้ไข</th>
 												<th scope="col" width="5%">ลบ</th>
 											</tr>
 										</thead>
 										<tbody>
-										<?php include('../api/userManagement/userTable.php'); ?>
+										<?php include('../api/userManagement/userTable_advi.php'); ?>
 										</tbody>
 									</table>
 								</div>
@@ -350,19 +349,19 @@ $('#deleteUserModel').on('show.bs.modal', function (event) {
 })
 
 $(document).ready(function() {
-    $('#example').DataTable({
+		$('#example3').DataTable({
 
-        "order": [[ 0, "desc" ]],
+				"order": [[ 0, "desc" ]],
 				"columnDefs": [
-            {
-                "targets": [ 0 ],
-                "visible": false,
-                "searchable": false
-            },
-        ],
+						{
+								"targets": [ 0 ],
+								"visible": false,
+								"searchable": false
+						},
+				],
 				"pagingType": "full_numbers",
 				"scrollY":        "80vh",
-        "scrollCollapse": true,
+				"scrollCollapse": true,
 				"language": {
 					 "lengthMenu": "จำนวนแถว _MENU_",
 					 "zeroRecords": "ไม่พบข้อมูล",
@@ -371,15 +370,14 @@ $(document).ready(function() {
 					 "infoFiltered": "(ค้นหาจากทั้งหมด _MAX_ ข้อมูล)",
 					 "search": "ค้นหา:",
 					 "paginate": {
-        			"first": "หน้าแรก",
-        			"last":  "หน้าสุดท้าย",
-			        "next": "ถัดไป",
-        			"previous": "ย้อนกลับ"
-    },
+							"first": "หน้าแรก",
+							"last":  "หน้าสุดท้าย",
+							"next": "ถัดไป",
+							"previous": "ย้อนกลับ"
+		},
 			 },
 				"dom": 'frtlip'
-    } );
-
+		} );
 } );
 </script>
 </body>

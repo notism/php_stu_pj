@@ -2,7 +2,7 @@
 
 include('../config/connect.php');
 
-$sql = "SELECT * FROM users";
+$sql = "SELECT * FROM users WHERE Role='admin'";
 $result = $db->query($sql);
 
 if ($result->num_rows > 0) {

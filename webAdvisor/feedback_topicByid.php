@@ -85,14 +85,14 @@
                       while($row = $result->fetch_assoc()) {
                         if($row["Role"]=='student' || $row["Role"]=='advisor'  ){
                           echo "<h3 class='text-right'><span class='badge badge-pill badge-dark'>".$row["msg_detail"]."</span></h3>
-                            </h3><small class='form-text text-muted text-right'>&nbsp;&nbsp;ตอบกลับเมื่อ ".date("d M Y ณ เวลา H:i", strtotime($row["msg_date"]))." น.</small> <br/>";
+                            </h3><small class='form-text text-muted text-right'>&nbsp;&nbsp;ตอบกลับเมื่อ ".date("d M Y ณ เวลา H:i", strtotime($row["msg_date"]))." น. โดย ".$row["Username"]."</small> <br/>";
                         }else{
                           echo "<h3 class='text-left'><span class='badge badge-pill badge-light'>".$row["msg_detail"]."</span>
-                            </h3><small class='form-text text-muted text-left'>&nbsp;&nbsp;ตอบกลับเมื่อ ".date("d M Y ณ เวลา H:i", strtotime($row["msg_date"]))." น.</small> <br/>";
+                            </h3><small class='form-text text-muted text-left'>&nbsp;&nbsp;ตอบกลับเมื่อ ".date("d M Y ณ เวลา H:i", strtotime($row["msg_date"]))." น. โดย ".$row["Username"]."</small> <br/>";
                         }
                       }
                     } else {
-                        echo 'ยังไม่มีการตอบกลับจากเจ้าหน้าที่';
+                          echo '<center><strong style="color: red;">*ส่งข้อความเพื่อติดต่อผู้ดูแลระบบ</strong></center>';
                     }
                       $db->close();
                     ?>

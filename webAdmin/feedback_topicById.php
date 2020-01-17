@@ -29,7 +29,7 @@
 <body>
 
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-	  <a class="navbar-brand" href="index.php">WEB-ADMIN</a>
+	   <a class="navbar-brand" href="index.php"><img src="../img/icon_admin.png" class="rounded float-left" >&nbsp;ผู้ดูแลระบบ</a>
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 	    <span class="navbar-toggler-icon"></span>
 	  </button>
@@ -53,9 +53,9 @@
       </li> -->
 
 	    </ul>
-			<span class="navbar-text" style="font-size: 14px">
-		 		สวัสดี,คุณ <?php echo $_SESSION['userlogin']["Username"] ?>&nbsp;
-	 		</span>
+			<span class="navbar-text" style="font-size: 14px;color: white">
+				สวัสดี,คุณ <?php echo $_SESSION['userlogin']["Username"] ?>&nbsp;
+			</span>
 			<span class="navbar-text" style="font-size: 14px">
 				<a href="../logout.php" ><i class="fas fa-sign-out-alt" style="color:white"></i></a>
 			</span>
@@ -85,14 +85,14 @@
                       while($row = $result->fetch_assoc()) {
                         if($row["Role"]=='student' || $row["Role"]=='advisor'  ){
                           echo "<h3 class='text-left'><span class='badge badge-pill badge-light'>".$row["msg_detail"]."</span></h3>
-                            </h3><small class='form-text text-muted text-left'>&nbsp;&nbsp;ตอบกลับเมื่อ ".date("d M Y ณ เวลา H:i", strtotime($row["msg_date"]))." น.</small> <br/>";
+                            </h3><small class='form-text text-muted text-left'>&nbsp;&nbsp;ตอบกลับเมื่อ ".date("d M Y ณ เวลา H:i", strtotime($row["msg_date"]))." น. โดย ".$row["Username"]."</small> <br/>";
                         }else{
                           echo "<h3 class='text-right'><span class='badge badge-pill badge-dark'>".$row["msg_detail"]."</span>
-                            </h3><small class='form-text text-muted text-right'>&nbsp;&nbsp;ตอบกลับเมื่อ ".date("d M Y ณ เวลา H:i", strtotime($row["msg_date"]))." น.</small> <br/>";
+                            </h3><small class='form-text text-muted text-right'>&nbsp;&nbsp;ตอบกลับเมื่อ ".date("d M Y ณ เวลา H:i", strtotime($row["msg_date"]))." น. โดย ".$row["Username"]."</small> <br/>";
                         }
                       }
                     } else {
-                        echo 'ยังไม่มีการตอบกลับจากเจ้าหน้าที่';
+                        echo '<center><strong style="color: red;">*ส่งข้อความเพื่อติดต่อผู้ใช้งาน</strong></center>';
                     }
                       $db->close();
                     ?>
@@ -104,8 +104,8 @@
                   	<input type="hidden" class="form-control" name="msg_topic" value='<?php echo $get_fb_id;  ?>'>
                     <input type="hidden" class="form-control" name="msg_topic_l" value='<?php echo $get_fb_topic;  ?>'>
             				<div class="input-group mb-3">
-            					<textarea form="msgform" class="form-control" placeholder="โปรดกรอกข้อความ..." name="msg_detail" required></textarea>
-            				</div>					
+            					<textarea form="msgform"  class="form-control" placeholder="โปรดกรอกข้อความ..." name="msg_detail" required></textarea>
+            				</div>
                     <div class="text-right">
             				      <button type="submit" name="send_msg" id="submit" value="Submit" class="btn btn-primary">ส่ง</button>
                     </div>

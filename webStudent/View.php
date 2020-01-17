@@ -11,9 +11,6 @@
 ?>
 <!DOCTYPE html>
 <html>
-
-
-</style>
 <head>
 <title>Student Project</title>
 	
@@ -31,6 +28,12 @@ body{
 	background-image:url("../img/back.gif")
 }
 
+.img-checker {
+cursor: pointer;
+border: solid 0px;
+background-color:#dfeefd;
+color:#ffc107;
+}
 </style>
 
 
@@ -40,6 +43,7 @@ function myHide()
 	document.getElementById('hidepage').style.display='block';//content ที่ต้องการแสดงหลังจากเพจโหลดเสร็จ
 	document.getElementById('hidepage2').style.display='none';//content ที่ต้องการแสดงระหว่างโหลดเพจ
 }
+
 </script>
 
 <?php  
@@ -93,8 +97,16 @@ $proid = $_GET["Proid"];
         $P5 = $row["P5"];
     }
 
+    if($row["Star"]==""||$row["Star"]=="0"){
+      $stars = "0";
+    }else{
+      $stars = $row["Star"];
+    }
+
 
     $Ad = $row["Advisor"];
+
+
     }
 
     if($_GET["Proid"]!=""){
@@ -193,8 +205,51 @@ $proid = $_GET["Proid"];
     <div class="col-md-7 mb-4">
 
       <div class="view"><span><br>&nbsp;&nbsp;&nbsp;จำนวนคนดู <?php echo $View+1; ?> ครั้ง <i class='fas fa-eye '></i> 
+ <font color="#ffc107"><br><br>
+ &nbsp;
+<?php   
+if($stars==""||$stars=="0"){
+?>
+<i class="fas fa-star fa-2x"  id="star1" style="opacity: 0.3;cursor: pointer;"></i>
+<i class="fas fa-star fa-2x"  id="star1" style="opacity: 0.3;cursor: pointer;"></i>
+<i class="fas fa-star fa-2x"  id="star1" style="opacity: 0.3;cursor: pointer;"></i>
+<i class="fas fa-star fa-2x"  id="star1" style="opacity: 0.3;cursor: pointer;"></i>
+<i class="fas fa-star fa-2x"  id="star1" style="opacity: 0.3;cursor: pointer;"></i>
+<?php }elseif($stars=="1"){ ?>
+<i class="fas fa-star fa-2x"  id="star1" ></i>
+<i class="fas fa-star fa-2x"  id="star1" style="opacity: 0.3;cursor: pointer;"></i>
+<i class="fas fa-star fa-2x"  id="star1" style="opacity: 0.3;cursor: pointer;"></i>
+<i class="fas fa-star fa-2x"  id="star1" style="opacity: 0.3;cursor: pointer;"></i>
+<i class="fas fa-star fa-2x"  id="star1" style="opacity: 0.3;cursor: pointer;"></i>
+<?php }elseif($stars=="2"){ ?>
+<i class="fas fa-star fa-2x"  id="star1" ></i>
+<i class="fas fa-star fa-2x"  id="star1" ></i>
+<i class="fas fa-star fa-2x"  id="star1" style="opacity: 0.3;cursor: pointer;"></i>
+<i class="fas fa-star fa-2x"  id="star1" style="opacity: 0.3;cursor: pointer;"></i>
+<i class="fas fa-star fa-2x"  id="star1" style="opacity: 0.3;cursor: pointer;"></i>
+<?php }elseif($stars=="3"){ ?>
+<i class="fas fa-star fa-2x"  id="star1" ></i>
+<i class="fas fa-star fa-2x"  id="star1" ></i>
+<i class="fas fa-star fa-2x"  id="star1" ></i>
+<i class="fas fa-star fa-2x"  id="star1" style="opacity: 0.3;cursor: pointer;"></i>
+<i class="fas fa-star fa-2x"  id="star1" style="opacity: 0.3;cursor: pointer;"></i>
+<?php }elseif($stars=="4"){ ?>
+<i class="fas fa-star fa-2x"  id="star1" ></i>
+<i class="fas fa-star fa-2x"  id="star1" ></i>
+<i class="fas fa-star fa-2x"  id="star1" ></i>
+<i class="fas fa-star fa-2x"  id="star1" ></i>
+<i class="fas fa-star fa-2x"  id="star1" style="opacity: 0.3;cursor: pointer;"></i>
+<?php }else{ ?>
+<i class="fas fa-star fa-2x"  id="star1" ></i>
+<i class="fas fa-star fa-2x"  id="star1" ></i>
+<i class="fas fa-star fa-2x"  id="star1" ></i>
+<i class="fas fa-star fa-2x"  id="star1" ></i>
+<i class="fas fa-star fa-2x"  id="star1" ></i>
+<?php } echo " (".$stars." คะแนน)"; ?>
+</font>
         <!-- Hoverable -->
-<br><br><br><br><br>
+
+<br><br><br><br>
 <img src="../img/<?php echo $Pic; ?>" class="img-fluid  hoverable" ><br><br><br><br>
       </div>
 
@@ -247,6 +302,168 @@ echo "<form action='stdview.php' method='get'><input type='hidden' name='mem' va
 </tr>
 </table>
 </center>
+
+<center><br>
+<?php
+error_reporting(E_ALL & ~E_NOTICE);
+$stid = $proid.$D;
+include('../config/connect.php');
+$sql0 = "SELECT * FROM `project_star` WHERE stid = '$stid'";
+$result0 = $db->query($sql0);
+while($row0 = $result0->fetch_assoc()){
+$star = $row0['star'];
+}
+if(isset($_GET["st"])){
+  $Pst = $_GET["st"];
+}else{
+  $Pst = $star;
+}
+
+if($star==""){
+  include('../config/connect.php');
+  $sqlinsert = "INSERT into project_star (stid , user , star , id )
+  VALUES ('".$stid."','".$D."', '".$Pst."', '".$proid."')";
+   if ($db->query($sqlinsert) === TRUE) {
+   }
+       
+}else{
+  include('../config/connect.php');
+$sqlupdate = "UPDATE  project_star set stid = '".$stid."' , user = '".$D."', star = '".$Pst."' , id = '".$proid."' WHERE stid = '".$stid."'";
+   if ($db->query($sqlupdate) === TRUE) {
+   }
+
+}
+
+include('../config/connect.php');
+$sql0 = "SELECT * FROM `project_star` WHERE stid = '$stid'";
+$result0 = $db->query($sql0);
+while($row0 = $result0->fetch_assoc()){
+$star = $row0['star'];
+}
+if($star==""||$star=="0"){
+?>
+<table width="60%"><tr>
+<td><form method="get"><input type="hidden" value="1" name="st"><input type="hidden" value="<?php echo $proid; ?>" name="Proid"><button type="submit" class="img-checker"><i class="fas fa-star fa-2x" onclick="alert('ให้คะแนน 1 ดาว');" id="star1" style="opacity: 0.3;cursor: pointer;"></i></button></form></td>
+<td><form method="get"><input type="hidden" value="2" name="st"><input type="hidden" value="<?php echo $proid; ?>" name="Proid"><button type="submit" class="img-checker"><i class="fas fa-star fa-2x" onclick="alert('ให้คะแนน 2 ดาว');" id="star2" style="opacity: 0.3;cursor: pointer;"></i></button></form></td>
+<td><form method="get"><input type="hidden" value="3" name="st"><input type="hidden" value="<?php echo $proid; ?>" name="Proid"><button type="submit" class="img-checker"><i class="fas fa-star fa-2x" onclick="alert('ให้คะแนน 3 ดาว');" id="star3" style="opacity: 0.3;cursor: pointer;"></i></button></form></td>
+<td><form method="get"><input type="hidden" value="4" name="st"><input type="hidden" value="<?php echo $proid; ?>" name="Proid"><button type="submit" class="img-checker"><i class="fas fa-star fa-2x" onclick="alert('ให้คะแนน 4 ดาว');" id="star4" style="opacity: 0.3;cursor: pointer;"></i></button></form></td>
+<td><form method="get"><input type="hidden" value="5" name="st"><input type="hidden" value="<?php echo $proid; ?>" name="Proid"><button type="submit" class="img-checker"><i class="fas fa-star fa-2x" onclick="alert('ให้คะแนน 5 ดาว');" id="star5" style="opacity: 0.3;cursor: pointer;"></i></button></form></td>
+</tr></table>
+<?php }elseif($star=="1"){ ?>
+<table width="60%"><tr>
+<td><form method="get"><input type="hidden" value="1" name="st"><input type="hidden" value="<?php echo $proid; ?>" name="Proid"><button type="submit" class="img-checker"><i class="fas fa-star fa-2x" onclick="alert('ให้คะแนน 1 ดาว');" id="star11" ></i></form></td>
+<td><form method="get"><input type="hidden" value="2" name="st"><input type="hidden" value="<?php echo $proid; ?>" name="Proid"><button type="submit" class="img-checker"><i class="fas fa-star fa-2x" onclick="alert('ให้คะแนน 2 ดาว');" id="star12" style="opacity: 0.3;cursor: pointer;"></i></button></form></td>
+<td><form method="get"><input type="hidden" value="3" name="st"><input type="hidden" value="<?php echo $proid; ?>" name="Proid"><button type="submit" class="img-checker"><i class="fas fa-star fa-2x" onclick="alert('ให้คะแนน 3 ดาว');" id="star13" style="opacity: 0.3;cursor: pointer;"></i></button></form></td>
+<td><form method="get"><input type="hidden" value="4" name="st"><input type="hidden" value="<?php echo $proid; ?>" name="Proid"><button type="submit" class="img-checker"><i class="fas fa-star fa-2x" onclick="alert('ให้คะแนน 4 ดาว');" id="star14" style="opacity: 0.3;cursor: pointer;"></i></button></form></td>
+<td><form method="get"><input type="hidden" value="5" name="st"><input type="hidden" value="<?php echo $proid; ?>" name="Proid"><button type="submit" class="img-checker"><i class="fas fa-star fa-2x" onclick="alert('ให้คะแนน 5 ดาว');" id="star15" style="opacity: 0.3;cursor: pointer;"></i></button></form></td>
+</tr></table>
+<?php }elseif($star=="2"){ ?>
+<table width="60%"><tr>
+<td><form method="get"><input type="hidden" value="1" name="st"><input type="hidden" value="<?php echo $proid; ?>" name="Proid"><button type="submit" class="img-checker"><i class="fas fa-star fa-2x" onclick="alert('ให้คะแนน 1 ดาว');" id="star21" ></i></button></form></td>
+<td><form method="get"><input type="hidden" value="2" name="st"><input type="hidden" value="<?php echo $proid; ?>" name="Proid"><button type="submit" class="img-checker"><i class="fas fa-star fa-2x" onclick="alert('ให้คะแนน 2 ดาว');" id="star22" ></i></button></form></td>
+<td><form method="get"><input type="hidden" value="3" name="st"><input type="hidden" value="<?php echo $proid; ?>" name="Proid"><button type="submit" class="img-checker"><i class="fas fa-star fa-2x" onclick="alert('ให้คะแนน 3 ดาว');" id="star23" style="opacity: 0.3;cursor: pointer;"></i></button></form></td>
+<td><form method="get"><input type="hidden" value="4" name="st"><input type="hidden" value="<?php echo $proid; ?>" name="Proid"><button type="submit" class="img-checker"><i class="fas fa-star fa-2x" onclick="alert('ให้คะแนน 4 ดาว');" id="star24" style="opacity: 0.3;cursor: pointer;"></i></button></form></td>
+<td><form method="get"><input type="hidden" value="5" name="st"><input type="hidden" value="<?php echo $proid; ?>" name="Proid"><button type="submit" class="img-checker"><i class="fas fa-star fa-2x" onclick="alert('ให้คะแนน 5 ดาว');" id="star25" style="opacity: 0.3;cursor: pointer;"></i></button></form></td>
+</tr></table></s2>
+<?php }elseif($star=="3"){ ?>
+<table width="60%"><tr>
+<td><form method="get"><input type="hidden" value="1" name="st"><input type="hidden" value="<?php echo $proid; ?>" name="Proid"><button type="submit" class="img-checker"><i class="fas fa-star fa-2x" onclick="alert('ให้คะแนน 1 ดาว');" id="star31" ></i></button></form></td>
+<td><form method="get"><input type="hidden" value="2" name="st"><input type="hidden" value="<?php echo $proid; ?>" name="Proid"><button type="submit" class="img-checker"><i class="fas fa-star fa-2x" onclick="alert('ให้คะแนน 2 ดาว');" id="star32" ></i></button></form></td>
+<td><form method="get"><input type="hidden" value="3" name="st"><input type="hidden" value="<?php echo $proid; ?>" name="Proid"><button type="submit" class="img-checker"><i class="fas fa-star fa-2x" onclick="alert('ให้คะแนน 3 ดาว');" id="star33" ></i></button></form></td>
+<td><form method="get"><input type="hidden" value="4" name="st"><input type="hidden" value="<?php echo $proid; ?>" name="Proid"><button type="submit" class="img-checker"><i class="fas fa-star fa-2x" onclick="alert('ให้คะแนน 4 ดาว');" id="star34" style="opacity: 0.3;cursor: pointer;"></i></button></form></td>
+<td><form method="get"><input type="hidden" value="5" name="st"><input type="hidden" value="<?php echo $proid; ?>" name="Proid"><button type="submit" class="img-checker"><i class="fas fa-star fa-2x" onclick="alert('ให้คะแนน 5 ดาว');" id="star35" style="opacity: 0.3;cursor: pointer;"></i></button></form></td>
+</tr></table></s3>
+<?php }elseif($star=="4"){ ?>
+<table width="60%"><tr>
+<td><form method="get"><input type="hidden" value="1" name="st"><input type="hidden" value="<?php echo $proid; ?>" name="Proid"><button type="submit" class="img-checker"><i class="fas fa-star fa-2x" onclick="alert('ให้คะแนน 1 ดาว');" id="star41" ></i></button></form></td>
+<td><form method="get"><input type="hidden" value="2" name="st"><input type="hidden" value="<?php echo $proid; ?>" name="Proid"><button type="submit" class="img-checker"><i class="fas fa-star fa-2x" onclick="alert('ให้คะแนน 2 ดาว');" id="star42" ></i></button></form></td>
+<td><form method="get"><input type="hidden" value="3" name="st"><input type="hidden" value="<?php echo $proid; ?>" name="Proid"><button type="submit" class="img-checker"><i class="fas fa-star fa-2x" onclick="alert('ให้คะแนน 3 ดาว');" id="star43" ></i></button></form></td>
+<td><form method="get"><input type="hidden" value="4" name="st"><input type="hidden" value="<?php echo $proid; ?>" name="Proid"><button type="submit" class="img-checker"><i class="fas fa-star fa-2x" onclick="alert('ให้คะแนน 4 ดาว');" id="star44" ></i></button></form></td>
+<td><form method="get"><input type="hidden" value="5" name="st"><input type="hidden" value="<?php echo $proid; ?>" name="Proid"><button type="submit" class="img-checker"><i class="fas fa-star fa-2x" onclick="alert('ให้คะแนน 5 ดาว');" id="star45" style="opacity: 0.3;cursor: pointer;"></i></button></form></td>
+</tr></table></s4>
+<?php }else{ ?>
+<table width="60%"><tr>
+<td><form method="get"><input type="hidden" value="1" name="st"><input type="hidden" value="<?php echo $proid; ?>" name="Proid"><button type="submit" class="img-checker"><i class="fas fa-star fa-2x" onclick="alert('ให้คะแนน 1 ดาว');" id="star51" ></i></button></form></td>
+<td><form method="get"><input type="hidden" value="2" name="st"><input type="hidden" value="<?php echo $proid; ?>" name="Proid"><button type="submit" class="img-checker"><i class="fas fa-star fa-2x" onclick="alert('ให้คะแนน 2 ดาว');" id="star52" ></i></button></form></td>
+<td><form method="get"><input type="hidden" value="3" name="st"><input type="hidden" value="<?php echo $proid; ?>" name="Proid"><button type="submit" class="img-checker"><i class="fas fa-star fa-2x" onclick="alert('ให้คะแนน 3 ดาว');" id="star53" ></i></button></form></td>
+<td><form method="get"><input type="hidden" value="4" name="st"><input type="hidden" value="<?php echo $proid; ?>" name="Proid"><button type="submit" class="img-checker"><i class="fas fa-star fa-2x" onclick="alert('ให้คะแนน 4 ดาว');" id="star54" ></i></button></form></td>
+<td><form method="get"><input type="hidden" value="5" name="st"><input type="hidden" value="<?php echo $proid; ?>" name="Proid"><button type="submit" class="img-checker"><i class="fas fa-star fa-2x" onclick="alert('ให้คะแนน 5 ดาว');" id="star55" ></i></button></form></td>
+</tr></table>
+<?php } 
+include('../config/connect.php');
+$sql8 = "SELECT count(star) as Star FROM `project_star` WHERE id = '$proid'";
+$result8 = $db->query($sql8);
+while($row8 = $result8->fetch_assoc()){
+$star8 = $row8['Star'];
+}
+include('../config/connect.php');
+$sql9 = "SELECT sum(star) as Star FROM `project_star` WHERE id = '$proid'";
+$result9 = $db->query($sql9);
+while($row9 = $result9->fetch_assoc()){
+$star9 = $row9['Star'];
+}
+$star7 = $star9/$star8;
+if($star9==""||$star9=="0"){
+  include('../config/connect.php');
+$sqlupdate = "UPDATE  projectinfo set Star = '".$star7."' WHERE id = '".$proid."'";
+     if ($db->query($sqlupdate) === TRUE) {
+     }
+  
+}else{
+  include('../config/connect.php');
+  $sqlupdate = "UPDATE  projectinfo set Star = '".$star7."' WHERE id = '".$proid."'";
+     if ($db->query($sqlupdate) === TRUE) {
+     }
+}
+
+
+?>
+<br>
+<form method="post"><textarea rows="5" name="com"  class="form-control rounded-0" id="exampleFormControlTextarea2" style="width:90%" placeholder='แสดงความคิดเห็น...'></textarea>
+<Table width="90%"><Tr><td align="right"><button type="submit"  class="btn btn-primary btn-rounded mx-0 ">โพสต์</button></td></tr></Table></form>
+<br><font color='#4285f4' size='2px'>ความคิดเห็น </font><font color='#4285f4' size='4px'><i class="fas fa-comment-dots"></i></font>
+<br><br>
+<?php
+
+   
+
+$namecom = $_SESSION['userlogin']["Username"];
+$imgcom = $_SESSION['userlogin']["ImgUrl"];
+if($_POST["com"]!=""){
+  $com = $_POST["com"];
+  include('../config/connect.php');
+  $sqlinsert3 = "INSERT into project_comment ( id , user  , name , comment , img )
+  VALUES ('".$proid."','".$D."' , '".$namecom."' , '".$com."' , '".$imgcom."' )";
+   if ($db->query($sqlinsert3) === TRUE) {
+   }
+  }
+
+include('../config/connect.php');
+$sql5 = "SELECT * FROM `project_comment` WHERE id = '$proid'";
+$result5 = $db->query($sql5);
+while($row5 = $result5->fetch_assoc()){
+if($row5['img']==""){
+  $imgs = "user.png";
+}else{
+  $imgs = $row5['img'];
+}
+$t = time($row5['time']);
+$T = (date("d/m/Y",$t));
+$cm = $row5['cmid'];
+if($row5['user']!=$D){
+echo "<Table width='90%'><tr><td align='left'><img src='../img_user/".$imgs."'  class='rounded-circle z-depth-0 z-depth-1-half'  height='36px' width='36px' style='border: solid 1px #a971e3;'> <font size='1px' color='#d270d5'><i class='fas fa-circle'></i> </font><font size='3px' color='#dd70d1'><i class='fas fa-circle'></i></font><button type='button' class='btn purple-gradient btn-rounded btn-md' style='border-radius: 36px;'>".$row5['comment']."</button></td></tr>";
+echo "<tr><td align='left'><font color='#4285f4' size='0.5px'><i class='fas fa-clock'></i> โพสต์เมื่อวันที่ ".$T."</font></td></tr></Table>";
+}else{
+  echo "<Table width='90%'><tr><td align='right'><button type='button' class='btn purple-gradient btn-rounded btn-md' style='border-radius: 36px;'>".$row5['comment']."</button><font size='3px' color='#dd70d1'><i class='fas fa-circle'></i> </font><font size='1px' color='#d270d5'><i class='fas fa-circle'></i> </font> <img src='../img_user/".$imgs."'  class='rounded-circle z-depth-0 z-depth-1-half'  height='36px' width='36px' style='border: solid 1px #a971e3;'> </td></tr>";
+  echo "<tr><td align='right'><font color='#4285f4' size='0.5px'><i class='fas fa-clock'></i> โพสต์เมื่อวันที่ ".$T."</font><font color='#e53935' size='1.5px'><form name='myForm'  method='post' action='delete_comment.php' ><input type='hidden' name='DeP' value='".$cm."'><button type='submit' style='cursor: pointer;border: solid 0px #4285f4;background-color:#dfeefd;color:#e53935;' ><u><b>ลบ</b></u></button></font></form></td></tr></Table>";
+   
+}
+}
+
+
+
+
+?>
 <br>
 
       </div>
@@ -254,9 +471,12 @@ echo "<form action='stdview.php' method='get'><input type='hidden' name='mem' va
     
 
   <br><br>
+
 </section>
+<br><br>
 <!--Section: Content-->
-</div>                  
+</div>  
+
   </div>
 </div>
 
@@ -267,6 +487,8 @@ echo "<form action='stdview.php' method='get'><input type='hidden' name='mem' va
 			</div>
 		</div>
 	</div>
+                         
+					
 </main>
 </body>
 </html>
