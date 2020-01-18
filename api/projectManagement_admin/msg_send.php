@@ -24,10 +24,10 @@
 			$query2 = "INSERT INTO `feedback_msg`(msg_detail,msg_topic,msg_by)  VALUES ('$msg_detail','$msg_topic','$UpdateBy')";
 			mysqli_query($db, $query2);
 
-			$_SESSION['success'] = "success";
+
+
 			header('location: ../../webAdmin/feedback_topicByid.php?fb_id='.$msg_topic.'&fb_topic='.$msg_topic_l.'');
 		}else{
-      $_SESSION['success'] = "fail";
       header('location: ../../webAdmin/feedback_topicByid.php?fb_id='.$msg_topic.'&fb_topic='.$msg_topic_l.'');
     }
 

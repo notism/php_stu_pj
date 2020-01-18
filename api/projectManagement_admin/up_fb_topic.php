@@ -18,11 +18,12 @@
 		if (count($errors) == 0) {
       $query = "UPDATE feedback_topic SET fb_status='ดำเนินการแล้ว' WHERE fb_id='$projectId'";
 
-			mysqli_query($db, $query);
-			$_SESSION['success'] = "success";
-			header('location: ../../webAdmin/feedback_topic.php?res="success"');
+			if (!mysqli_query($db, $query)) {
+				header('location: ../../webAdmin/feedback_topic.php?res="fail"');
+			}else {
+				header('location: ../../webAdmin/feedback_topic.php?res="success"');
+			}
 		}else{
-      $_SESSION['success'] = "fail";
       header('location: ../../webAdmin/feedback_topic.php?res="fail"');
     }
 

@@ -132,8 +132,6 @@
 
 
                       }
-                    } else {
-                        echo '<option value="-">ไม่พบข้อมูล</option>';
                     }
                     $db->close();
                     ?>

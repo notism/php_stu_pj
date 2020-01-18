@@ -257,7 +257,7 @@
 				<label class="form-check-label">รหัสผ่าน:&nbsp;</label>
 			</div>
 			<div class="input-group mb-3">
-				<input type="password" class="form-control" placeholder="รหัสผ่าน" name="password" id="password2">
+				<input type="password" class="form-control" placeholder="รหัสผ่าน" name="password" id="password2" required>
 			</div>
 			<div class="input-group mb-3">
 				<label class="form-check-label" for="defaultCheck1">เลือกสถานะ:&nbsp;</label>
@@ -301,8 +301,8 @@
 			<div class="input-group mb-1">
 				<label class="form-check-label">กดยืนยันเพื่อลบข้อมูลผู้ใช้งาน&nbsp;</label>
 			</div>
-
-					<input type="hidden" class="form-control" placeholder="userId" name="userId" id="userId2" readonly>
+					<input type="hidden" class="form-control" name="username_del" id="username_del" readonly>
+					<input type="hidden" class="form-control" name="userId" id="userId2" readonly>
 
 		</div>
 		<div class="modal-footer">
@@ -346,6 +346,7 @@ $('#deleteUserModel').on('show.bs.modal', function (event) {
   var id = button.data('del_id')
 	var username = button.data('username')
 	document.getElementById("userId2").value = id;
+	document.getElementById("username_del").value = username;
    $('#del_msg').html('<label>คุณต้องการลบ ' + username +' ใช่ไหม?</label>');
 })
 

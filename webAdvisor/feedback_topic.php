@@ -126,9 +126,7 @@
                         <td align='left'><span style='width: 80px;' class='badge badge-pill badge-".$classType."'>".$row["fb_status"]."</span></td>
                         </tr>";
                       }
-                    } else {
-                        echo '<option value="-">ไม่พบข้อมูล</option>';
-                    }
+                    } 
                     $db->close();
                     ?>
                   </tbody>

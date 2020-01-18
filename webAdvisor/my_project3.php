@@ -185,7 +185,7 @@
 	        <label class="form-check-label">กดยืนยันเพื่ออนุมัติโครงงาน&nbsp;</label>
 	      </div>
 	      <div class="input-group mb-3">
-	          <input type="text" class="form-control" placeholder="หมายเลขโครงงาน" name="projectId3" id="projectId3" readonly>
+	          <input type="hidden" class="form-control" placeholder="หมายเลขโครงงาน" name="projectId3" id="projectId3" readonly>
 	      </div>
 	    </div>
 	    <div class="modal-footer">

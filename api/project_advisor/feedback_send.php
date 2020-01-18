@@ -21,12 +21,14 @@
 		if (count($errors) == 0) {
 			$UpdateBy = $_SESSION['userlogin']["Id"];
 			$query2 = "INSERT INTO `feedback_topic`(fb_topic,fb_detail,fb_createdBy,fb_status)  VALUES ('$topic','$detail','$UpdateBy','กำลังตรวจสอบ')";
-			mysqli_query($db, $query2);
+			// mysqli_query($db, $query2);
 
-			$_SESSION['success'] = "success";
-			header('location: ../../webAdvisor/feedback_topic.php?res="success"');
+			if (!mysqli_query($db, $query2)) {
+				header('location: ../../webAdvisor/feedback_topic.php?res="fail"');
+			}else {
+				header('location: ../../webAdvisor/feedback_topic.php?res="success"');
+			}
 		}else{
-      $_SESSION['success'] = "fail";
       header('location: ../../webAdvisor/feedback_topic.php?res="fail"');
     }
 

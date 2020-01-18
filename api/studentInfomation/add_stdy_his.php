@@ -22,14 +22,16 @@
 
       $query = "INSERT INTO `studyhistory`(SchoolName,Level,Qualification,Time,CreatedBy)  VALUES
        ('$SchoolName','$Level','$Qualification','$Time','$createdBy')";
-			mysqli_query($db, $query);
+			// mysqli_query($db, $query);
 
-			$_SESSION['success'] = "success";
-			header('location: ../../webStudent/stdInfo.php');
+			if (!mysqli_query($db, $query)) {
+					header('location: ../../webStudent/stdInfo.php?res="fail"');
+			}else {
+				header('location: ../../webStudent/stdInfo.php?res="success"');
+			}
 		}else{
-      $_SESSION['success'] = "fail";
-      header('location: ../../webStudent/stdInfo.php');
-    }
+			header('location: ../../webStudent/stdInfo.php?res="fail"');
+		}
 
 	}
 

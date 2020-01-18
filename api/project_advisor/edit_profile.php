@@ -86,7 +86,7 @@
 					$query2 = "UPDATE profile SET Tel='$tel',Faculty='$faculty',Department='$department' WHERE CreatedBy='$username'";
 			}
       // $query2 = "UPDATE profile SET Tel='$tel',Department='$department',Faculty='$faculty' WHERE CreatedBy='$username'";
-      mysqli_query($db, $query2);
+      // mysqli_query($db, $query2);
 
 			if($myfile!=''||$myfile!=null){
 				 $query = "UPDATE users SET Email='$email',Password='$passwordX',Firstname='$firstname', Lastname='$lastname',imgUrl='$myfile',Prefix='$prefix' WHERE Username='$username'";
@@ -94,12 +94,18 @@
 				 $query = "UPDATE users SET Email='$email',Password='$passwordX',Firstname='$firstname', Lastname='$lastname',Prefix='$prefix' WHERE Username='$username'";
 			}
 
-			mysqli_query($db, $query);
+			// mysqli_query($db, $query);
 
-			$_SESSION['success'] = "success";
-			header('location: ../../webAdvisor/profileManagement.php?res="success"');
+			if (!mysqli_query($db, $query2)) {
+					header('location: ../../webAdvisor/profileManagement.php?res="fail"');
+			}else {
+				if(!mysqli_query($db, $query)){
+					header('location: ../../webAdvisor/profileManagement.php?res="fail"');
+				}else{
+					header('location: ../../webAdvisor/profileManagement.php?res="success"');
+				}
+			}
 		}else{
-      $_SESSION['success'] = "fail";
       header('location: ../../webAdvisor/profileManagement.php?res="fail"');
     }
 

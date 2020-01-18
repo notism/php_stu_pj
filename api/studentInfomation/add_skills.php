@@ -20,15 +20,16 @@
 
       $query = "INSERT INTO `skills`(skills,Type,CreatedBy)  VALUES
        ('$Skills','$Type','$createdBy')";
-			mysqli_query($db, $query);
+		
 
-			$_SESSION['success'] = "success";
-      header('location: ../../webStudent/stdInfo.php');
+			if (!mysqli_query($db, $query)) {
+					header('location: ../../webStudent/stdInfo.php?res="fail"');
+			}else {
+				header('location: ../../webStudent/stdInfo.php?res="success"');
+			}
 		}else{
-      $_SESSION['success'] = "fail";
-      header('location: ../../webStudent/stdInfo.php');
-    }
-
+			header('location: ../../webStudent/stdInfo.php?res="fail"');
+		}
 	}
 
 ?>

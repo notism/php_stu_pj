@@ -95,12 +95,17 @@
 			}
 
       // $query = "UPDATE profile SET Tel='$tel',Birthday='$birthday',Religion='$religion',Nation='$nation',Military='$military',Faculty='$faculty',Department='$school',Degree='$degree',GPAX='$gpax', WHERE CreatedBy='$username'";
-
-      mysqli_query($db, $query);
-      mysqli_query($db, $query2);		
-			header('location: ../../webStudent/stdInfo.php');
+			if (!mysqli_query($db, $query)) {
+					header('location: ../../webStudent/stdInfo.php?res="fail"');
+			}else {
+				if(!mysqli_query($db, $query2)){
+					header('location: ../../webStudent/stdInfo.php?res="fail"');
+				}else{
+					header('location: ../../webStudent/stdInfo.php?res="success"');
+				}
+			}
 		}else{
-      header('location: ../../webStudent/stdInfo1.php');
+      header('location: ../../webStudent/stdInfo.php?res="fail"');
     }
 
 	}

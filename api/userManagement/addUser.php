@@ -35,14 +35,21 @@
 			$passwordX = md5($password);//encrypt the password before saving in the database
 			// user Info
 			$queryInfo = "INSERT INTO `profile`(CreatedBy)  VALUES
-       ('$username')";
-			mysqli_query($db, $queryInfo);
+       ('$username')";			
 			// users
       $query = "INSERT INTO `users`(Username,Email,Password,Role,CreatedBy,Prefix,Firstname,Lastname)  VALUES
        ('$username','$email','$passwordX','$role','$createdBy','$prefix','$firstname','$lastname')";
-			mysqli_query($db, $query);
 
-			header('location: ../../webAdmin/userManagement.php?add="success"');
+
+			if (!mysqli_query($db, $query)) {
+					header('location: ../../webAdmin/userManagement.php?add="fail"');
+			}else {
+				if(!mysqli_query($db, $queryInfo)){
+					header('location: ../../webAdmin/userManagement.php?add="fail"');
+				}else{
+					header('location: ../../webAdmin/userManagement.php?add="success"');
+				}
+			}
 		}else{
       header('location: ../../webAdmin/userManagement.php?add="fail"');
     }

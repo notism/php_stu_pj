@@ -96,9 +96,27 @@ body{
 						<h3 class="card-title">ข้อมูลส่วนตัว</h3>
 						<div class="dropdown-divider"></div>
 						<!-- Alert -->
-						<div class="hide" id="add_alert" role="alert">
-							<div id="messages_content"></div>
-						</div>
+						<?php
+						if(isset($_GET["res"]))
+						{
+							$get_res = $_GET["res"];
+							if($get_res=='"success"'){
+								echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+									<center><strong><i class="fas fa-check-circle"></i> อัพเดตข้อมูลสำเร็จ</strong></center>
+									<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>';
+							}else{
+								echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+									<center><strong><i class="fas fa-times-circle"></i> อัพเดตข้อมูลไม่สำเร็จ</strong></center>
+									<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>';
+							}
+						}
+						?>
 						<!-- End Alert -->
             <?php include('../api/studentInfomation/stdInfo.php'); ?>
 						<div class='dropdown-divider'></div>
@@ -644,7 +662,7 @@ body{
 				<label class="form-check-label">ทักษะ:&nbsp;</label>
 			</div>
 			<div class="input-group mb-3">
-				<textarea form="skillform2" class="form-control" placeholder="ทักษะ (ตย.ภาษาอังกฤษ,ภาษาจีน และภาษาญี่ปุ่น)" name="Skills" id="Skills2" required></textarea>				
+				<textarea form="skillform2" class="form-control" placeholder="ทักษะ (ตย.ภาษาอังกฤษ,ภาษาจีน และภาษาญี่ปุ่น)" name="Skills" id="Skills2" required></textarea>
 			</div>
 		</div>
 		<div class="modal-footer">

@@ -1,7 +1,7 @@
 <html>
 <body>
 <table class='table'>
-        
+
         <tbody>
 <?php
 
@@ -20,14 +20,12 @@ if ($result->num_rows > 0) {
             <td>".$row["Description"]."</td>
             <td>รออนุมัติ</td>
           </tr>
-       
-        
-        
+
+
+
         ";$i++;
     }
-} else {
-    echo "0 results";
-}
+} 
 $db->close();
 ?>
 

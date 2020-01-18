@@ -32,9 +32,11 @@
 				$query = "UPDATE users SET Email='$email',Password='$passwordX',Role='$role' WHERE Id='$userId'";
 			}
 
-
-			mysqli_query($db, $query);
-			header('location: ../../webAdmin/userManagement.php?edit="success"');
+			if (!mysqli_query($db, $query)) {
+				header('location: ../../webAdmin/userManagement.php?edit="fail"');
+			}else {
+				header('location: ../../webAdmin/userManagement.php?edit="success"');
+			}
 		}else{
       header('location: ../../webAdmin/userManagement.php?edit="fail"');
     }
