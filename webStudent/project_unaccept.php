@@ -4,15 +4,15 @@
 	if(!isset($_SESSION['userlogin'])){
 		header("Location: ../login.php");
   }
-  
+
   $D = $_SESSION['userlogin']["Id"];
-  
+
 ?>
 <!DOCTYPE html>
 <html>
 <head>
 <title>Student Project</title>
-	
+
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="../css/bootstrapA.css">
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
@@ -20,16 +20,16 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 	<link rel="stylesheet" type="text/css" href="../css/datatables.css"/>
   <link rel="stylesheet" href="../nice/css/mdb.min.css">
-  
 
 
-	
+
+
 	<style>
 
 
 div.a {
   text-align: right;
-} 
+}
 input[type=text], select {
   width: 97%;
   padding: 12px 20px;
@@ -243,6 +243,9 @@ return (false);
     <li class="nav-item active">
       <a class="nav-link" href="project_all.php"><i class="fas fa-folder "></i> โครงงานของฉัน</a>
   </li>
+	<li class="nav-item ">
+		<a class="nav-link" href="feedback_topic.php"><i class="fas fa-comment-dots "></i> ปัญหาและข้อเสนอแนะ</a>
+	</li>
      <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           อื่นๆ
@@ -253,11 +256,11 @@ return (false);
       </li>
     <!-- Dropdown -->
     </li>
-         
+
   </ul>
   <!-- Links -->
 
-    <span class="navbar-text" style="font-size: 14px;color:white"><?php include('../webStudent/usericon.php'); ?> 
+    <span class="navbar-text" style="font-size: 14px;color:white"><?php include('../webStudent/usericon.php'); ?>
     &nbsp;	สวัสดี,คุณ <?php echo $_SESSION['userlogin']["Username"]; ?>&nbsp;
      </span>
     <span class="navbar-text" style="font-size: 14px">
@@ -282,7 +285,7 @@ return (false);
 							<div id="messages_content"></div>
 						</div>
 						<!-- End Alert -->
-                        
+
 						<br>
 						<div class="row">&nbsp;&nbsp;
   <div class="col-sm-6 col-md-4 mb-3 mb-md-3">
@@ -295,12 +298,12 @@ return (false);
     </div>
   </div>
 </div>
-  
+
 						<div class="container mt-3">
             <Table width="97%" ><tr><td>
-                        
-						 
-						
+
+
+
 						<nav aria-label="Page navigation example">
 						<ul class="pagination pg-blue">
 							<li class="page-item ">
@@ -311,11 +314,11 @@ return (false);
 							<li class="page-item active"><a class="page-link">ไม่อนุมัติ</a></li>
 						</ul>
 						</nav>
-						
-					<input class="form-control" id="myInput" type="text" placeholder="ค้นหา..."  >	
+
+					<input class="form-control" id="myInput" type="text" placeholder="ค้นหา..."  >
           <div class="file has-name is-right">
 
-        	
+
 						<br>
 
 
@@ -326,8 +329,8 @@ return (false);
 						$sql = "SELECT * FROM projectinfo where (P1 = $D or P2 = $D or P3 = $D or P4 = $D or P5 = $D) and status = 'ไม่อนุมัติ'";
 						$result = $db->query($sql);
             $i = 1;
-            
-          
+
+
 
 						if ($result->num_rows > 0) {
 							while($row = $result->fetch_assoc()) {
@@ -338,10 +341,10 @@ return (false);
 							}elseif($row["Status"]=="ไม่อนุมัติ"){
 						    $S = "<font color='red'><i class='fas fa-times-circle fa-lg'></i> ".$row["Status"]."&nbsp;</font>";
               }
-              
-           
 
-							echo " 
+
+
+							echo "
 							<ul class='list-group' id='myList'>
 							<li class='list-group-item ' Style='background-color:#f1f1f1;'>
 							<Table width=100% ><tr>
@@ -354,17 +357,17 @@ return (false);
               <button type='submit' class='btn btn-danger btn-rounded btn-sm my-0' ><i class='fas fa-edit '></i> แก้ไข</button></td></form>
 							</tr>
 							</Table></li>
-						    </ul>  
+						    </ul>
 						      ";$i++;
-								
+
 							}
 						} else {
 							echo "0 results";
 						}
 						$db->close();
 						?>
- 
-  
+
+
  <br><br></div>
 </td></tr></table ></div>
 
@@ -382,12 +385,12 @@ $(document).ready(function(){
 });
 </script>
 
-							 
-						 
-                         
-						
-				
-              
+
+
+
+
+
+
 
 
 
@@ -400,7 +403,42 @@ $(document).ready(function(){
 	</div>
 </main>
 
-
+<button style="position:fixed;bottom:20px;right:20px;padding:12px 16px;border-radius: 50%;" title="ติดต่อผู้ดูแลระบบ" class="btn btn-danger" data-toggle='modal' data-target='#feedback_model'>
+	<i class="fas fa-question"></i>
+</button>
+<!-- Modal ติดต่อผู้ดูแลระบบ -->
+<div class="modal fade" id="feedback_model" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+<form enctype="multipart/form-data" action="../api/studentInfomation/feedback_send.php" method="post" id="formhelp">
+<div class="modal-dialog modal-dialog-scrollable" role="document">
+	<div class="modal-content">
+		<div class="modal-header">
+			<h5 class="modal-title">แจ้งปัญหาหรือข้อเสนอแนะ</h5>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		<div class="modal-body">
+			<div class="input-group mb-1">
+				<label class="form-check-label">หัวข้อ&nbsp;</label>
+			</div>
+			<div class="input-group mb-3">
+					<input type="text" class="form-control" placeholder="หัวข้อ" name="topic" id="topic" required>
+			</div>
+			<div class="input-group mb-1">
+				<label class="form-check-label">รายละเอียด&nbsp;</label>
+			</div>
+			<div class="input-group mb-3">
+				<textarea form="formhelp" class="form-control" id="validationTextarea" placeholder="แจ้งรายละเอียด" name="detail" required></textarea>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+			<button type="submit" name="feedback_send" id="submit" value="Submit" class="btn btn-primary">ยืนยัน</button>
+		</div>
+	</div>
+</div>
+</form>
+</div>
 
 
 
@@ -422,7 +460,7 @@ $(document).ready(function(){
     </td><td width=70%><input type='text' name="Pname" placeholder='ชื่อเรื่องโครงงาน' required>
     </td></tr>
     <tr><td align="center">
-    <font color="#7502f3"><i class="fas fa-cube fa-2x"></i></font> 
+    <font color="#7502f3"><i class="fas fa-cube fa-2x"></i></font>
     </td><td>
             <select class="mdb-select md-form" style="width:50%" name="Ptype" required>
             <option value="" disabled selected>เลือกประเภทโครงงาน</option>
@@ -432,12 +470,12 @@ $(document).ready(function(){
             <option value="อื่นๆ"> อื่นๆ</option>
             </select>
     </td></tr>
-    <tr><td align="center"><font color="#ad02f3"><i class="fas fa-book-open fa-2x"></i></font>  
+    <tr><td align="center"><font color="#ad02f3"><i class="fas fa-book-open fa-2x"></i></font>
     </td><td> <div class="form-group">
               <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="4" style="width:92%" placeholder='รายละเอียดโครงงาน' name="Des" required></textarea>
              </div>
     </td></tr>
-    <tr><td align="center"><font color="#ce02f3"><i class="fas fa-user-graduate fa-2x"></i></font>   
+    <tr><td align="center"><font color="#ce02f3"><i class="fas fa-user-graduate fa-2x"></i></font>
     </td><td><select class="mdb-select md-form" style="width:96%" name="Aname" required>
             <option value="" disabled selected>เลือกอาจารย์ที่รึกษาโครงงาน</option>
 
@@ -452,9 +490,9 @@ $i = 1;
 if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
         echo "
-       
+
         <option value='".$row["Id"]."'>".$row["Prefix"]." ".$row["Firstname"]." ".$row["Lastname"]."</option>
-        
+
         ";$i++;
     }
 } else {
@@ -474,9 +512,9 @@ $db->close();
 
 
     </td></tr>
-    <tr><td align="center"><font color="#f302ec"><i class="fas fa-users fa-2x"></i></font>  
-    </td><td> 
-           
+    <tr><td align="center"><font color="#f302ec"><i class="fas fa-users fa-2x"></i></font>
+    </td><td>
+
             <select class="mdb-select md-form" style="width:50%" name="user" required>
             <option value="" disabled selected>เลือกจำนวนสมาชิก</option>
             <option value="1"> 1 คน</option>
@@ -485,14 +523,14 @@ $db->close();
             <option value="4"> 4 คน</option>
             <option value="5"> 5 คน</option>
             </select>
-                
+
             <button type="submit" name="edit_user" id="submit" value="Submit" class="btn btn-primary" onclick="return checkForm()" >ยืนยัน</button>
     </td></tr>
     <tr><td>
-    </td><td> 
+    </td><td>
              <p id="note"></p>
     </td></tr>
-    <tr><td  align="center"> 
+    <tr><td  align="center">
                   <ul class="stepper stepper-vertical">
                     <li class="completed">
                       <a href="#!">
@@ -512,11 +550,11 @@ $db->close();
                 <input type="file" name="Picture" required>
               </a>
             </div>
-            
+
     </td></tr>
     <tr><td  align="center">
 
-              
+
     <ul class="stepper stepper-vertical">
       <li class="completed">
         <a href="#!">
@@ -529,7 +567,7 @@ $db->close();
 
     </ul>
 
-    </td><td>  
+    </td><td>
                อัพโหลดไฟล์โครงงาน<br>
                <font color="#d50000 ">หมายเหตุ : ไฟล์ PDF</font>
               <div class="file-field">
@@ -544,13 +582,13 @@ $db->close();
 
 
 
- 
 
 
 
 
-            
-            
+
+
+
     </td></tr>
     <Table></form> </center><br><br>
 		<div class="modal-footer">

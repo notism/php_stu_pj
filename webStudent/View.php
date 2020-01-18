@@ -150,6 +150,9 @@ $proid = $_GET["Proid"];
       <li class="nav-item ">
         <a class="nav-link" href="project_all.php"><i class="fas fa-folder "></i> โครงงานของฉัน</a>
 	  </li>
+    <li class="nav-item ">
+      <a class="nav-link" href="feedback_topic.php"><i class="fas fa-comment-dots "></i> ปัญหาและข้อเสนอแนะ</a>
+    </li>
        <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             อื่นๆ
@@ -490,6 +493,42 @@ echo "<tr><td align='left'><font color='#4285f4' size='0.5px'><i class='fas fa-c
 
 
 </main>
+<button style="position:fixed;bottom:20px;right:20px;padding:12px 16px;border-radius: 50%;" title="ติดต่อผู้ดูแลระบบ" class="btn btn-danger" data-toggle='modal' data-target='#feedback_model'>
+  <i class="fas fa-question"></i>
+</button>
+<!-- Modal ติดต่อผู้ดูแลระบบ -->
+<div class="modal fade" id="feedback_model" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+<form enctype="multipart/form-data" action="../api/studentInfomation/feedback_send.php" method="post" id="formhelp">
+<div class="modal-dialog modal-dialog-scrollable" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">แจ้งปัญหาหรือข้อเสนอแนะ</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="input-group mb-1">
+        <label class="form-check-label">หัวข้อ&nbsp;</label>
+      </div>
+      <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="หัวข้อ" name="topic" id="topic" required>
+      </div>
+      <div class="input-group mb-1">
+        <label class="form-check-label">รายละเอียด&nbsp;</label>
+      </div>
+      <div class="input-group mb-3">
+        <textarea form="formhelp" class="form-control" id="validationTextarea" placeholder="แจ้งรายละเอียด" name="detail" required></textarea>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+      <button type="submit" name="feedback_send" id="submit" value="Submit" class="btn btn-primary">ยืนยัน</button>
+    </div>
+  </div>
+</div>
+</form>
+</div>
 </body>
 </html>
 <?php

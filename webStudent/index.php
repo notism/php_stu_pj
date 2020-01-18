@@ -10,7 +10,7 @@
 <html>
 <head>
 <title>Student Project</title>
-	
+
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="../css/bootstrapA.css">
 	<link rel="stylesheet" type="text/css" href="../css/Colum.css"/>
@@ -19,7 +19,7 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 	<link rel="stylesheet" type="text/css" href="../css/datatables.css"/>
 	<link rel="stylesheet" href="../nice/css/mdb.min.css">
-	
+
 	<style>
 body{
 	background-image:url("../img/back.gif")
@@ -56,6 +56,9 @@ body{
 	<li class="nav-item ">
 	  <a class="nav-link" href="project_all.php"><i class="fas fa-folder "></i> โครงงานของฉัน</a>
 	</li>
+	<li class="nav-item ">
+		<a class="nav-link" href="feedback_topic.php"><i class="fas fa-comment-dots "></i> ปัญหาและข้อเสนอแนะ</a>
+	</li>
 	 <li class="nav-item dropdown">
 		<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 		  อื่นๆ
@@ -66,11 +69,11 @@ body{
 	  </li>
 	<!-- Dropdown -->
 	</li>
-		 
+
   </ul>
   <!-- Links -->
 
-	<span class="navbar-text" style="font-size: 14px;color:white"><?php include('../webStudent/usericon.php'); ?> 
+	<span class="navbar-text" style="font-size: 14px;color:white"><?php include('../webStudent/usericon.php'); ?>
 		  &nbsp;	สวัสดี,คุณ <?php echo $_SESSION['userlogin']["Username"]; ?>&nbsp;
 		   </span>
 		  <span class="navbar-text" style="font-size: 14px">
@@ -115,8 +118,8 @@ body{
 										<th style="visibility: hidden;"></th>
 										<th scope="col" align="left"></th>
 										<th style="visibility: hidden;"></th>
-										
-										
+
+
 										<!-- <th scope="col">Update</th> -->
 									</tr>
 								</thead>
@@ -125,10 +128,10 @@ body{
 								</tbody>
 							</table>
 						</div>
-                         
-						
-				
-              
+
+
+
+
 <script type="text/javascript" src="../js/datatables.min.js"></script>
 <script>
 $(document).ready(function() {
@@ -172,5 +175,41 @@ $(document).ready(function() {
 		</div>
 	</div>
 </main>
+<button style="position:fixed;bottom:20px;right:20px;padding:12px 16px;border-radius: 50%;" title="ติดต่อผู้ดูแลระบบ" class="btn btn-danger" data-toggle='modal' data-target='#feedback_model'>
+	<i class="fas fa-question"></i>
+</button>
+<!-- Modal ติดต่อผู้ดูแลระบบ -->
+<div class="modal fade" id="feedback_model" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+<form enctype="multipart/form-data" action="../api/studentInfomation/feedback_send.php" method="post" id="formhelp">
+<div class="modal-dialog modal-dialog-scrollable" role="document">
+	<div class="modal-content">
+		<div class="modal-header">
+			<h5 class="modal-title">แจ้งปัญหาหรือข้อเสนอแนะ</h5>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		<div class="modal-body">
+			<div class="input-group mb-1">
+				<label class="form-check-label">หัวข้อ&nbsp;</label>
+			</div>
+			<div class="input-group mb-3">
+					<input type="text" class="form-control" placeholder="หัวข้อ" name="topic" id="topic" required>
+			</div>
+			<div class="input-group mb-1">
+				<label class="form-check-label">รายละเอียด&nbsp;</label>
+			</div>
+			<div class="input-group mb-3">
+				<textarea form="formhelp" class="form-control" id="validationTextarea" placeholder="แจ้งรายละเอียด" name="detail" required></textarea>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+			<button type="submit" name="feedback_send" id="submit" value="Submit" class="btn btn-primary">ยืนยัน</button>
+		</div>
+	</div>
+</div>
+</form>
+</div>
 </body>
 </html>

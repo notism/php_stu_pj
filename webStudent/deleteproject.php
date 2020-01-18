@@ -4,14 +4,14 @@
 	if(!isset($_SESSION['userlogin'])){
 		header("Location: ../login.php");
     }
-    
-   
+
+
 ?>
 <!DOCTYPE html>
 <html>
 <head>
 <title>Student Project</title>
-	
+
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="../css/bootstrapA.css">
 	<link rel="stylesheet" type="text/css" href="../css/Colum.css"/>
@@ -20,7 +20,7 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 	<link rel="stylesheet" type="text/css" href="../css/datatables.css"/>
 	<link rel="stylesheet" href="../nice/css/mdb.min.css">
-	
+
 	<style>
 body{
 	background-image:url("../img/back.gif")
@@ -57,6 +57,9 @@ body{
     <li class="nav-item active">
       <a class="nav-link" href="project_all.php"><i class="fas fa-folder "></i> โครงงานของฉัน</a>
   </li>
+	<li class="nav-item ">
+		<a class="nav-link" href="feedback_topic.php"><i class="fas fa-comment-dots "></i> ปัญหาและข้อเสนอแนะ</a>
+	</li>
      <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           อื่นๆ
@@ -67,11 +70,11 @@ body{
       </li>
     <!-- Dropdown -->
     </li>
-         
+
   </ul>
   <!-- Links -->
 
-    <span class="navbar-text" style="font-size: 14px;color:white"><?php include('../webStudent/usericon.php'); ?> 
+    <span class="navbar-text" style="font-size: 14px;color:white"><?php include('../webStudent/usericon.php'); ?>
     &nbsp;	สวัสดี,คุณ <?php echo $_SESSION['userlogin']["Username"]; ?>&nbsp;
      </span>
     <span class="navbar-text" style="font-size: 14px">
@@ -99,16 +102,16 @@ body{
 $PId = $_POST["PId"];
 $Pname = $_POST["Pname"];
 include('../config/connect.php');
-$sql = "DELETE FROM projectinfo WHERE Id ='".$PId."'"; 
+$sql = "DELETE FROM projectinfo WHERE Id ='".$PId."'";
 if ($db->query($sql) === TRUE) {
     echo "
     <div class='alert alert-success' role='alert' Style='cursor: pointer;border-left: solid 5px #00c853;'>
     <h4 class='alert-heading'>ลบเรียบร้อยแล้ว!</h4>
-    <p>ลบโครงงาน ".$Pname." เรียบร้อยแล้ว  
+    <p>ลบโครงงาน ".$Pname." เรียบร้อยแล้ว
     <hr>
     <p class='mb-0'>สามารถสอบถามการใช้งาน หรือแจ้งปัญหาการใช้งานได้ ไปยังเมนูผู้ดูแลระบบ.</p>
     </div>
-    
+
     ";
 } else {
     echo "
@@ -120,7 +123,7 @@ if ($db->query($sql) === TRUE) {
 ?>
 <br><br>
 
-<CENTER><button type='button' class='btn purple-gradient btn-lg' data-toggle="modal" data-target="#exampleModalCenter" onclick="window.location.href = 'project_all.php'"><i class="fas fa-chevron-circle-left fa-lg"></i><h8> กลับหน้าก่อน</h8></button><br></CENTER>       
+<CENTER><button type='button' class='btn purple-gradient btn-lg' data-toggle="modal" data-target="#exampleModalCenter" onclick="window.location.href = 'project_all.php'"><i class="fas fa-chevron-circle-left fa-lg"></i><h8> กลับหน้าก่อน</h8></button><br></CENTER>
 
 
 
@@ -132,5 +135,41 @@ if ($db->query($sql) === TRUE) {
 		</div>
 	</div>
 </main>
+<button style="position:fixed;bottom:20px;right:20px;padding:12px 16px;border-radius: 50%;" title="ติดต่อผู้ดูแลระบบ" class="btn btn-danger" data-toggle='modal' data-target='#feedback_model'>
+	<i class="fas fa-question"></i>
+</button>
+<!-- Modal ติดต่อผู้ดูแลระบบ -->
+<div class="modal fade" id="feedback_model" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+<form enctype="multipart/form-data" action="../api/studentInfomation/feedback_send.php" method="post" id="formhelp">
+<div class="modal-dialog modal-dialog-scrollable" role="document">
+	<div class="modal-content">
+		<div class="modal-header">
+			<h5 class="modal-title">แจ้งปัญหาหรือข้อเสนอแนะ</h5>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		<div class="modal-body">
+			<div class="input-group mb-1">
+				<label class="form-check-label">หัวข้อ&nbsp;</label>
+			</div>
+			<div class="input-group mb-3">
+					<input type="text" class="form-control" placeholder="หัวข้อ" name="topic" id="topic" required>
+			</div>
+			<div class="input-group mb-1">
+				<label class="form-check-label">รายละเอียด&nbsp;</label>
+			</div>
+			<div class="input-group mb-3">
+				<textarea form="formhelp" class="form-control" id="validationTextarea" placeholder="แจ้งรายละเอียด" name="detail" required></textarea>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+			<button type="submit" name="feedback_send" id="submit" value="Submit" class="btn btn-primary">ยืนยัน</button>
+		</div>
+	</div>
+</div>
+</form>
+</div>
 </body>
 </html>

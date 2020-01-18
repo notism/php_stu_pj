@@ -22,7 +22,7 @@
 <body>
 
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-	  <a class="navbar-brand" href="index.php">WEB-ADVISOR</a>
+	  <a class="navbar-brand" href="index.php"><img src="../img/icon_advisor.png" class="rounded float-left" >&nbsp;ADVISOR</a>
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 	    <span class="navbar-toggler-icon"></span>
 	  </button>
@@ -46,8 +46,17 @@
 		 </li>
 	    </ul>
 			<span class="navbar-text" style="font-size: 14px;color:white">
-	    	สวัสดี,คุณ <?php echo $_SESSION['userlogin']["Username"]; ?>&nbsp;
-	     </span>
+				<?php
+					$imgUrl = $_SESSION['userlogin']["ImgUrl"];
+					if($imgUrl!=null){
+						echo '<img src="../img_user/'.$imgUrl.'" class="rounded-circle" style="width: 25px;height: 25px;">';
+					}else{
+						echo '<img src="../img_user/user.png" class="rounded-circle" style="width: 25px;height: 25px;">';
+					}
+				 ?>
+
+				สวัสดี,คุณ <?php echo $_SESSION['userlogin']["Username"]; ?>&nbsp;
+			 </span>
 	    <span class="navbar-text" style="font-size: 14px">
 	      <a href="../logout.php" ><i class="fas fa-sign-out-alt fa-lg" style="color:white"></i></a>
 	    </span>
@@ -60,7 +69,7 @@
   		  <div class="col-sm-12">
   				<div class="card"  style="width: 100%;">
   					<div class="card-body">
-  						<h3 class="card-title">ปัญหาหรือข้อเสนอแนะ</h3>
+  						<h3 class="card-title"><i class="fas fa-comments"></i> ปัญหาหรือข้อเสนอแนะ</h3>
 							<div class="dropdown-divider"></div>
 							<?php
 							if(isset($_GET["res"]))
@@ -81,7 +90,7 @@
 										</button>
 									</div>';
 								}
-							}						
+							}
 							?>
               <div class="table-responsive">
                 <table class="table table-hover" id="example">

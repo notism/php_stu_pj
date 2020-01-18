@@ -36,7 +36,7 @@ if ($result->num_rows > 0) {
         <center>
         <div class='card' style='width: 20%;'>
           <img class='card-img-top' src='../img_user/".$imgUrl_fix."' alt='Card image cap'>
-          <h5 class='card-header'>คุณ ".$row["Username"]."</h5>
+          <h5 class='card-header bg-info text-white '>คุณ ".$row["Username"]."</h5>
         </div>
 
         <br/>

@@ -5,7 +5,7 @@
 		header("Location: ../login.php");
     }
     $D = $_SESSION['userlogin']["Id"];
-  
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -14,7 +14,7 @@
 </style>
 <head>
 <title>Student Project</title>
-	
+
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="../css/bootstrapA.css">
 	<link rel="stylesheet" type="text/css" href="../css/Colum.css"/>
@@ -23,7 +23,7 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 	<link rel="stylesheet" type="text/css" href="../css/datatables.css"/>
 	<link rel="stylesheet" href="../nice/css/mdb.min.css">
-	
+
 	<style>
 
 body{
@@ -100,7 +100,7 @@ $(document).ready(function(){
 </script>
 
 
-<?php  
+<?php
 $proid = $_GET["Proid"];
  include('../config/connect.php');
  $sql = "SELECT * FROM `projectinfo` WHERE ( P1 = $D or P2 = $D or P3 = $D or P4 = $D or P5 = $D ) and id = '$proid'";
@@ -108,7 +108,7 @@ $proid = $_GET["Proid"];
  $rowcount=mysqli_num_rows($result);
  if ($rowcount < 1) {
     echo "<script>window.location.href = 'Project.php';</script>";
- 
+
 } else {
 
     while($row = $result->fetch_assoc()) {
@@ -155,9 +155,9 @@ $proid = $_GET["Proid"];
     $Ad = $row["Advisor"];
     }
 
-    
 
-    
+
+
  $QRcode = '<img src="https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=https://localhost/test/webStudent/View.php?Pid='.$URL.'/&choe=UTF-8" title="Link to my Website" width=100%/>';
 ?>
 
@@ -192,6 +192,9 @@ $proid = $_GET["Proid"];
     <li class="nav-item active">
       <a class="nav-link" href="project_all.php"><i class="fas fa-folder "></i> โครงงานของฉัน</a>
   </li>
+	<li class="nav-item ">
+		<a class="nav-link" href="feedback_topic.php"><i class="fas fa-comment-dots "></i> ปัญหาและข้อเสนอแนะ</a>
+	</li>
      <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           อื่นๆ
@@ -202,11 +205,11 @@ $proid = $_GET["Proid"];
       </li>
     <!-- Dropdown -->
     </li>
-         
+
   </ul>
   <!-- Links -->
 
-    <span class="navbar-text" style="font-size: 14px;color:white"><?php include('../webStudent/usericon.php'); ?> 
+    <span class="navbar-text" style="font-size: 14px;color:white"><?php include('../webStudent/usericon.php'); ?>
     &nbsp;	สวัสดี,คุณ <?php echo $_SESSION['userlogin']["Username"]; ?>&nbsp;
      </span>
     <span class="navbar-text" style="font-size: 14px">
@@ -222,31 +225,31 @@ $proid = $_GET["Proid"];
 		<div class="row">
 		  <div class="col-sm-12">
         <!-- start card -->
-			
-			
-                   
-                  
-                        
+
+
+
+
+
 						<!-- Alert -->
 						<div class="hide" id="add_alert" role="alert" >
 							<div id="messages_content" ></div>
 						</div>
 					<!-- End Alert -->
 
-                   
+
 <?php $space = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" ?>
 
 <div class="container my-5 z-depth-1" Style='cursor: pointer;border-left: solid 0px #4285f4;background-color:#ffffff'>
 
-                    
+
 <!--Section: Content-->
 <section class="dark-grey-text"  >
 
   <div class="row pr-lg-5">
-  
+
     <div class="col-md-6 mb-4">
 
-      <div class="view"><span><br>&nbsp;&nbsp;&nbsp;จำนวนคนดู <?php echo $View+1; ?> ครั้ง <i class='fas fa-eye '></i> 
+      <div class="view"><span><br>&nbsp;&nbsp;&nbsp;จำนวนคนดู <?php echo $View+1; ?> ครั้ง <i class='fas fa-eye '></i>
         <!-- Hoverable -->
 <br><br><br><br><br>
 <img src="../img/<?php echo $Pic; ?>" class="img-fluid  hoverable" >
@@ -268,38 +271,38 @@ $proid = $_GET["Proid"];
           </div>
           <B>ประเภท</B> <button type="button" id="hide2"><i class='fas fa-plus fa-sm'></i></button><br>
           <p2>
-          <?php 
+          <?php
           if($Type=="ธุรกิจ"){
             echo '<select class="mdb-select md-form" style="width:96%" name="Ptype" >
-            <option value="'.$Type.'" selected>'.$Type.'</option> 
-            <option value="สังคม" >สังคม</option> 
-            <option value="การศึกษา" >การศึกษา</option> 
-            <option value="อื่นๆ" >อื่นๆ</option> 
+            <option value="'.$Type.'" selected>'.$Type.'</option>
+            <option value="สังคม" >สังคม</option>
+            <option value="การศึกษา" >การศึกษา</option>
+            <option value="อื่นๆ" >อื่นๆ</option>
             </select>';
           }else if($Type=="สังคม"){
             echo '<select class="mdb-select md-form" style="width:96%" name="Ptype" >
-            <option value="'.$Type.'" selected>'.$Type.'</option> 
-            <option value="ธุรกิจ" >ธุรกิจ</option> 
-            <option value="การศึกษา" >การศึกษา</option> 
-            <option value="อื่นๆ" >อื่นๆ</option> 
+            <option value="'.$Type.'" selected>'.$Type.'</option>
+            <option value="ธุรกิจ" >ธุรกิจ</option>
+            <option value="การศึกษา" >การศึกษา</option>
+            <option value="อื่นๆ" >อื่นๆ</option>
             </select>';
           }else if($Type=="การศึกษา"){
             echo '<select class="mdb-select md-form" style="width:96%" name="Ptype" >
-            <option value="'.$Type.'" selected>'.$Type.'</option> 
-            <option value="ธุรกิจ" >ธุรกิจ</option> 
-            <option value="สังคม" >สังคม</option> 
-            <option value="อื่นๆ" >อื่นๆ</option> 
+            <option value="'.$Type.'" selected>'.$Type.'</option>
+            <option value="ธุรกิจ" >ธุรกิจ</option>
+            <option value="สังคม" >สังคม</option>
+            <option value="อื่นๆ" >อื่นๆ</option>
             </select>';
           }else{
             echo '<select class="mdb-select md-form" style="width:96%" name="Ptype" >
-            <option value="'.$Type.'" selected>'.$Type.'</option> 
-            <option value="ธุรกิจ" >ธุรกิจ</option> 
-            <option value="สังคม" >สังคม</option> 
-            <option value="การศึกษา" >การศึกษา</option> 
+            <option value="'.$Type.'" selected>'.$Type.'</option>
+            <option value="ธุรกิจ" >ธุรกิจ</option>
+            <option value="สังคม" >สังคม</option>
+            <option value="การศึกษา" >การศึกษา</option>
             </select>';
 
           }
-          
+
           ?></p2><br>
           <B>อาจารย์ที่ปรึกษา</B> <button type="button" id="hide3"><i class='fas fa-plus fa-sm'></i></button><br>
           <?php
@@ -310,8 +313,8 @@ $proid = $_GET["Proid"];
 
 $Adv = $row1["Prefix"]." ".$row1["Firstname"]." ".$row1["Lastname"];
  }
-      
- ?> 
+
+ ?>
  <p3>
  <select class="mdb-select md-form" style="width:96%" name="Aname" >
             <option value="<?php echo $Ad ?>" selected><?php echo $Adv; ?></option>
@@ -327,9 +330,9 @@ $i = 1;
 if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
         echo "
-       
+
         <option value='".$row["Id"]."'>".$row["Prefix"]." ".$row["Firstname"]." ".$row["Lastname"]."</option>
-        
+
         ";$i++;
     }
 } else {
@@ -351,8 +354,8 @@ $db->close();
 
 $Pi1 = $row1["Prefix"]." ".$row1["Firstname"]." ".$row1["Lastname"];
  }
-      
- ?> 
+
+ ?>
           <select class="mdb-select md-form" style="width:96%" name="P1" >
             <option value="<?php echo $P1 ?>" selected>คนที่1. <?php if($P1=='0'||$P1==' '){echo "ว่าง";}else{echo $Pi1;}  ?></option>
 
@@ -367,16 +370,16 @@ $i = 1;
 if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
         echo "
-       
+
         <option value='".$row["Id"]."'>".$row["Prefix"]." ".$row["Firstname"]." ".$row["Lastname"]."</option>
-        
+
         ";$i++;
     }
 } else {
     echo "0 results";
 }
 $db->close();
-?></select>  
+?></select>
 
 
 <?php
@@ -387,8 +390,8 @@ $db->close();
 
 $Pi2 = $row1["Prefix"]." ".$row1["Firstname"]." ".$row1["Lastname"];
  }
-      
- ?> 
+
+ ?>
           <select class="mdb-select md-form" style="width:96%" name="P2" >
             <option value="<?php echo $P2 ?>" selected>คนที่2. <?php if($P2=='0'||$P2==' '){echo "ว่าง";}else{echo $Pi2;}  ?></option>
 
@@ -403,16 +406,16 @@ $i = 1;
 if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
         echo "
-       
+
         <option value='".$row["Id"]."'>".$row["Prefix"]." ".$row["Firstname"]." ".$row["Lastname"]."</option>
-        
+
         ";$i++;
     }
 } else {
     echo "0 results";
 }
 $db->close();
-?></select>  
+?></select>
 
 
 
@@ -424,8 +427,8 @@ $db->close();
 
 $Pi3 = $row1["Prefix"]." ".$row1["Firstname"]." ".$row1["Lastname"];
  }
-      
- ?> 
+
+ ?>
           <select class="mdb-select md-form" style="width:96%" name="P3" >
             <option value="<?php echo $P3 ?>" selected>คนที่3. <?php if($P3=='0'||$P3==' '){echo "ว่าง";}else{echo $Pi3;}  ?></option>
 
@@ -440,16 +443,16 @@ $i = 1;
 if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
         echo "
-       
+
         <option value='".$row["Id"]."'>".$row["Prefix"]." ".$row["Firstname"]." ".$row["Lastname"]."</option>
-        
+
         ";$i++;
     }
 } else {
     echo "0 results";
 }
 $db->close();
-?></select>  
+?></select>
 
 
 
@@ -461,8 +464,8 @@ $db->close();
 
 $Pi4 = $row1["Prefix"]." ".$row1["Firstname"]." ".$row1["Lastname"];
  }
-      
- ?> 
+
+ ?>
           <select class="mdb-select md-form" style="width:96%" name="P4" >
             <option value="<?php echo $P4 ?>" selected>คนที่4. <?php if($P4=='0'||$P4==' '){echo "ว่าง";}else{echo $Pi4;}  ?></option>
 
@@ -477,16 +480,16 @@ $i = 1;
 if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
         echo "
-       
+
         <option value='".$row["Id"]."'>".$row["Prefix"]." ".$row["Firstname"]." ".$row["Lastname"]."</option>
-        
+
         ";$i++;
     }
 } else {
     echo "0 results";
 }
 $db->close();
-?></select> 
+?></select>
 
 
 <?php
@@ -497,8 +500,8 @@ $db->close();
 
 $Pi5 = $row1["Prefix"]." ".$row1["Firstname"]." ".$row1["Lastname"];
  }
-      
- ?> 
+
+ ?>
           <select class="mdb-select md-form" style="width:96%" name="P5" >
             <option value="<?php echo $P5 ?>" selected>คนที่5. <?php if($P5=='0'||$P5==' '){echo "ว่าง";}else{echo $Pi5;}  ?></option>
 
@@ -513,16 +516,16 @@ $i = 1;
 if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
         echo "
-       
+
         <option value='".$row["Id"]."'>".$row["Prefix"]." ".$row["Firstname"]." ".$row["Lastname"]."</option>
-        
+
         ";$i++;
     }
 } else {
     echo "0 results";
 }
 $db->close();
-?></select> 
+?></select>
 </pp>
 <br>
 <B>อัพเดตรูปภาพหน้าปก และ ไฟล์งาน</B> <button type="button" id="hide4"><i class='fas fa-plus fa-sm'></i></button><br><br>
@@ -561,13 +564,13 @@ $db->close();
 
       </div>
       <br><br>
-     
-    
+
+
 
   <br><br>
 </section>
 <!--Section: Content-->
-</div>                  
+</div>
   </div>
 </div>
 
@@ -579,6 +582,42 @@ $db->close();
 		</div>
 	</div>
 </main>
+<button style="position:fixed;bottom:20px;right:20px;padding:12px 16px;border-radius: 50%;" title="ติดต่อผู้ดูแลระบบ" class="btn btn-danger" data-toggle='modal' data-target='#feedback_model'>
+	<i class="fas fa-question"></i>
+</button>
+<!-- Modal ติดต่อผู้ดูแลระบบ -->
+<div class="modal fade" id="feedback_model" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+<form enctype="multipart/form-data" action="../api/studentInfomation/feedback_send.php" method="post" id="formhelp">
+<div class="modal-dialog modal-dialog-scrollable" role="document">
+	<div class="modal-content">
+		<div class="modal-header">
+			<h5 class="modal-title">แจ้งปัญหาหรือข้อเสนอแนะ</h5>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		<div class="modal-body">
+			<div class="input-group mb-1">
+				<label class="form-check-label">หัวข้อ&nbsp;</label>
+			</div>
+			<div class="input-group mb-3">
+					<input type="text" class="form-control" placeholder="หัวข้อ" name="topic" id="topic" required>
+			</div>
+			<div class="input-group mb-1">
+				<label class="form-check-label">รายละเอียด&nbsp;</label>
+			</div>
+			<div class="input-group mb-3">
+				<textarea form="formhelp" class="form-control" id="validationTextarea" placeholder="แจ้งรายละเอียด" name="detail" required></textarea>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+			<button type="submit" name="feedback_send" id="submit" value="Submit" class="btn btn-primary">ยืนยัน</button>
+		</div>
+	</div>
+</div>
+</form>
+</div>
 </body>
 </html>
 <?php

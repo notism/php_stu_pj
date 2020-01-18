@@ -29,14 +29,14 @@
 <body>
 
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary" >
-	  <a class="navbar-brand" href="index.php">WEB-ADVISOR</a>
+	  <a class="navbar-brand" href="index.php"><img src="../img/icon_advisor.png" class="rounded float-left" >&nbsp;ADVISOR</a>
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 	    <span class="navbar-toggler-icon"></span>
 	  </button>
 
 	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 	    <ul class="navbar-nav mr-auto">
-				<li class="nav-item active ">
+				<li class="nav-item ">
  				 <a class="nav-link" href="index.php">หน้าแรก<span class="sr-only">(current)</span></a>
  			 </li>
  			 <li class="nav-item ">
@@ -53,6 +53,15 @@
  		</li>
 	    </ul>
 			<span class="navbar-text" style="font-size: 14px;color:white">
+				<?php
+					$imgUrl = $_SESSION['userlogin']["ImgUrl"];
+					if($imgUrl!=null){
+						echo '<img src="../img_user/'.$imgUrl.'" class="rounded-circle" style="width: 25px;height: 25px;">';
+					}else{
+						echo '<img src="../img_user/user.png" class="rounded-circle" style="width: 25px;height: 25px;">';
+					}
+				 ?>
+
 				สวัสดี,คุณ <?php echo $_SESSION['userlogin']["Username"]; ?>&nbsp;
 			 </span>
 			<span class="navbar-text" style="font-size: 14px">
@@ -146,14 +155,14 @@
                           }
                            ?>
                         </div>
-                        <!-- <div class="row">
+                        <div class="row">
                         <div class="col">
                           <div class="card-body ">
                           <strong class="card-text">อาจารย์ที่ปรึกษาโครงงาน</strong>
-                          <div class="text-left"><label style="font-size: 1em;">- <?php //echo $advisor; ?></label></div>
+                          <div class="text-left"><label style="font-size: 1em;">- <?php echo $advisor; ?></label></div>
                           </div>
                         </div>
-                        </div> -->
+                        </div>
                         <div class="row">
                         <div class="col">
                           <div class="card-body ">
@@ -248,7 +257,7 @@
                            <br/>   <br/>
                            <Table width="100%">
                            <tr>
-                           <td>                        
+                           <td>
                            <center><button type="button" class="btn btn-info" onclick="window.open('../file/<?php echo $File; ?>')"><i class="fas fa-file-pdf fa-lg "></i> เปิดเอกสาร</button>
                            </center></td><td>
                            <?php
