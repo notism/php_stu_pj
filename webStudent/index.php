@@ -498,16 +498,12 @@ if ($result->num_rows > 0) {
 
 <!--Excerpt-->
 <div class="news-data">
-	<a href="" class="light-blue-text">
-		<h6>
-		   <i class="fas fa-cube fa-lg"></i>
-			<strong> '.$T.'</strong>
-		</h6>
-	</a>
-	<p>
-		<strong>
-			<i class="fa fa-clock-o"></i> '.$dat.'</strong>
-	</p>
+<table style="width:100%" class="mb-2">
+	<tr>
+		<th style="color:#56187F !important;"><i class="fas fa-cube fa-lg"></i> '.$T.'</th>
+		<th class="text-right"><small class="text-muted"><i class="fa fa-clock-o"></i>อัพโหลดเมื่อวันที่ '.$dat.'</small></th>
+	</tr>
+</table>
 </div>
 <h3>
 	<a>

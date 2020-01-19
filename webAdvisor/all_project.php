@@ -470,7 +470,7 @@ $db->close();
 			<th style="color:#56187F !important;"><i class="fas fa-cube fa-lg"></i> '.$T.'</th>
 			<th class="text-right"><small class="text-muted"><i class="fa fa-clock-o"></i>อัพโหลดเมื่อวันที่ '.$dat.'</small></th>
 		</tr>
-		</table>
+	</table>
 	</div>
 	<h3>
 		<a>
