@@ -266,7 +266,45 @@ $db->close();
 				<div class="card"  style="width: 100%;">
 					<div class="card-body"  >
 					<h4 class="card-title">หน้าหลักโครงงาน</h4>
-						<div class="dropdown-divider"></div>
+						<div class="dropdown-divider mb-3"></div>
+
+						<div class="row">
+						<div class="col">
+							<div class="card mb-3 " style="box-shadow:0px 2px 4px -1px">
+								<div class="card-body">
+									<div class="row">
+										<div class="col">
+											<div class="card-body">
+												<strong class="card-text text-dark"><i class="fas fa-vote-yea"></i> โครงงานที่มีคะแนนโหวดสูงสุด</strong>
+												<div class="text-right text-dark"><label style="font-size: 1.5em;"><?php include('../api/dashboard/most_vote_pj.php'); ?></label></div>
+												<div class="text-right"><small class="text-muted"><i class="fas fa-star"></i> <?php include('../api/dashboard/most_vote_pj_num.php'); ?> คะแนน</small></div>
+											</div>
+											<div class="dropdown-divider"></div>
+											<div class="row">
+											<div class="col">
+												<div class="card-body ">
+												<strong class="card-text text-dark"><i class="fas fa-fire"></i> โครงงานที่มียอดเข้าชมสูงสุดในเดือนนี้</strong>
+												<div class="text-right text-dark "><label  style="font-size: 1.5em;"><?php include('../api/dashboard/most_pj_thismonth.php'); ?></label></div>
+												<div class="text-right"><small class="text-muted"><i class="far fa-eye"></i> <?php include('../api/dashboard/most_pj_thismonth_num.php'); ?> ครั้ง</small></div>
+												</div>
+											</div>
+											</div>
+											<div class="dropdown-divider"></div>
+											<div class="row">
+											<div class="col">
+												<div class="card-body ">
+												<strong class="card-text text-dark"><i class="fas fa-medal"></i> โครงงานที่มียอดเข้าชมสูงสุดในปี <script>document.write(new Date().getFullYear())</script></strong>
+												<div class="text-right text-dark "><label  style="font-size: 1.5em;"><?php include('../api/dashboard/most_pj_thisyear.php'); ?></label></div>
+												<div class="text-right"><small class="text-muted"><i class="far fa-eye"></i>  <?php include('../api/dashboard/most_pj_thisyear_num.php'); ?> ครั้ง</small></div>
+												</div>
+											</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								</div>
+							</div>
+						</div>
 						<center>
             <form method="Post">
 						<Table width=100% Style='cursor: pointer;border: solid 0px #4285f4;background-color:#dfeefd'>
