@@ -18,23 +18,23 @@ if ($result->num_rows > 0) {
         $classType = 'info';
       }
       if($row["Star"]!=null){
-        if($row["Star"]<=0.5 ){
-
-        }elseif ($row["Star"]<=1) {
+        if($row["Star"]<=0.9 ){
+          $star = '<i class="fas fa-star-half-alt"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>';
+        }elseif ($row["Star"]<=1.4) {
           $star = '<i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>';
-        }elseif ($row["Star"]<=1.5) {
+        }elseif ($row["Star"]<=1.9) {
           $star = '<i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>';
-        }elseif ($row["Star"]<=2) {
+        }elseif ($row["Star"]<=2.4) {
           $star = '<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>';
-        }elseif ($row["Star"]<=2.5) {
+        }elseif ($row["Star"]<=2.9) {
           $star = '<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i><i class="far fa-star"></i>';
-        }elseif ($row["Star"]<=3) {
+        }elseif ($row["Star"]<=3.4) {
           $star = '<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>';
-        }elseif ($row["Star"]<=3.5) {
+        }elseif ($row["Star"]<=3.9) {
           $star = '<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>';
-        }elseif ($row["Star"]<=4) {
+        }elseif ($row["Star"]<=4.4) {
           $star = '<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>';
-        }elseif ($row["Star"]<=4.5) {
+        }elseif ($row["Star"]<=4.9) {
           $star = '<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>';
         }else{
           $star = '<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>';

@@ -227,74 +227,30 @@ $proid = $_GET["Proid"];
  <font color="#ffc107"><br><br>
  &nbsp;
 <?php
-if($stars<=" "||$stars<="0"){
-
-  $s='<i class="far fa-star fa-lg" ></i>
-  <i class="far fa-star fa-lg"></i>
-  <i class="far fa-star fa-lg"></i>
-  <i class="far fa-star fa-lg"></i>
-  <i class="far fa-star fa-lg"></i>';
-    }elseif($stars<="0.9"){
- $s='<i class="fas fa-star-half-alt fa-lg"  id="star1" ></i>
-  <i class="far fa-star fa-lg"></i>
-  <i class="far fa-star fa-lg"></i>
-  <i class="far fa-star fa-lg"></i>
-    <i class="far fa-star fa-lg"></i>';
-   }elseif($stars<="1"){
-  $s='<i class="fas fa-star fa-lg"  id="star1" ></i>
-     <i class="fas fa-star-half-alt fa-lg"></i>
-     <i class="far fa-star fa-lg"></i>
-     <i class="far fa-star fa-lg"></i>
-     <i class="far fa-star fa-lg"></i>';
-    }
-   elseif($stars<="1.5"){
- $s='<i class="fas fa-star fa-lg"  id="star1" ></i>
-  <i class="fas fa-star-half-alt fa-lg"  id="star1" ></i>
-  <i class="far fa-star fa-lg"></i>
-  <i class="far fa-star fa-lg"></i>
-  <i class="far fa-star fa-lg"></i>';
-   }elseif($stars<="2"){
-  $s='<i class="fas fa-star fa-lg"  id="star1" ></i>
-    <i class="fas fa-star fa-lg"  id="star1" ></i>
-    <i class="far fa-star fa-lg"  id="star1" ></i>
-    <i class="far fa-star fa-lg"></i>
-    <i class="far fa-star fa-lg"></i>';
-    }elseif($stars<="2.5"){
-$s='<i class="fas fa-star fa-lg"  id="star1" ></i>
-  <i class="fas fa-star fa-lg"  id="star1" ></i>
-  <i class="fas fa-star-half-alt fa-lg"  id="star1" ></i>
-  <i class="far fa-star fa-lg"></i>
-  <i class="far fa-star fa-lg"></i>';
-  }elseif($stars<="3"){
-    $s='<i class="fas fa-star fa-lg"  id="star1" ></i>
-    <i class="fas fa-star fa-lg"  id="star1" ></i>
-    <i class="fas fa-star fa-lg"  id="star1" ></i>
-    <i class="far fa-star fa-lg"  id="star1" ></i>
-    <i class="far fa-star fa-lg" ></i>';
-    }elseif($stars<="3.5"){
-  $s='<i class="fas fa-star fa-lg"  id="star1" ></i>
-  <i class="fas fa-star fa-lg"  id="star1" ></i>
-  <i class="fas fa-star fa-lg"  id="star1" ></i>
-  <i class="fas fa-star-half-alt fa-lg"  id="star1" ></i>
-  <i class="far fa-star fa-lg" ></i>';
-  }elseif($stars <="4"){
-    $s=	'<i class="fas fa-star fa-lg"  id="star1" ></i>
-      <i class="fas fa-star fa-lg"  id="star1" ></i>
-      <i class="fas fa-star fa-lg"  id="star1" ></i>
-      <i class="fas fa-star fa-lg"  id="star1" ></i>
-      <i class="far fa-star fa-lg"  id="star1" ></i>';
-      }elseif($stars <="4.5"){
-$s=	'<i class="fas fa-star fa-lg"  id="star1" ></i>
-  <i class="fas fa-star fa-lg"  id="star1" ></i>
-  <i class="fas fa-star fa-lg"  id="star1" ></i>
-  <i class="fas fa-star fa-lg"  id="star1" ></i>
-  <i class="fas fa-star-half-alt fa-lg"  id="star1" ></i>';
+if($stars!=null){
+  if($stars<=0.9 ){
+    $s = '<i class="fas fa-star-half-alt"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>';
+  }elseif ($stars<=1.4) {
+    $s = '<i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>';
+  }elseif ($stars<=1.9) {
+    $s = '<i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>';
+  }elseif ($stars<=2.4) {
+    $s = '<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>';
+  }elseif ($stars<=2.9) {
+    $s = '<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i><i class="far fa-star"></i>';
+  }elseif ($stars<=3.4) {
+    $s = '<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>';
+  }elseif ($stars<=3.9) {
+    $s = '<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>';
+  }elseif ($stars<=4.4) {
+    $s = '<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>';
+  }elseif ($stars<=4.9) {
+    $s = '<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>';
   }else{
-$s='<i class="fas fa-star fa-lg"  id="star1" ></i>
-  <i class="fas fa-star fa-lg"  id="star1" ></i>
-  <i class="fas fa-star fa-lg"  id="star1" ></i>
-  <i class="fas fa-star fa-lg"  id="star1" ></i>
-  <i class="fas fa-star fa-lg"  id="star1" ></i>';
+    $s = '<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>';
+  }
+}else{
+  $s = '<i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>';
 }  echo $s." (".substr($stars,0,3)." คะแนน)"; ?>
 </font>
         <!-- Hoverable -->
