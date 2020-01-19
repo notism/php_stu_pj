@@ -47,6 +47,7 @@ function myHide()
 </script>
 
 <?php
+error_reporting(~E_NOTICE);
 $proid = $_GET["Proid"];
  include('../config/connect.php');
  $sql = "SELECT * FROM `projectinfo` WHERE id = '$proid' and Status = 'อนุมัติแล้ว'";
@@ -66,6 +67,22 @@ $proid = $_GET["Proid"];
     $File = $row["File"];
     $View = $row["View"];
     $Num = 1+$View;
+    $fu = $row["fu"];
+	  $dep = $row["de"];
+
+      $sqlfu = "SELECT * FROM  fuaculty WHERE fac_id = '$fu'";
+		$resultfu = $db->query($sqlfu);
+		while($rowfu = $resultfu->fetch_assoc()){
+
+		$fux = $rowfu["fac_name"];
+		}
+		$sqlx = "SELECT * FROM department WHERE dep_id = '$dep'";
+		$resultx = $db->query($sqlx);
+		while($rowx = $resultx->fetch_assoc()){
+
+	   $dex = $rowx["dep_name"];
+		}
+
 
     if($row["P1"]==""){
         $P1 = "0";
@@ -116,7 +133,7 @@ $proid = $_GET["Proid"];
 }
 
 
- $QRcode = '<img src="https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=https://localhost/test/webStudent/View.php?Pid='.$URL.'/&choe=UTF-8" title="Link to my Website" width=100%/>';
+ include('../config/qrcode.php');
 ?>
 
 
@@ -150,16 +167,15 @@ $proid = $_GET["Proid"];
       <li class="nav-item ">
         <a class="nav-link" href="project_all.php"><i class="fas fa-folder "></i> โครงงานของฉัน</a>
 	  </li>
-    <li class="nav-item ">
-      <a class="nav-link" href="feedback_topic.php"><i class="fas fa-comment-dots "></i> ปัญหาและข้อเสนอแนะ</a>
-    </li>
        <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             อื่นๆ
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="edit_password.php"><i class="fas fa-lock "></i> แก้ไขรหัสผ่าน</a>
-          </div>
+          <a class="dropdown-item" href="feedback_topic.php"><i class="fas fa-comment-alt "></i> เมนูผู้ดูแลระบบ</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="edit_password.php"><i class="fas fa-lock "></i> แก้ไขรหัสผ่าน</a>
+      </div>
         </li>
       <!-- Dropdown -->
       </li>
@@ -211,44 +227,75 @@ $proid = $_GET["Proid"];
  <font color="#ffc107"><br><br>
  &nbsp;
 <?php
-if($stars==""||$stars=="0"){
-?>
-<i class="fas fa-star fa-2x"  id="star1" style="opacity: 0.3;cursor: pointer;"></i>
-<i class="fas fa-star fa-2x"  id="star1" style="opacity: 0.3;cursor: pointer;"></i>
-<i class="fas fa-star fa-2x"  id="star1" style="opacity: 0.3;cursor: pointer;"></i>
-<i class="fas fa-star fa-2x"  id="star1" style="opacity: 0.3;cursor: pointer;"></i>
-<i class="fas fa-star fa-2x"  id="star1" style="opacity: 0.3;cursor: pointer;"></i>
-<?php }elseif($stars=="1"){ ?>
-<i class="fas fa-star fa-2x"  id="star1" ></i>
-<i class="fas fa-star fa-2x"  id="star1" style="opacity: 0.3;cursor: pointer;"></i>
-<i class="fas fa-star fa-2x"  id="star1" style="opacity: 0.3;cursor: pointer;"></i>
-<i class="fas fa-star fa-2x"  id="star1" style="opacity: 0.3;cursor: pointer;"></i>
-<i class="fas fa-star fa-2x"  id="star1" style="opacity: 0.3;cursor: pointer;"></i>
-<?php }elseif($stars=="2"){ ?>
-<i class="fas fa-star fa-2x"  id="star1" ></i>
-<i class="fas fa-star fa-2x"  id="star1" ></i>
-<i class="fas fa-star fa-2x"  id="star1" style="opacity: 0.3;cursor: pointer;"></i>
-<i class="fas fa-star fa-2x"  id="star1" style="opacity: 0.3;cursor: pointer;"></i>
-<i class="fas fa-star fa-2x"  id="star1" style="opacity: 0.3;cursor: pointer;"></i>
-<?php }elseif($stars=="3"){ ?>
-<i class="fas fa-star fa-2x"  id="star1" ></i>
-<i class="fas fa-star fa-2x"  id="star1" ></i>
-<i class="fas fa-star fa-2x"  id="star1" ></i>
-<i class="fas fa-star fa-2x"  id="star1" style="opacity: 0.3;cursor: pointer;"></i>
-<i class="fas fa-star fa-2x"  id="star1" style="opacity: 0.3;cursor: pointer;"></i>
-<?php }elseif($stars=="4"){ ?>
-<i class="fas fa-star fa-2x"  id="star1" ></i>
-<i class="fas fa-star fa-2x"  id="star1" ></i>
-<i class="fas fa-star fa-2x"  id="star1" ></i>
-<i class="fas fa-star fa-2x"  id="star1" ></i>
-<i class="fas fa-star fa-2x"  id="star1" style="opacity: 0.3;cursor: pointer;"></i>
-<?php }else{ ?>
-<i class="fas fa-star fa-2x"  id="star1" ></i>
-<i class="fas fa-star fa-2x"  id="star1" ></i>
-<i class="fas fa-star fa-2x"  id="star1" ></i>
-<i class="fas fa-star fa-2x"  id="star1" ></i>
-<i class="fas fa-star fa-2x"  id="star1" ></i>
-<?php } echo " (".$stars." คะแนน)"; ?>
+if($stars<=" "||$stars<="0"){
+
+  $s='<i class="far fa-star fa-lg" ></i>
+  <i class="far fa-star fa-lg"></i>
+  <i class="far fa-star fa-lg"></i>
+  <i class="far fa-star fa-lg"></i>
+  <i class="far fa-star fa-lg"></i>';
+    }elseif($stars<="0.9"){
+ $s='<i class="fas fa-star-half-alt fa-lg"  id="star1" ></i>
+  <i class="far fa-star fa-lg"></i>
+  <i class="far fa-star fa-lg"></i>
+  <i class="far fa-star fa-lg"></i>
+    <i class="far fa-star fa-lg"></i>';
+   }elseif($stars<="1"){
+  $s='<i class="fas fa-star fa-lg"  id="star1" ></i>
+     <i class="fas fa-star-half-alt fa-lg"></i>
+     <i class="far fa-star fa-lg"></i>
+     <i class="far fa-star fa-lg"></i>
+     <i class="far fa-star fa-lg"></i>';
+    }
+   elseif($stars<="1.5"){
+ $s='<i class="fas fa-star fa-lg"  id="star1" ></i>
+  <i class="fas fa-star-half-alt fa-lg"  id="star1" ></i>
+  <i class="far fa-star fa-lg"></i>
+  <i class="far fa-star fa-lg"></i>
+  <i class="far fa-star fa-lg"></i>';
+   }elseif($stars<="2"){
+  $s='<i class="fas fa-star fa-lg"  id="star1" ></i>
+    <i class="fas fa-star fa-lg"  id="star1" ></i>
+    <i class="far fa-star fa-lg"  id="star1" ></i>
+    <i class="far fa-star fa-lg"></i>
+    <i class="far fa-star fa-lg"></i>';
+    }elseif($stars<="2.5"){
+$s='<i class="fas fa-star fa-lg"  id="star1" ></i>
+  <i class="fas fa-star fa-lg"  id="star1" ></i>
+  <i class="fas fa-star-half-alt fa-lg"  id="star1" ></i>
+  <i class="far fa-star fa-lg"></i>
+  <i class="far fa-star fa-lg"></i>';
+  }elseif($stars<="3"){
+    $s='<i class="fas fa-star fa-lg"  id="star1" ></i>
+    <i class="fas fa-star fa-lg"  id="star1" ></i>
+    <i class="fas fa-star fa-lg"  id="star1" ></i>
+    <i class="far fa-star fa-lg"  id="star1" ></i>
+    <i class="far fa-star fa-lg" ></i>';
+    }elseif($stars<="3.5"){
+  $s='<i class="fas fa-star fa-lg"  id="star1" ></i>
+  <i class="fas fa-star fa-lg"  id="star1" ></i>
+  <i class="fas fa-star fa-lg"  id="star1" ></i>
+  <i class="fas fa-star-half-alt fa-lg"  id="star1" ></i>
+  <i class="far fa-star fa-lg" ></i>';
+  }elseif($stars <="4"){
+    $s=	'<i class="fas fa-star fa-lg"  id="star1" ></i>
+      <i class="fas fa-star fa-lg"  id="star1" ></i>
+      <i class="fas fa-star fa-lg"  id="star1" ></i>
+      <i class="fas fa-star fa-lg"  id="star1" ></i>
+      <i class="far fa-star fa-lg"  id="star1" ></i>';
+      }elseif($stars <="4.5"){
+$s=	'<i class="fas fa-star fa-lg"  id="star1" ></i>
+  <i class="fas fa-star fa-lg"  id="star1" ></i>
+  <i class="fas fa-star fa-lg"  id="star1" ></i>
+  <i class="fas fa-star fa-lg"  id="star1" ></i>
+  <i class="fas fa-star-half-alt fa-lg"  id="star1" ></i>';
+  }else{
+$s='<i class="fas fa-star fa-lg"  id="star1" ></i>
+  <i class="fas fa-star fa-lg"  id="star1" ></i>
+  <i class="fas fa-star fa-lg"  id="star1" ></i>
+  <i class="fas fa-star fa-lg"  id="star1" ></i>
+  <i class="fas fa-star fa-lg"  id="star1" ></i>';
+}  echo $s." (".substr($stars,0,3)." คะแนน)"; ?>
 </font>
         <!-- Hoverable -->
 
@@ -262,6 +309,10 @@ if($stars==""||$stars=="0"){
       <br><br>
         <h3 class="font-weight-bold mb-4" align="center"><?php echo $N; ?></h3>
 
+          <p><B>สำนักวิชา</B> <br>
+          <?php echo $space.$fux."<br>"; ?>
+          <p><B>สาขาวิชา</B> <br>
+          <?php echo $space.$dex."<br>"; ?>
           <p><B>รายละเอียด</B> <br>
       <Table width="100%"><tr><td width="90%"><?php echo $space.$Des."<br>"; ?></td></tr></Table><br>
           <B>ประเภท</B><br>
@@ -440,8 +491,8 @@ if($_POST["com"]!=""){
    if ($db->query($sqlinsert3) === TRUE) {
    }
   }
-
 include('../config/connect.php');
+$V=1;
 $sql5 = "SELECT * FROM `project_comment` WHERE id = '$proid'";
 $result5 = $db->query($sql5);
 while($row5 = $result5->fetch_assoc()){
@@ -450,15 +501,37 @@ if($row5['img']==""){
 }else{
   $imgs = $row5['img'];
 }
+error_reporting(E_ERROR | E_PARSE);
 $t = time($row5['time']);
 $T = (date("d/m/Y",$t));
 $cm = $row5['cmid'];
+$vall = $_POST["vall"];
+if($V<=3&&$vall==""){
 if($row5['user']!=$D){
 echo "<Table width='90%'><tr><td align='left'><img src='../img_user/".$imgs."'  class='rounded-circle z-depth-0 z-depth-1-half'  height='36px' width='36px' style='border: solid 1px #a971e3;'> <font size='1px' color='#d270d5'><i class='fas fa-circle'></i> </font><font size='3px' color='#dd70d1'><i class='fas fa-circle'></i></font><button type='button' class='btn purple-gradient btn-rounded btn-md' style='border-radius: 36px;'>".$row5['comment']."</button></td></tr>";
 echo "<tr><td align='left'><font color='#4285f4' size='0.5px'><i class='fas fa-clock'></i> โพสต์เมื่อวันที่ ".$T."</font></td></tr></Table>";
+$V++;
 }else{
   echo "<Table width='90%'><tr><td align='right'><button type='button' class='btn purple-gradient btn-rounded btn-md' style='border-radius: 36px;'>".$row5['comment']."</button><font size='3px' color='#dd70d1'><i class='fas fa-circle'></i> </font><font size='1px' color='#d270d5'><i class='fas fa-circle'></i> </font> <img src='../img_user/".$imgs."'  class='rounded-circle z-depth-0 z-depth-1-half'  height='36px' width='36px' style='border: solid 1px #a971e3;'> </td></tr>";
   echo "<tr><td align='right'><font color='#4285f4' size='0.5px'><i class='fas fa-clock'></i> โพสต์เมื่อวันที่ ".$T."</font><font color='#e53935' size='1.5px'><form name='myForm'  method='post' action='delete_comment.php' ><input type='hidden' name='DeP' value='".$cm."'><button type='submit' style='cursor: pointer;border: solid 0px #4285f4;background-color:#dfeefd;color:#e53935;' ><u><b>ลบ</b></u></button></font></form></td></tr></Table>";
+$V++;
+}
+if($V==4&&$vall==""){
+  echo "<Table width='90%'><tr><td align='right'><br></td></tr>";
+  echo "<tr><td align='right'><font size='2px'> <form name='myForm'  method='post'  ><input type='hidden' name='vall' value='all'><button type='submit' style='cursor: pointer;border: solid 0px #4285f4;background-color:#dfeefd;color:#4285f4' ><b><i class='fas fa-angle-double-down'></i> ดูความคิดเห็นทั้งหมด</b></button></font></form></td></tr></Table>";
+
+
+}
+
+}
+if($vall=="all"){
+  if($row5['user']!=$D){
+    echo "<Table width='90%'><tr><td align='left'><img src='../img_user/".$imgs."'  class='rounded-circle z-depth-0 z-depth-1-half'  height='36px' width='36px' style='border: solid 1px #a971e3;'> <font size='1px' color='#d270d5'><i class='fas fa-circle'></i> </font><font size='3px' color='#dd70d1'><i class='fas fa-circle'></i></font><button type='button' class='btn purple-gradient btn-rounded btn-md' style='border-radius: 36px;'>".$row5['comment']."</button></td></tr>";
+    echo "<tr><td align='left'><font color='#4285f4' size='0.5px'><i class='fas fa-clock'></i> โพสต์เมื่อวันที่ ".$T."</font></td></tr></Table>";
+    }else{
+      echo "<Table width='90%'><tr><td align='right'><button type='button' class='btn purple-gradient btn-rounded btn-md' style='border-radius: 36px;'>".$row5['comment']."</button><font size='3px' color='#dd70d1'><i class='fas fa-circle'></i> </font><font size='1px' color='#d270d5'><i class='fas fa-circle'></i> </font> <img src='../img_user/".$imgs."'  class='rounded-circle z-depth-0 z-depth-1-half'  height='36px' width='36px' style='border: solid 1px #a971e3;'> </td></tr>";
+      echo "<tr><td align='right'><font color='#4285f4' size='0.5px'><i class='fas fa-clock'></i> โพสต์เมื่อวันที่ ".$T."</font><font color='#e53935' size='1.5px'><form name='myForm'  method='post' action='delete_comment.php' ><input type='hidden' name='DeP' value='".$cm."'><button type='submit' style='cursor: pointer;border: solid 0px #4285f4;background-color:#dfeefd;color:#e53935;' ><u><b>ลบ</b></u></button></font></form></td></tr></Table>";
+    }
 
 }
 }
@@ -493,42 +566,6 @@ echo "<tr><td align='left'><font color='#4285f4' size='0.5px'><i class='fas fa-c
 
 
 </main>
-<button style="position:fixed;bottom:20px;right:20px;padding:12px 16px;border-radius: 50%;" title="ติดต่อผู้ดูแลระบบ" class="btn btn-danger" data-toggle='modal' data-target='#feedback_model'>
-  <i class="fas fa-question"></i>
-</button>
-<!-- Modal ติดต่อผู้ดูแลระบบ -->
-<div class="modal fade" id="feedback_model" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
-<form enctype="multipart/form-data" action="../api/studentInfomation/feedback_send.php" method="post" id="formhelp">
-<div class="modal-dialog modal-dialog-scrollable" role="document">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h5 class="modal-title">แจ้งปัญหาหรือข้อเสนอแนะ</h5>
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <div class="input-group mb-1">
-        <label class="form-check-label">หัวข้อ&nbsp;</label>
-      </div>
-      <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="หัวข้อ" name="topic" id="topic" required>
-      </div>
-      <div class="input-group mb-1">
-        <label class="form-check-label">รายละเอียด&nbsp;</label>
-      </div>
-      <div class="input-group mb-3">
-        <textarea form="formhelp" class="form-control" id="validationTextarea" placeholder="แจ้งรายละเอียด" name="detail" required></textarea>
-      </div>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-      <button type="submit" name="feedback_send" id="submit" value="Submit" class="btn btn-primary">ยืนยัน</button>
-    </div>
-  </div>
-</div>
-</form>
-</div>
 </body>
 </html>
 <?php

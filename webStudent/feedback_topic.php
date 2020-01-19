@@ -4,38 +4,34 @@
 	if(!isset($_SESSION['userlogin'])){
 		header("Location: ../login.php");
 	}
-  if($_SESSION['userlogin']["Role"]!='student'){
-    header("Location: ../login.php");
-  }
+	if($_SESSION['userlogin']["Role"]!='student'){
+		header("Location: ../login.php");
+	}
 ?>
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title>Student Project</title>
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="../css/bootstrapA.css">
-	<link rel="stylesheet" type="text/css" href="../css/Colum.css"/>
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 	<link rel="stylesheet" type="text/css" href="../css/datatables.css"/>
-	<link rel="stylesheet" href="../nice/css/mdb.min.css">
-	<link rel="stylesheet" href="../css/bootstrap-selecta.css">
-	<script src="../js/bootstrap-select.js"></script>
-</head>
 <style>
 body{
 	background-image:url("../img/back.gif")
 }
 
 </style>
+</head>
 <body>
 
-	<!--Navbar-->
+
 <nav class="navbar navbar-expand-lg navbar-dark " style="background-color:#56187f;">
 
 <!-- Navbar brand -->
-<a class="navbar-brand" href="index.php">WEB-STUDENT</a>
+<a class="navbar-brand" href="#">WEB-STUDENT</a>
 
 <!-- Collapse button -->
 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
@@ -58,32 +54,31 @@ body{
 	<li class="nav-item ">
 	  <a class="nav-link" href="project_all.php"><i class="fas fa-folder "></i> โครงงานของฉัน</a>
 	</li>
-	<li class="nav-item active">
-		<a class="nav-link" href="feedback_topic.php"><i class="fas fa-comment-dots "></i> ปัญหาและข้อเสนอแนะ</a>
-	</li>
-	 <li class="nav-item dropdown">
+	 <li class="nav-item active dropdown">
 		<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 		  อื่นๆ
 		</a>
 		<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+		  <a class="dropdown-item" href="feedback_topic.php"><i class="fas fa-comment-alt "></i> เมนูผู้ดูแลระบบ</a>
+		  <div class="dropdown-divider"></div>
 		  <a class="dropdown-item" href="edit_password.php"><i class="fas fa-lock "></i> แก้ไขรหัสผ่าน</a>
 		</div>
 	  </li>
 	<!-- Dropdown -->
 	</li>
-
+		 
   </ul>
   <!-- Links -->
 
-            <span class="navbar-text" style="font-size: 14px;color:white"><?php include('../webStudent/usericon.php'); ?>
-			&nbsp;	สวัสดี,คุณ <?php echo $_SESSION['userlogin']["Username"]; ?>&nbsp;
-	 		</span>
+	<span class="navbar-text" style="font-size: 14px;color:white"><?php include('../webStudent/usericon.php'); ?> 
+		  &nbsp;	สวัสดี,คุณ <?php echo $_SESSION['userlogin']["Username"]; ?>&nbsp;
+		   </span>
 		  <span class="navbar-text" style="font-size: 14px">
 			  <a href="../logout.php" ><i class="fas fa-sign-out-alt fa-lg" style="color:white"></i></a>
 		  </span>
 
 </nav>
-<!--/.Navbar-->
+
 </div>
 	<br/>
   <main>
@@ -92,8 +87,12 @@ body{
   		  <div class="col-sm-12">
   				<div class="card"  style="width: 100%;">
   					<div class="card-body">
-  						<h3 class="card-title">ปัญหาหรือข้อเสนอแนะ</h3>
+  						<h3 class="card-title"><i class="fas fa-comments"></i> ปัญหาหรือข้อเสนอแนะ</h3>
 							<div class="dropdown-divider"></div>
+                            <br>
+                            <button  title="ติดต่อผู้ดูแลระบบ" class="btn btn-danger btn-md" data-toggle='modal' data-target='#feedback_model'>
+                            <i class="fas fa-plus "></i> แจ้งปัญหาหรือข้อเสนอแนะ
+                           </button>
 							<?php
 							if(isset($_GET["res"]))
 							{
@@ -129,8 +128,8 @@ body{
                   <tbody>
                     <?php
                     include('../config/connect.php');
-                    $student=$_SESSION['userlogin']['Id'];
-                    $sql = "SELECT * FROM feedback_topic WHERE fb_createdBy='$student'" ;
+                    $advisor=$_SESSION['userlogin']['Id'];
+                    $sql = "SELECT * FROM feedback_topic WHERE fb_createdBy='$advisor'" ;
                     $result = $db->query($sql);
                     if ($result->num_rows > 0) {
                       while($row = $result->fetch_assoc()) {
@@ -143,15 +142,13 @@ body{
                         }
                         echo "<tr>
                         <td align='left'>".$row["fb_id"]."</td>
-                        <td align='left'><a  style='color: red;'  href='feedback_topicByid.php?fb_id=".$row["fb_id"]."&fb_topic=".$row["fb_topic"]."'>".$row["fb_topic"]."</a></td>
+                        <td align='left'><a href='feedback.php?fb_id=".$row["fb_id"]."&fb_topic=".$row["fb_topic"]."'>".$row["fb_topic"]."</a></td>
                         <td align='left'>".$row["fb_detail"]."</td>
                         <td align='left'>".date("d-m-Y", strtotime($row["fb_createdDate"]))."</td>
                         <td align='left'><span style='width: 80px;' class='badge badge-pill badge-".$classType."'>".$row["fb_status"]."</span></td>
                         </tr>";
                       }
-                    } else {
-                        echo '<option value="-">ไม่พบข้อมูล</option>';
-                    }
+                    } 
                     $db->close();
                     ?>
                   </tbody>
@@ -167,14 +164,12 @@ body{
 
   	</div>
   </main>
-	<button style="position:fixed;bottom:20px;right:20px;padding:12px 16px;border-radius: 50%;" title="ติดต่อผู้ดูแลระบบ" class="btn btn-danger" data-toggle='modal' data-target='#feedback_model'>
-		<i class="fas fa-question"></i>
-	</button>
+
 	<!-- Modal ติดต่อผู้ดูแลระบบ -->
 	<div class="modal fade" id="feedback_model" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
-	<form enctype="multipart/form-data" action="../api/studentInfomation/feedback_send.php" method="post" id="formhelp">
+	<form enctype="multipart/form-data" action="feedback_send.php" method="post" id="formhelp">
 	<div class="modal-dialog modal-dialog-scrollable" role="document">
-		<div class="modal-content">
+		<div class="modal-content" Style='background-image:url("../img/back1.jpg")'>
 			<div class="modal-header">
 				<h5 class="modal-title">แจ้งปัญหาหรือข้อเสนอแนะ</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">

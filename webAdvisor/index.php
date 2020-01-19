@@ -54,7 +54,7 @@
 						echo '<img src="../img_user/user.png" class="rounded-circle" style="width: 25px;height: 25px;">';
 					}
 				 ?>
-			
+
 				สวัสดี,คุณ <?php echo $_SESSION['userlogin']["Username"]; ?>&nbsp;
 			 </span>
 			<span class="navbar-text" style="font-size: 14px">
@@ -225,8 +225,8 @@
 				<br/>
 		</div>
 	</main><br/>
-	<button style="position:fixed;bottom:20px;right:20px;padding:12px 16px;border-radius: 50%;" title="ติดต่อผู้ดูแลระบบ" class="btn btn-danger" data-toggle='modal' data-target='#feedback_model'>
-		<i class="fas fa-question"></i>
+	<button style="position:fixed;bottom:20px;" title="ติดต่อผู้ดูแลระบบ" class=" btn btn-danger" data-toggle='modal' data-target='#feedback_model'>
+		<i class="fas fa-comment-dots"></i>
 	</button>
 	<!-- Modal ติดต่อผู้ดูแลระบบ -->
 	<div class="modal fade" id="feedback_model" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">

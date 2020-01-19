@@ -21,6 +21,157 @@
 	<link rel="stylesheet" href="../css/bootstrap-selecta.css">
 	<script src="../js/bootstrap-select.js"></script>
 </head>
+<script>
+function myFunction() {
+  var x = document.getElementById("mySelect").value;
+  if(x=="1"){
+  document.getElementById("demo").innerHTML = "<select class='selectpicker' name='department' id='mySelect2' data-live-search='true' title='โปรดเลือกสาขาวิชา' required><?php
+
+include('../config/connect.php');
+
+$sql = "SELECT * FROM `department` WHERE dep_fuculty_id = '1' ";
+$result = $db->query($sql);
+if ($result->num_rows > 0) {
+	while($row = $result->fetch_assoc()) {
+		$D_id = $row['dep_id'];
+		$D_name = $row['dep_name'];
+		echo "<option value='".$D_id."'>".$D_name."</option>";
+	}
+} else {
+	echo "<option>ไม่พบข้อมูล</option>";
+}
+$db->close();
+?></select>";
+  }else if(x==2){
+	document.getElementById("demo").innerHTML = "<select class='selectpicker' name='department' id='mySelect2' data-live-search='true' title='โปรดเลือกสาขาวิชา' required><?php
+
+include('../config/connect.php');
+
+$sql = "SELECT * FROM `department` WHERE dep_fuculty_id = '2' ";
+$result = $db->query($sql);
+if ($result->num_rows > 0) {
+	while($row = $result->fetch_assoc()) {
+		$D_id = $row['dep_id'];
+		$D_name = $row['dep_name'];
+		echo "<option value='".$D_id."'>".$D_name."</option>";
+	}
+} else {
+	echo "<option>ไม่พบข้อมูล</option>";
+}
+$db->close();
+?></select>";
+ }else if(x==3){
+	document.getElementById("demo").innerHTML = "<select class='selectpicker' name='department' id='mySelect2' data-live-search='true' title='โปรดเลือกสาขาวิชา' required><?php
+
+include('../config/connect.php');
+
+$sql = "SELECT * FROM `department` WHERE dep_fuculty_id = '3' ";
+$result = $db->query($sql);
+if ($result->num_rows > 0) {
+	while($row = $result->fetch_assoc()) {
+		$D_id = $row['dep_id'];
+		$D_name = $row['dep_name'];
+		echo "<option value='".$D_id."'>".$D_name."</option>";
+	}
+} else {
+	echo "<option>ไม่พบข้อมูล</option>";
+}
+$db->close();
+?></select>";
+ }else if(x==4){
+	document.getElementById("demo").innerHTML = "<select class='selectpicker' name='department' id='mySelect2' data-live-search='true' title='โปรดเลือกสาขาวิชา' required><?php
+
+include('../config/connect.php');
+
+$sql = "SELECT * FROM `department` WHERE dep_fuculty_id = '4' ";
+$result = $db->query($sql);
+if ($result->num_rows > 0) {
+	while($row = $result->fetch_assoc()) {
+		$D_id = $row['dep_id'];
+		$D_name = $row['dep_name'];
+		echo "<option value='".$D_id."'>".$D_name."</option>";
+	}
+} else {
+	echo "<option>ไม่พบข้อมูล</option>";
+}
+$db->close();
+?></select>";
+ }else if(x==5){
+	document.getElementById("demo").innerHTML = "<select class='selectpicker' name='department' id='mySelect2' data-live-search='true' title='โปรดเลือกสาขาวิชา' required><?php
+
+include('../config/connect.php');
+
+$sql = "SELECT * FROM `department` WHERE dep_fuculty_id = '5' ";
+$result = $db->query($sql);
+if ($result->num_rows > 0) {
+	while($row = $result->fetch_assoc()) {
+		$D_id = $row['dep_id'];
+		$D_name = $row['dep_name'];
+		echo "<option value='".$D_id."'>".$D_name."</option>";
+	}
+} else {
+	echo "<option>ไม่พบข้อมูล</option>";
+}
+$db->close();
+?></select>";
+ }else if(x==6){
+	document.getElementById("demo").innerHTML = "<select class='selectpicker' name='department' id='mySelect2' data-live-search='true' title='โปรดเลือกสาขาวิชา' required><?php
+
+include('../config/connect.php');
+
+$sql = "SELECT * FROM `department` WHERE dep_fuculty_id = '6' ";
+$result = $db->query($sql);
+if ($result->num_rows > 0) {
+	while($row = $result->fetch_assoc()) {
+		$D_id = $row['dep_id'];
+		$D_name = $row['dep_name'];
+		echo "<option value='".$D_id."'>".$D_name."</option>";
+	}
+} else {
+	echo "<option>ไม่พบข้อมูล</option>";
+}
+$db->close();
+?></select>";
+ }else if(x==7){
+	document.getElementById("demo").innerHTML = "<select class='selectpicker' name='department' id='mySelect2' data-live-search='true' title='โปรดเลือกสาขาวิชา' required><?php
+
+include('../config/connect.php');
+
+$sql = "SELECT * FROM `department` WHERE dep_fuculty_id = '7' ";
+$result = $db->query($sql);
+if ($result->num_rows > 0) {
+	while($row = $result->fetch_assoc()) {
+		$D_id = $row['dep_id'];
+		$D_name = $row['dep_name'];
+		echo "<option value='".$D_id."'>".$D_name."</option>";
+	}
+} else {
+	echo "<option>ไม่พบข้อมูล</option>";
+}
+$db->close();
+?></select>";
+ }else if(x==8){
+	document.getElementById("demo").innerHTML = "<select class='selectpicker' name='department' id='mySelect2' data-live-search='true' title='โปรดเลือกสาขาวิชา' required><?php
+
+include('../config/connect.php');
+
+$sql = "SELECT * FROM `department` WHERE dep_fuculty_id = '8' ";
+$result = $db->query($sql);
+if ($result->num_rows > 0) {
+	while($row = $result->fetch_assoc()) {
+		$D_id = $row['dep_id'];
+		$D_name = $row['dep_name'];
+		echo "<option value='".$D_id."'>".$D_name."</option>";
+	}
+} else {
+	echo "<option>ไม่พบข้อมูล</option>";
+}
+$db->close();
+?></select>";
+ }
+
+}
+</script>
 <body>
 
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -104,8 +255,8 @@
       </div>
   	</div>
   </main>
-	<button style="position:fixed;bottom:20px;right:20px;padding:12px 16px;border-radius: 50%;" title="ติดต่อผู้ดูแลระบบ" class="btn btn-danger" data-toggle='modal' data-target='#feedback_model'>
-		<i class="fas fa-question"></i>
+	<button style="position:fixed;bottom:20px;" title="ติดต่อผู้ดูแลระบบ" class=" btn btn-danger" data-toggle='modal' data-target='#feedback_model'>
+		<i class="fas fa-comment-dots"></i>
 	</button>
 	<!-- Modal ติดต่อผู้ดูแลระบบ -->
 	<div class="modal fade" id="feedback_model" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
@@ -192,17 +343,19 @@
         <div class="form-group">
           <label for="exampleFormControlSelect1">สำนักวิชา:</label>
           <div class="input-group mb-3">
-          <select class="selectpicker" size="5" name="faculty" id="exampleFormControlSelect1"  data-live-search="true" title="โปรดเลือกสำนักวิชา" required>
+          <select class="selectpicker" size="5" name="faculty" id="mySelect" onchange="myFunction()"  data-live-search="true" title="โปรดเลือกสำนักวิชา" required>
 						<?php
 						include('../config/connect.php');
-						$sql = "SELECT * FROM fuaculty" ;
+						$sql = "SELECT * FROM `fuaculty` WHERE 1" ;
 						$result = $db->query($sql);
+						$i = 1;
 						if ($result->num_rows > 0) {
 							while($row = $result->fetch_assoc()) {
 						    echo '<option value="'.$row["fac_id"].'">'.$row["fac_name"].'</option>';
+								$i++;
 							}
 						} else {
-						    echo '<option value="-">ไม่พบข้อมูล</option>';
+						    echo '<option>ไม่พบข้อมูล</option>';
 						}
 						$db->close();
 						?>
@@ -211,19 +364,21 @@
         </div>
         <div class="form-group">
           <label for="exampleFormControlSelect1">สาขาวิชา:</label>
-          <div class="input-group mb-3">
-          <select class="selectpicker" size="5" name="department" id="exampleFormControlSelect1" data-live-search="true" title="โปรดเลือกสาขาวิชา" required>
+          <div class="input-group mb-3" id="demo">
+          <select class="selectpicker" size="3" name="department" id="mySelect2"  title="โปรดเลือกสาขาวิชา" required>
 						<?php
 						include('../config/connect.php');
-						$sql = "SELECT * FROM department" ;
+						$sql = "SELECT * FROM `department` WHERE 1" ;
 						$result = $db->query($sql);
+						$i = 1;
 						if ($result->num_rows > 0) {
 							while($row = $result->fetch_assoc()) {
 								echo '<option value="'.$row["dep_id"].'">'.$row["dep_name"].'</option>';
+								$i++;
 							}
 						} else {
 							while($row = $result->fetch_assoc()) {
-								echo '<option value="-">ไม่พบข้อมูล</option>';
+								echo '<option>ไม่พบข้อมูล</option>';
 							}
 						}
 						$db->close();

@@ -4,9 +4,6 @@
 	if(!isset($_SESSION['userlogin'])){
 		header("Location: ../login.php");
 	}
-	if($_SESSION['userlogin']["Role"]!='student'){
-		header("Location: ../login.php");
-	}
 ?>
 <!DOCTYPE html>
 <html>
@@ -29,13 +26,164 @@ body{
 }
 
 </style>
+<script>
+function myFunction() {
+  var x = document.getElementById("mySelect").value;
+  if(x=="1"){
+  document.getElementById("demo").innerHTML = "<select class='selectpicker' name='school' id='mySelect2' data-live-search='true' title='โปรดเลือกสาขาวิชา' required><?php
+
+include('../config/connect.php');
+
+$sql = "SELECT * FROM `department` WHERE dep_fuculty_id = '1' ";
+$result = $db->query($sql);
+if ($result->num_rows > 0) {
+	while($row = $result->fetch_assoc()) {
+		$D_id = $row['dep_id'];
+		$D_name = $row['dep_name'];
+		echo "<option value='".$D_id."'>".$D_name."</option>";
+	}
+} else {
+	echo "<option>ไม่พบข้อมูล</option>";
+}
+$db->close();
+?></select>";
+  }else if(x==2){
+	document.getElementById("demo").innerHTML = "<select class='selectpicker' name='school' id='mySelect2' data-live-search='true' title='โปรดเลือกสาขาวิชา' required><?php
+
+include('../config/connect.php');
+
+$sql = "SELECT * FROM `department` WHERE dep_fuculty_id = '2' ";
+$result = $db->query($sql);
+if ($result->num_rows > 0) {
+	while($row = $result->fetch_assoc()) {
+		$D_id = $row['dep_id'];
+		$D_name = $row['dep_name'];
+		echo "<option value='".$D_id."'>".$D_name."</option>";
+	}
+} else {
+	echo "<option>ไม่พบข้อมูล</option>";
+}
+$db->close();
+?></select>";
+ }else if(x==3){
+	document.getElementById("demo").innerHTML = "<select class='selectpicker' name='school' id='mySelect2' data-live-search='true' title='โปรดเลือกสาขาวิชา' required><?php
+
+include('../config/connect.php');
+
+$sql = "SELECT * FROM `department` WHERE dep_fuculty_id = '3' ";
+$result = $db->query($sql);
+if ($result->num_rows > 0) {
+	while($row = $result->fetch_assoc()) {
+		$D_id = $row['dep_id'];
+		$D_name = $row['dep_name'];
+		echo "<option value='".$D_id."'>".$D_name."</option>";
+	}
+} else {
+	echo "<option>ไม่พบข้อมูล</option>";
+}
+$db->close();
+?></select>";
+ }else if(x==4){
+	document.getElementById("demo").innerHTML = "<select class='selectpicker' name='school' id='mySelect2' data-live-search='true' title='โปรดเลือกสาขาวิชา' required><?php
+
+include('../config/connect.php');
+
+$sql = "SELECT * FROM `department` WHERE dep_fuculty_id = '4' ";
+$result = $db->query($sql);
+if ($result->num_rows > 0) {
+	while($row = $result->fetch_assoc()) {
+		$D_id = $row['dep_id'];
+		$D_name = $row['dep_name'];
+		echo "<option value='".$D_id."'>".$D_name."</option>";
+	}
+} else {
+	echo "<option>ไม่พบข้อมูล</option>";
+}
+$db->close();
+?></select>";
+ }else if(x==5){
+	document.getElementById("demo").innerHTML = "<select class='selectpicker' name='school' id='mySelect2' data-live-search='true' title='โปรดเลือกสาขาวิชา' required><?php
+
+include('../config/connect.php');
+
+$sql = "SELECT * FROM `department` WHERE dep_fuculty_id = '5' ";
+$result = $db->query($sql);
+if ($result->num_rows > 0) {
+	while($row = $result->fetch_assoc()) {
+		$D_id = $row['dep_id'];
+		$D_name = $row['dep_name'];
+		echo "<option value='".$D_id."'>".$D_name."</option>";
+	}
+} else {
+	echo "<option>ไม่พบข้อมูล</option>";
+}
+$db->close();
+?></select>";
+ }else if(x==6){
+	document.getElementById("demo").innerHTML = "<select class='selectpicker' name='school' id='mySelect2' data-live-search='true' title='โปรดเลือกสาขาวิชา' required><?php
+
+include('../config/connect.php');
+
+$sql = "SELECT * FROM `department` WHERE dep_fuculty_id = '6' ";
+$result = $db->query($sql);
+if ($result->num_rows > 0) {
+	while($row = $result->fetch_assoc()) {
+		$D_id = $row['dep_id'];
+		$D_name = $row['dep_name'];
+		echo "<option value='".$D_id."'>".$D_name."</option>";
+	}
+} else {
+	echo "<option>ไม่พบข้อมูล</option>";
+}
+$db->close();
+?></select>";
+ }else if(x==7){
+	document.getElementById("demo").innerHTML = "<select class='selectpicker' name='school' id='mySelect2' data-live-search='true' title='โปรดเลือกสาขาวิชา' required><?php
+
+include('../config/connect.php');
+
+$sql = "SELECT * FROM `department` WHERE dep_fuculty_id = '7' ";
+$result = $db->query($sql);
+if ($result->num_rows > 0) {
+	while($row = $result->fetch_assoc()) {
+		$D_id = $row['dep_id'];
+		$D_name = $row['dep_name'];
+		echo "<option value='".$D_id."'>".$D_name."</option>";
+	}
+} else {
+	echo "<option>ไม่พบข้อมูล</option>";
+}
+$db->close();
+?></select>";
+ }else if(x==8){
+	document.getElementById("demo").innerHTML = "<select class='selectpicker' name='school' id='mySelect2' data-live-search='true' title='โปรดเลือกสาขาวิชา' required><?php
+
+include('../config/connect.php');
+
+$sql = "SELECT * FROM `department` WHERE dep_fuculty_id = '8' ";
+$result = $db->query($sql);
+if ($result->num_rows > 0) {
+	while($row = $result->fetch_assoc()) {
+		$D_id = $row['dep_id'];
+		$D_name = $row['dep_name'];
+		echo "<option value='".$D_id."'>".$D_name."</option>";
+	}
+} else {
+	echo "<option>ไม่พบข้อมูล</option>";
+}
+$db->close();
+?></select>";
+ }
+
+}
+</script>
 <body>
 
 	<!--Navbar-->
 <nav class="navbar navbar-expand-lg navbar-dark " style="background-color:#56187f;">
 
 <!-- Navbar brand -->
-<a class="navbar-brand" href="index.php">WEB-STUDENT</a>
+<a class="navbar-brand" href="#">WEB-STUDENT</a>
 
 <!-- Collapse button -->
 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
@@ -58,16 +206,15 @@ body{
 	<li class="nav-item ">
 	  <a class="nav-link" href="project_all.php"><i class="fas fa-folder "></i> โครงงานของฉัน</a>
 	</li>
-	<li class="nav-item ">
-		<a class="nav-link" href="feedback_topic.php"><i class="fas fa-comment-dots "></i> ปัญหาและข้อเสนอแนะ</a>
-	</li>
 	 <li class="nav-item dropdown">
 		<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 		  อื่นๆ
 		</a>
 		<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-		  <a class="dropdown-item" href="edit_password.php"><i class="fas fa-lock "></i> แก้ไขรหัสผ่าน</a>
-		</div>
+		<a class="dropdown-item" href="feedback_topic.php"><i class="fas fa-comment-alt "></i> เมนูผู้ดูแลระบบ</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="edit_password.php"><i class="fas fa-lock "></i> แก้ไขรหัสผ่าน</a>
+  	</div>
 	  </li>
 	<!-- Dropdown -->
 	</li>
@@ -96,27 +243,9 @@ body{
 						<h3 class="card-title">ข้อมูลส่วนตัว</h3>
 						<div class="dropdown-divider"></div>
 						<!-- Alert -->
-						<?php
-						if(isset($_GET["res"]))
-						{
-							$get_res = $_GET["res"];
-							if($get_res=='"success"'){
-								echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
-									<center><strong><i class="fas fa-check-circle"></i> อัพเดตข้อมูลสำเร็จ</strong></center>
-									<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-										<span aria-hidden="true">&times;</span>
-									</button>
-								</div>';
-							}else{
-								echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-									<center><strong><i class="fas fa-times-circle"></i> อัพเดตข้อมูลไม่สำเร็จ</strong></center>
-									<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-										<span aria-hidden="true">&times;</span>
-									</button>
-								</div>';
-							}
-						}
-						?>
+						<div class="hide" id="add_alert" role="alert">
+							<div id="messages_content"></div>
+						</div>
 						<!-- End Alert -->
             <?php include('../api/studentInfomation/stdInfo.php'); ?>
 						<div class='dropdown-divider'></div>
@@ -199,42 +328,6 @@ body{
 		</div>
 	</div>
 </main>
-<button style="position:fixed;bottom:20px;right:20px;padding:12px 16px;border-radius: 50%;" title="ติดต่อผู้ดูแลระบบ" class="btn btn-danger" data-toggle='modal' data-target='#feedback_model'>
-	<i class="fas fa-question"></i>
-</button>
-<!-- Modal ติดต่อผู้ดูแลระบบ -->
-<div class="modal fade" id="feedback_model" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
-<form enctype="multipart/form-data" action="../api/studentInfomation/feedback_send.php" method="post" id="formhelp">
-<div class="modal-dialog modal-dialog-scrollable" role="document">
-	<div class="modal-content">
-		<div class="modal-header">
-			<h5 class="modal-title">แจ้งปัญหาหรือข้อเสนอแนะ</h5>
-			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-				<span aria-hidden="true">&times;</span>
-			</button>
-		</div>
-		<div class="modal-body">
-			<div class="input-group mb-1">
-				<label class="form-check-label">หัวข้อ&nbsp;</label>
-			</div>
-			<div class="input-group mb-3">
-					<input type="text" class="form-control" placeholder="หัวข้อ" name="topic" id="topic" required>
-			</div>
-			<div class="input-group mb-1">
-				<label class="form-check-label">รายละเอียด&nbsp;</label>
-			</div>
-			<div class="input-group mb-3">
-				<textarea form="formhelp" class="form-control" id="validationTextarea" placeholder="แจ้งรายละเอียด" name="detail" required></textarea>
-			</div>
-		</div>
-		<div class="modal-footer">
-			<button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-			<button type="submit" name="feedback_send" id="submit" value="Submit" class="btn btn-primary">ยืนยัน</button>
-		</div>
-	</div>
-</div>
-</form>
-</div>
 
 <!-- Modal Edit -->
 <div class="modal fade" id="editUserModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
@@ -295,46 +388,48 @@ body{
 			<div class="form-group">
 				<label for="exampleFormControlSelect1">สำนักวิชา:</label>
 				<div class="input-group mb-3">
-				<select class="selectpicker" size="5" name="faculty" id="exampleFormControlSelect1"  data-live-search="true" title="โปรดเลือกสำนักวิชา" required>
+					<select class="selectpicker" size="5" name="faculty" id="mySelect" onchange="myFunction()"  data-live-search="true" title="โปรดเลือกสำนักวิชา" required>
+						<?php
+						include('../config/connect.php');
+						$sql = "SELECT * FROM `fuaculty` WHERE 1" ;
+						$result = $db->query($sql);
+						$i = 1;
+						if ($result->num_rows > 0) {
+							while($row = $result->fetch_assoc()) {
+								echo '<option value="'.$row["fac_id"].'">'.$row["fac_name"].'</option>';
+								$i++;
+							}
+						} else {
+								echo '<option>ไม่พบข้อมูล</option>';
+						}
+						$db->close();
+						?>
+					</select>
+				</div>
+			</div>
+      <div class="form-group">
+        <label for="exampleFormControlSelect1">สาขาวิชา:</label>
+				<div class="input-group mb-3" id="demo">
+				<select class="selectpicker" size="3" name="school" id="mySelect2"  title="โปรดเลือกสาขาวิชา" required>
 					<?php
 					include('../config/connect.php');
-					$sql = "SELECT * FROM fuaculty" ;
+					$sql = "SELECT * FROM `department` WHERE 1" ;
 					$result = $db->query($sql);
+					$i = 1;
 					if ($result->num_rows > 0) {
 						while($row = $result->fetch_assoc()) {
-					    echo '<option value="'.$row["fac_id"].'">'.$row["fac_name"].'</option>';
+							echo '<option value="'.$row["dep_id"].'">'.$row["dep_name"].'</option>';
+							$i++;
 						}
 					} else {
-					    echo '<option value="-">ไม่พบข้อมูล</option>';
+						while($row = $result->fetch_assoc()) {
+							echo '<option>ไม่พบข้อมูล</option>';
+						}
 					}
 					$db->close();
 					?>
 				</select>
 				</div>
-			</div>
-      <div class="form-group">
-        <label for="exampleFormControlSelect1">สาขาวิชา:</label>
-        <div class="input-group mb-3">
-					<?php
-					include('../config/connect.php');
-					$sql = "SELECT * FROM department" ;
-					$result = $db->query($sql);
-					if ($result->num_rows > 0) {
-						echo '<select class="selectpicker" size="5" name="school" id="exampleFormControlSelect1" data-live-search="true" title="โปรดเลือกสาขาวิชา" required>';
-						while($row = $result->fetch_assoc()) {
-							echo '<option value="'.$row["dep_id"].'">'.$row["dep_name"].'</option>';
-						}
-						echo '</select>';
-					} else {
-						echo '<select class="selectpicker" size="5" name="school" id="exampleFormControlSelect1" data-live-search="true" title="โปรดเลือกสาขาวิชา" required>';
-						while($row = $result->fetch_assoc()) {
-							echo '<option value="-">ไม่พบข้อมูล</option>';
-						}
-						echo '</select>';
-					}
-					$db->close();
-					?>
-        </div>
       </div>
       <div class="form-group">
         <label for="exampleFormControlSelect1">ชื่อปริญญา:</label>
@@ -390,7 +485,7 @@ body{
 				<label class="form-check-label">รูปโปรไฟล์:&nbsp;</label>
 			</div>
 			<div class="input-group mb-3">
-				<input type="file" class="btn btn-light btn-block" name="fileToUpload" id="fileToUpload">
+				<input type="file" class="form-control-file" name="fileToUpload" id="fileToUpload">
 			</div>
 		</div>
 		<div class="modal-footer">
@@ -612,7 +707,7 @@ body{
 
 <!-- Modal Add skillsHistory -->
 <div class="modal fade" id="addSkillsModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
-<form enctype="multipart/form-data" action="../api/studentInfomation/add_skills.php" method="post" id="skillform">
+<form enctype="multipart/form-data" action="../api/studentInfomation/add_skills.php" method="post" id="addskills">
 <div class="modal-dialog modal-dialog-scrollable" role="document">
 	<div class="modal-content" Style='background-image:url("../img/back1.jpg")'>
 		<div class="modal-header">
@@ -626,7 +721,7 @@ body{
 				<input type="text" class="form-control" placeholder="ประเภท (ตย.ภาษาต่างประเทศ)" name="Type" id="Type" required>
 			</div>
 			<div class="input-group mb-3">
-				<textarea form="skillform" class="form-control" placeholder="ทักษะ (ตย.ภาษาอังกฤษ,ภาษาจีน และภาษาญี่ปุ่น)" name="Skills" required></textarea>
+				<textarea form="addskills" class="form-control" id="Skills" placeholder="ทักษะ (ตย.ภาษาอังกฤษ,ภาษาจีน และภาษาญี่ปุ่น)" name="Skills" required></textarea>			
 			</div>
 		</div>
 
@@ -641,7 +736,7 @@ body{
 
 <!-- Modal Edit skillsHistory-->
 <div class="modal fade" id="editskillsModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
-<form enctype="multipart/form-data" action="../api/studentInfomation/edit_3.php" method="post" id="skillform2">
+<form enctype="multipart/form-data" action="../api/studentInfomation/edit_3.php" method="post">
 <div class="modal-dialog modal-dialog-scrollable" role="document">
 	<div class="modal-content" Style='background-image:url("../img/back1.jpg")'>
 		<div class="modal-header">
@@ -662,7 +757,7 @@ body{
 				<label class="form-check-label">ทักษะ:&nbsp;</label>
 			</div>
 			<div class="input-group mb-3">
-				<textarea form="skillform2" class="form-control" placeholder="ทักษะ (ตย.ภาษาอังกฤษ,ภาษาจีน และภาษาญี่ปุ่น)" name="Skills" id="Skills2" required></textarea>
+				<input type="textarea" class="form-control" placeholder="ทักษะ (ตย.ภาษาอังกฤษ,ภาษาจีน และภาษาญี่ปุ่น)" name="Skills" id="Skills2" required>
 			</div>
 		</div>
 		<div class="modal-footer">

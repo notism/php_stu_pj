@@ -114,8 +114,8 @@
 
   	</div>
   </main>
-	<button style="position:fixed;bottom:20px;right:20px;padding:12px 16px;border-radius: 50%;" title="ติดต่อผู้ดูแลระบบ" class="btn btn-danger" data-toggle='modal' data-target='#feedback_model'>
-		<i class="fas fa-question"></i>
+	<button style="position:fixed;bottom:20px;" title="ติดต่อผู้ดูแลระบบ" class=" btn btn-danger" data-toggle='modal' data-target='#feedback_model'>
+		<i class="fas fa-comment-dots"></i>
 	</button>
 	<!-- Modal ติดต่อผู้ดูแลระบบ -->
 	<div class="modal fade" id="feedback_model" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">

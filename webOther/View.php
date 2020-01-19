@@ -6,7 +6,7 @@
 </style>
 <head>
 <title>Student Project</title>
-	
+
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="../css/bootstrapA.css">
 	<link rel="stylesheet" type="text/css" href="../css/Colum.css"/>
@@ -15,7 +15,7 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 	<link rel="stylesheet" type="text/css" href="../css/datatables.css"/>
 	<link rel="stylesheet" href="../nice/css/mdb.min.css">
-	
+
 	<style>
 body{
 	background-image:url("../img/back.gif")
@@ -32,7 +32,7 @@ function myHide()
 }
 </script>
 
-<?php  
+<?php
 $proid = $_GET["Proid"];
  include('../config/connect.php');
  $sql = "SELECT * FROM `projectinfo` WHERE id = '$proid' and Status = 'อนุมัติแล้ว'";
@@ -40,7 +40,7 @@ $proid = $_GET["Proid"];
  $rowcount=mysqli_num_rows($result);
  if ($rowcount < 1) {
     echo "<script>window.location.href = 'index.php';</script>";
- 
+
 } else {
 
     while($row = $result->fetch_assoc()) {
@@ -93,8 +93,8 @@ $proid = $_GET["Proid"];
     }
 }
 
-    
- $QRcode = '<img src="https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=https://localhost/test/webStudent/View.php?Pid='.$URL.'/&choe=UTF-8" title="Link to my Website" width=100%/>';
+    include('../config/qrcode.php');
+ // $QRcode = '<img src="https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=https://localhost/test/webStudent/View.php?Pid='.$URL.'/&choe=UTF-8" title="Link to my Website" width=100%/>';
 ?>
 
 
@@ -124,10 +124,10 @@ $proid = $_GET["Proid"];
 	  <a class="nav-link" href=../login.php><i class="fas fa-sign-in-alt "></i> ล็อกอิน
 	  </a>
 	</li>
-		 
+
   </ul>
 
-	
+
 
 </nav>
 <!--/.Navbar-->
@@ -139,31 +139,31 @@ $proid = $_GET["Proid"];
 		<div class="row">
 		  <div class="col-sm-12">
         <!-- start card -->
-			
-			
-                   
-                  
-                        
+
+
+
+
+
 						<!-- Alert -->
 						<div class="hide" id="add_alert" role="alert" >
 							<div id="messages_content" ></div>
 						</div>
 					<!-- End Alert -->
 
-                   
+
 <?php $space = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" ?>
 
 <div class="container my-5 z-depth-1" Style='cursor: pointer;border-left: solid 0px #4285f4;background-color:#ffffff'>
 
-                    
+
 <!--Section: Content-->
 <section class="dark-grey-text"  >
 
   <div class="row pr-lg-5">
-  
+
     <div class="col-md-7 mb-4">
 
-      <div class="view"><span><br>&nbsp;&nbsp;&nbsp;จำนวนคนดู <?php echo $View+1; ?> ครั้ง <i class='fas fa-eye '></i> 
+      <div class="view"><span><br>&nbsp;&nbsp;&nbsp;จำนวนคนดู <?php echo $View+1; ?> ครั้ง <i class='fas fa-eye '></i>
         <!-- Hoverable -->
 <br><br><br><br><br>
 <img src="../img/<?php echo $Pic; ?>" class="img-fluid  hoverable" ><br><br><br><br>
@@ -188,8 +188,8 @@ $proid = $_GET["Proid"];
 
 $Adv = $row1["Prefix"]." ".$row1["Firstname"]." ".$row1["Lastname"];
  }
- echo $space.$Adv;      
- ?><br> 
+ echo $space.$Adv;
+ ?><br>
           <br>
           <B>สมาชิกในกลุ่ม</B><Br>
   <?php
@@ -200,8 +200,8 @@ $Adv = $row1["Prefix"]." ".$row1["Firstname"]." ".$row1["Lastname"];
 
 echo $space.$row1["Prefix"]." ".$row1["Firstname"]." ".$row1["Lastname"]."<Br>";
  }
-     
- ?> 
+
+ ?>
 <br>
 <center><p style="cursor: pointer;border: solid 0px #212121;width:30%"><?php echo $QRcode; ?></p></center>
 
@@ -219,12 +219,12 @@ echo $space.$row1["Prefix"]." ".$row1["Firstname"]." ".$row1["Lastname"]."<Br>";
 
       </div>
       <br><br>
-    
+
 
   <br><br>
 </section>
 <!--Section: Content-->
-</div>                  
+</div>
   </div>
 </div>
 

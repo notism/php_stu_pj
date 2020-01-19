@@ -165,7 +165,7 @@
 										<div class="row">
 										<div class="col">
 											<div class="card-body ">
-											<strong class="card-text text-dark"><i class="far fa-eye"></i> ยอดเข้าชทโครงงานรวม</strong>
+											<strong class="card-text text-dark"><i class="far fa-eye"></i> ยอดเข้าชมโครงงานรวม</strong>
 											<div class="text-right text-dark "><label  style="font-size: 2em;"><?php include('../api/dashboard/sum_view.php'); ?></label> ครั้ง</div>
 											</div>
 										</div>

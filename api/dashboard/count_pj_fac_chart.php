@@ -3,7 +3,7 @@
 include('../config/connect.php');
 
 // วิศวะกรรมศาสตร์
-$sql = "SELECT * FROM projectinfo JOIN users JOIN profile WHERE projectinfo.CreatedBy=users.Id AND users.Username=profile.CreatedBy AND Faculty=1" ;
+$sql = "SELECT * FROM projectinfo WHERE  fu=1 AND Status='อนุมัติแล้ว'" ;
 $result = $db->query($sql);
 if ($result->num_rows > 0) {
     $row_01 = $result->num_rows;
@@ -12,7 +12,7 @@ if ($result->num_rows > 0) {
 }
 
 // แพทยศาสตร์
-$sql2 = "SELECT * FROM projectinfo JOIN users JOIN profile WHERE projectinfo.CreatedBy=users.Id AND users.Username=profile.CreatedBy AND Faculty=2" ;
+$sql2 = "SELECT * FROM projectinfo WHERE  fu=2 AND Status='อนุมัติแล้ว'" ;
 $result2 = $db->query($sql2);
 if ($result2->num_rows > 0) {
     $row_02= $result2->num_rows;
@@ -21,7 +21,7 @@ if ($result2->num_rows > 0) {
 }
 
 // เทคโนโลยีสังคม
-$sql3 = "SELECT * FROM projectinfo JOIN users JOIN profile WHERE projectinfo.CreatedBy=users.Id AND users.Username=profile.CreatedBy AND Faculty=3" ;
+$sql3 = "SELECT * FROM projectinfo WHERE  fu=3 AND Status='อนุมัติแล้ว'" ;
 $result3 = $db->query($sql3);
 if ($result3->num_rows > 0) {
     $row_03 = $result3->num_rows;
@@ -30,7 +30,7 @@ if ($result3->num_rows > 0) {
 }
 
 // สาธารณสุขศาสตร์
-$sql4 = "SELECT * FROM projectinfo JOIN users JOIN profile WHERE projectinfo.CreatedBy=users.Id AND users.Username=profile.CreatedBy AND Faculty=4" ;
+$sql4 = "SELECT * FROM projectinfo WHERE  fu=4 AND Status='อนุมัติแล้ว'" ;
 $result4 = $db->query($sql4);
 if ($result4->num_rows > 0) {
     $row_04 = $result4->num_rows;
@@ -39,7 +39,7 @@ if ($result4->num_rows > 0) {
 }
 
 // พยาบาลศาสตร์
-$sql5 = "SELECT * FROM projectinfo JOIN users JOIN profile WHERE projectinfo.CreatedBy=users.Id AND users.Username=profile.CreatedBy AND Faculty=5" ;
+$sql5 = "SELECT * FROM projectinfo WHERE  fu=5 AND Status='อนุมัติแล้ว'" ;
 $result5 = $db->query($sql5);
 if ($result5->num_rows > 0) {
     $row_05 = $result5->num_rows;
@@ -48,7 +48,7 @@ if ($result5->num_rows > 0) {
 }
 
 // วิทยศาสตร์
-$sql6 = "SELECT * FROM projectinfo JOIN users JOIN profile WHERE projectinfo.CreatedBy=users.Id AND users.Username=profile.CreatedBy AND Faculty=6" ;
+$sql6 = "SELECT * FROM projectinfo WHERE  fu=6 AND Status='อนุมัติแล้ว'" ;
 $result6 = $db->query($sql6);
 if ($result6->num_rows > 0) {
     $row_06 = $result6->num_rows;
@@ -57,7 +57,7 @@ if ($result6->num_rows > 0) {
 }
 
 // เทคโนโลยีการเกษตร
-$sql7 = "SELECT * FROM projectinfo JOIN users JOIN profile WHERE projectinfo.CreatedBy=users.Id AND users.Username=profile.CreatedBy AND Faculty=7" ;
+$sql7 = "SELECT * FROM projectinfo WHERE  fu=7 AND Status='อนุมัติแล้ว'" ;
 $result7 = $db->query($sql7);
 if ($result7->num_rows > 0) {
     $row_07 = $result7->num_rows;
@@ -66,7 +66,7 @@ if ($result7->num_rows > 0) {
 }
 
 // ทันตแพทยศาสตร์
-$sql8 = "SELECT * FROM projectinfo JOIN users JOIN profile WHERE projectinfo.CreatedBy=users.Id AND users.Username=profile.CreatedBy AND Faculty=8" ;
+$sql8 = "SELECT * FROM projectinfo WHERE  fu=8 AND Status='อนุมัติแล้ว'" ;
 $result8 = $db->query($sql8);
 if ($result8->num_rows > 0) {
     $row_08 = $result8->num_rows;

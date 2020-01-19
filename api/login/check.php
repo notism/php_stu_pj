@@ -1,11 +1,7 @@
 <?php
 session_start();
 // connect DB
-$db_user = "root";
-$db_pass = '';
-$db_name = "student_project";
-$db = new PDO('mysql:host=localhost;dbname='. $db_name . ';charset=utf8', $db_user, $db_pass);
-$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+include('../../config/connect_pdo.php');
 
 $username = $_POST['username'];
 $password = $_POST['password'];

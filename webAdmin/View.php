@@ -60,6 +60,8 @@
 	</nav>
   <?php
   include('../config/connect.php');
+	$URL = $proid;
+	include('../config/qrcode.php');
   $advisor=$_SESSION['userlogin']['Id'];
   $sql = "SELECT * FROM projectInfo JOIN users WHERE Advisor=users.Id AND projectInfo.Id='$proid'" ;
   $result = $db->query($sql);
@@ -245,19 +247,27 @@
                            <br/>   <br/>
                            <Table width="100%">
                            <tr>
-                           <td>
-                           <center><button type="button" class="btn btn-info" onclick="window.open('../file/<?php echo $File; ?>')"><i class="fas fa-file-pdf fa-lg "></i> เปิดเอกสาร</button>
-                           </center></td><td>
+                           <td width="50%">
+                           <center>
+														 <button type="button" class="btn btn-info" onclick="window.open('../file/<?php echo $File; ?>')"><i class="fas fa-file-pdf fa-lg "></i> เปิดเอกสาร</button>
+                           </center>
+												 	 </td>
+													 <td width="50%">
                            <?php
                            if ($File!=null) {
                              echo "<center><a href='../api/project_advisor/pdf_download.php?file=".$File."'><button type='submit' class='btn btn-warning'><i class='fas fa-download fa-lg '></i> Download</button></a>";
                            }
-                            ?>
-
+                           ?>
                            </center>
                            </td>
                            </tr>
                            </table>
+													 <br/>
+
+														<center>
+														 <p style="cursor: pointer;border: solid 0px #212121;width:30%"><?php echo $QRcode_admin; ?></p>
+														</center>
+
 
                           </div>
                         </div>

@@ -7,10 +7,11 @@ $preset =rand();
 <head>
 <title>Student Project</title>
 	<link rel="stylesheet" href="nice/css/mdb.min.css">
-	
+	<link rel='stylesheet' type='text/css' href='css/bootstrapA.css'>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 	<style>
 body{
-	background-image:url("../img/back.gif")
+	background:#E6E6FA !important;
 }
 
 input[type=text], select {
@@ -29,20 +30,29 @@ input[type=text], select {
 </head>
 <body>
 
-		
+
 <main>
-<p >	
-<Table width=75% align='right'><tr><td><h3>ขั้นตอนที่ 1.</h3></td></tr><tr><td>                      
-                        <form action="" method="post">
-                        <input type='text' name='reset' placeholder='กรอก Username หรือ Email ของคุณ'><input type="hidden" name="SM" value="<?php echo $preset; ?>"><button type="submit" name="submit" class="btn purple-gradient btn-rounded mx-2 " > ยืนยัน </button>
-                        </form>
-</td></tr>
-</p>
+	<div class="container-xl"><br/>
+		<div class="card" style="width: 100%;">
+			<div class="card-header bg-dark text-white" style="font-size: 25px;"><a style="color: white;" href="index.php"><i class="fas fa-arrow-alt-circle-left"></i></a> ลืมรหัสผ่าน</div>
+			<div class="card-body">
+				<p >
+				<Table width=75% align='right'><tr><td><h6>ขั้นตอนที่ 1.</h6></td></tr><tr><td>
+				                        <form action="" method="post">
+				                        <input type='text' name='reset' placeholder='กรอก Username หรือ Email ของคุณ'><input type="hidden" name="SM" value="<?php echo $preset; ?>"><button type="submit" name="submit" class="btn purple-gradient btn-rounded mx-2 " > ยืนยัน </button>
+				                        </form>
+				</td></tr>
+				</p>
+
+			</div>
+		</div>
+	</div>
+
 <?php
-                            
-                        
+error_reporting(~E_NOTICE);
+
                         if(isset($_POST['submit'])||isset($_POST['submit2'])){
-                            
+
                             $i =0;
                             $NReset = $_POST['reset'];
                             include('config/connect.php');
@@ -52,7 +62,7 @@ input[type=text], select {
                             while($row1 = $result1->fetch_assoc()){
                                 if(isset($_POST['submit'])&&isset($_POST['SM'])) {
 
-                                    
+
 require($_SERVER['DOCUMENT_ROOT']."/phpmailer/PHPMailerAutoload.php");
 
 header('Content-Type: text/html; charset=utf-8');
@@ -72,7 +82,7 @@ $gmail_password = "pssut12345"; // รหัสผ่าน gmail
 
 
 $sender = "PStudent Support"; // ชื่อผู้ส่ง
-$email_sender = "pstudent.sut@gmail.com"; // เมล์ผู้ส่ง 
+$email_sender = "pstudent.sut@gmail.com"; // เมล์ผู้ส่ง
 $email_receiver = "Thanakorn.pimt@gmail.com"; // เมล์ผู้รับ ***
 
 $subject = "เปลี่ยนรหัสผ่าน"; // หัวข้อเมล์
@@ -97,9 +107,9 @@ $email_content = "
         </h1>
         <div style='padding:20px;'>
             <div style='text-align:center;margin-bottom:50px;'>
-                <img src='https://miamioh.edu/_files/images/it-services/news-articles/2017/07/password-reset.jpg'width:50%' />					
+                <img src='https://miamioh.edu/_files/images/it-services/news-articles/2017/07/password-reset.jpg'width:50%' />
             </div>
-            <div>				
+            <div>
                 <h2>การกู้รหัสผ่าน สำหรับ Student รหัส :<font color='red'> ".$_POST['SM']."</font><strong style='color:#0000ff;'></strong></h2>
             </div>
             <div style='margin-top:30px;'>
@@ -112,7 +122,7 @@ $email_content = "
             </div>
         </div>
         <div style='background: #3b434c;color: #a2abb7;padding:30px;'>
-            <div style='text-align:center'> 
+            <div style='text-align:center'>
                 2020 © PStudent SUT
             </div>
         </div>
@@ -131,16 +141,16 @@ if($email_receiver){
 		echo $mail->ErrorInfo; // ข้อความ รายละเอียดการ error
 	}else{
 		// กรณีส่ง email สำเร็จ
-		
-	}	
+
+	}
 }
 
 
 
 
-                                } 
+                                }
                             session_start();
-                            $_SESSION['SM'] = $_POST["SM"]; 
+                            $_SESSION['SM'] = $_POST["SM"];
                             echo "<tr><td ><p Style='cursor: pointer;border-left: solid 3px #8bc34a;background-color:#f1f8e9;width:60%' ><br>&nbsp; กรุณาตรวจสอบรหัสรีเซ็ต password ที่ Email : ".$row1["Email"]." <br><br></p></td></tr>";
                             echo "<tr><td><h3>ขั้นตอนที่ 2.</h3></td></tr><tr><td> <form action='' method='post'>
                             <input type='text' name='reset2' placeholder='กรอกรหัส Reset Password'><input type='hidden' name='reset' value='".$NReset."'><input type='hidden' name='u' value='".$row1['Id']."'><input type='hidden' name='SM' value='".$_SESSION['SM']."'><button type='submit' name='submit2' class='btn purple-gradient btn-rounded mx-2 ' > ยืนยัน </button>
@@ -161,18 +171,18 @@ if($email_receiver){
                             } else {
                                 echo "<tr><td ><p Style='cursor: pointer;border-left: solid 3px #ffbb33;background-color:#fffde7;width:60%' ><br>&nbsp; หมายเหตุ : ไม่พบ Username หรือ Email ผู้ใช้ ที่ต้องการเปลี่ยนรหัสผ่าน <br><br></p></td></tr>";
                             }
-                            
-                                
-                            
-						  
-							
-                        }
-                        
-                        
-?>
-                         
 
- </Table> 
+
+
+
+
+                        }
+
+
+?>
+
+
+ </Table>
 </main>
 </body>
 </html>

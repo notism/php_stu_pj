@@ -11,7 +11,7 @@
 <html>
 <head>
 <title>Student Project</title>
-
+	
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="../css/bootstrapA.css">
 	<link rel="stylesheet" type="text/css" href="../css/Colum.css"/>
@@ -20,7 +20,7 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 	<link rel="stylesheet" type="text/css" href="../css/datatables.css"/>
 	<link rel="stylesheet" href="../nice/css/mdb.min.css">
-
+	
 	<style>
 body{
 	background-image:url("../img/back.gif")
@@ -68,24 +68,23 @@ input[type=password], select {
 	<li class="nav-item ">
 	  <a class="nav-link" href="project_all.php"><i class="fas fa-folder "></i> โครงงานของฉัน</a>
 	</li>
-	<li class="nav-item ">
-		<a class="nav-link" href="feedback_topic.php"><i class="fas fa-comment-dots "></i> ปัญหาและข้อเสนอแนะ</a>
-	</li>
 	 <li class="nav-item dropdown">
 		<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 		  อื่นๆ
 		</a>
 		<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-		  <a class="dropdown-item" href="edit_password.php"><i class="fas fa-lock "></i> แก้ไขรหัสผ่าน</a>
-		</div>
+		<a class="dropdown-item" href="feedback_topic.php"><i class="fas fa-comment-alt "></i> เมนูผู้ดูแลระบบ</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="edit_password.php"><i class="fas fa-lock "></i> แก้ไขรหัสผ่าน</a>
+  		</div>
 	  </li>
 	<!-- Dropdown -->
 	</li>
-
+		 
   </ul>
   <!-- Links -->
 
-	<span class="navbar-text" style="font-size: 14px;color:white"><?php include('../webStudent/usericon.php'); ?>
+	<span class="navbar-text" style="font-size: 14px;color:white"><?php include('../webStudent/usericon.php'); ?> 
 		  &nbsp;	สวัสดี,คุณ <?php echo $_SESSION['userlogin']["Username"]; ?>&nbsp;
 		   </span>
 		  <span class="navbar-text" style="font-size: 14px">
@@ -110,31 +109,29 @@ input[type=password], select {
 							<div id="messages_content" ></div>
 						</div>
                         <br>
-						<Table width=75% align='right'><tr><td><br><br><h3></h3></td></tr><tr><td>
+						<Table width=70% align='left'><tr><td><br><br><h3></h3></td></tr><tr><td align="right">                       
                         <form action="" method="post">
                         <input type='password' name='reset1' placeholder='กรอกรหัสผ่านใหม่'><input type="hidden" name="SM" value="<?php echo $preset; ?>"><br><input type='password' name='reset2' placeholder='กรอกรหัสผ่านใหม่อีกครั้ง'><br>
  </td></tr>
- <tr><td><center><button type="submit" name="submit" class="btn purple-gradient btn-rounded mx-2 " > ยืนยัน </button></form><br><br><br>
-
-</center></td></tr>
-
-
- <?php
-
+ <tr><td  align="right"><button type="submit" name="submit" class="btn purple-gradient btn-rounded mx-2 " > ยืนยัน </button></form><br><br><br></td></tr>
+ 
+ 
+ <?php 
+ 
  if(isset($_POST["submit"])){
 
        if($_POST["reset1"]==$_POST["reset2"]){
         $P = md5($_POST['reset1']);
         include('../config/connect.php');
         $sql = "UPDATE users
-        SET Password = '".$P."'
+        SET Password = '".$P."'        
         WHERE Id = '".$_SESSION['userlogin']['Id']."'";
         if ($db->query($sql) === TRUE) {
         echo "<script type='text/javascript'>alert('เปลี่ยนรหัสผ่านเรียบร้อยแล้ว');</script>";
                 }
        }else{
         echo "<tr><td ><p Style='cursor: pointer;border-left: solid 3px #ffbb33;background-color:#fffde7;width:60%' ><br>&nbsp; หมายเหตุ : รหัสผ่านไม่ตรงกัน ตรวจสอบอีกครั้ง <br><br></p></td></tr>";
-
+                            
        }
 
 
@@ -143,19 +140,19 @@ input[type=password], select {
 
 
  }
-
-
+ 
+ 
  ?>
-
-
-
-
-
-
+ 
+ 
+ 
+ 
+ 
+ 
  </Table>
+                         
 
-
-
+                    
 					</div>
 				</div>
         <!-- end card -->
@@ -164,41 +161,5 @@ input[type=password], select {
 		</div>
 	</div>
 </main>
-<button style="position:fixed;bottom:20px;right:20px;padding:12px 16px;border-radius: 50%;" title="ติดต่อผู้ดูแลระบบ" class="btn btn-danger" data-toggle='modal' data-target='#feedback_model'>
-	<i class="fas fa-question"></i>
-</button>
-<!-- Modal ติดต่อผู้ดูแลระบบ -->
-<div class="modal fade" id="feedback_model" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
-<form enctype="multipart/form-data" action="../api/studentInfomation/feedback_send.php" method="post" id="formhelp">
-<div class="modal-dialog modal-dialog-scrollable" role="document">
-	<div class="modal-content">
-		<div class="modal-header">
-			<h5 class="modal-title">แจ้งปัญหาหรือข้อเสนอแนะ</h5>
-			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-				<span aria-hidden="true">&times;</span>
-			</button>
-		</div>
-		<div class="modal-body">
-			<div class="input-group mb-1">
-				<label class="form-check-label">หัวข้อ&nbsp;</label>
-			</div>
-			<div class="input-group mb-3">
-					<input type="text" class="form-control" placeholder="หัวข้อ" name="topic" id="topic" required>
-			</div>
-			<div class="input-group mb-1">
-				<label class="form-check-label">รายละเอียด&nbsp;</label>
-			</div>
-			<div class="input-group mb-3">
-				<textarea form="formhelp" class="form-control" id="validationTextarea" placeholder="แจ้งรายละเอียด" name="detail" required></textarea>
-			</div>
-		</div>
-		<div class="modal-footer">
-			<button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-			<button type="submit" name="feedback_send" id="submit" value="Submit" class="btn btn-primary">ยืนยัน</button>
-		</div>
-	</div>
-</div>
-</form>
-</div>
 </body>
 </html>
